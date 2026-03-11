@@ -45,13 +45,9 @@
                 <p style="text-align: center;">
                     <label for="filtro" style="color: #000000;">Estado</label><br>
                     <select id="estado" name="estado" required style="border: 1px solid #207ffc; padding: 4px; width: 30%; margin: 0 auto;">
-                        <!--
-                            <option value="">Seleccione</option>
-                            <option value="Inactivo">Inactivo</option>
-                            <option value="Activo">Activo</option>
-                        -->
-                        <option value="no realizado" <?php if(['estado']=="no realizado") {echo "selected"; }?> >No Realizado</option>
-                        <option value="Realizada" <?php if(['estado']=="Realizada") {echo "selected"; }?> >Realizada</option>
+                        <!-- El nuevo mantenimiento se crea siempre como "no realizado" -->
+                        <option value="no realizado" selected>No Realizado</option>
+                        <option value="Realizada">Realizada</option>
                     </select>
                 </p>
             <p>
