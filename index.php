@@ -222,19 +222,7 @@
                         </div>
             </div>
         </div>
-<!-- Footer con iconos -->
-    <div class="footer-box">
-        <a href="https://www.intecap.edu.gt/centros/centroquiche/" class="footer-icon" title="Navegación"><i class="fas fa-globe"></i></a>
-        <a href="mailto:intecapquiche@intecap.edu.gt" class="footer-icon" title="Correo"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.youtube.com/user/intecapguate" class="footer-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.google.com/maps/dir//Leones,+Santa+Cruz+del+Quiché" class="footer-icon" title="Ubicación"><i class="fas fa-map-marker-alt"></i></a>
-        <a href="https://x.com/intecapoficial" class="footer-icon" title="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.facebook.com/intecapoficial/" class="footer-icon" title="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.instagram.com/intecapoficial/" class="footer-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://gt.linkedin.com/school/intecapoficial/" class="footer-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://web.whatsapp.com/" class="footer-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    </div>
-
+        
         <footer>
             Centro de capacitación, Quiché © Intecap
         </footer>

@@ -28,41 +28,39 @@ $url = "../MANTENIMIENTO.php?estado=".$estado;
 <head>
   <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 
-
   <link href="../img/intecap.png" rel="icon" type="image/png">
   <link rel='stylesheet' type='text/css' href='css1/style.css' />
   <link rel='stylesheet' type='text/css' href='css1/print.css' media="print" />
   <script type='text/javascript' src='js/jquery-1.3.2.min.js'></script>
   <script type='text/javascript' src='js/example.js'></script>
 
-
 <style>
+
+* {
+    font-family: Arial, sans-serif;
+}
 
 .left{
     float: left;
-
 }
 .right{
     float: right;
-
 }
 .center{
-
-   display:inline-block
+   display:inline-block;
 }
 @media print {
     .btn-print {
       display:none !important;
-    size:30px;
+      size:30px;
     }
-
 }
 th, td {
-font-size: 15px;
-text-align: center;
+    font-size: 15px;
+    text-align: center;
+    font-family: Arial, sans-serif;
 }
 
-</style>
 </style>
 </head>
 
@@ -71,9 +69,6 @@ text-align: center;
    <br>
 
        <center>                       
-
-   
-
 
     <a class = "btn btn-success btn-print" style="    text-decoration: none;
     padding: 10px;
@@ -99,30 +94,16 @@ text-align: center;
 
     <div id="identity">
 
- 
-
-
-
-
     <div style="clear:both"></div>
-
-
 
     <div class="container">
    <div class="left">
-
    <img id="image" src="../img/intecap.png" alt="logo"  /><br /><br />
        </div>
 
    <div class="right">
-
      <div id="customer">
-
-
-
-
      </div>
-
        </div>
 
    <div class="center">
@@ -197,7 +178,7 @@ text-align: center;
    </div>
 
 
-<table id="" style="width:100%"  >
+<table id="" style="width:100%">
   <thead>
       <tr>
         <th>Año</th>
@@ -226,7 +207,6 @@ text-align: center;
     $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado";
   }
 
-  //$sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado";
   $query = $conn->query($sql);
   while($row = $query->fetch_assoc()){
 
@@ -244,7 +224,6 @@ text-align: center;
     }
   ?>
            
- <!--end of modal-->
   </tbody>
 
 </table>

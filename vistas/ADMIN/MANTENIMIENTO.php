@@ -128,6 +128,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
                     onclick="window.location.href='<?php echo $url;?>'">
                 <i class="fas fa-print"></i> Reporte
             </button>
+            
 
         <?php if ($user['cargo'] == "Admin") { ?>
             <!-- Botón para agregar nuevo mantenimiento (solo para Admins) -->

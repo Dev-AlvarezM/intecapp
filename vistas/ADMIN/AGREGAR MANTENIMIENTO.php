@@ -31,7 +31,9 @@
                 </p>                
                 <p>
                     <label for="f_reporte" style="color: #000000;">Fecha de Reporte</label><br>
-                    <input type="date" id="f_reporte" name="f_reporte" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+                    <input type="date" id="f_reporte" name="f_reporte" required 
+                           value="<?php echo date('Y-m-d'); ?>" 
+                           style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
                 </p>
                 <!--<p>
                     <label for="f_realizado" style="color: #000000;">Fecha de Finalización</label><br>
@@ -40,15 +42,6 @@
                 <p style="text-align: center;">
                      <label for="descripcion" >Descripción</label><br>
                      <input type="text" id="descripcion" name="descripcion" required style="border: 1px solid #207ffc; padding: 4px; width: 30%; margin: 0 auto;">
-                </p>
-
-                <p style="text-align: center;">
-                    <label for="filtro" style="color: #000000;">Estado</label><br>
-                    <select id="estado" name="estado" required style="border: 1px solid #207ffc; padding: 4px; width: 30%; margin: 0 auto;">
-                        <!-- El nuevo mantenimiento se crea siempre como "no realizado" -->
-                        <option value="no realizado" selected>No Realizado</option>
-                        <option value="Realizada">Realizada</option>
-                    </select>
                 </p>
             <p>
                 <!--Botones de opciones-->

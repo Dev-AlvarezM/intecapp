@@ -38,10 +38,6 @@
     
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
 
-    <script type="text/javascript" 
-        src="js/push.min.js">
-    </script>
-
     <!--jQuery library file -->
     <script type="text/javascript" 
         src="https://code.jquery.com/jquery-3.7.1.js">
@@ -208,7 +204,10 @@ body {
     <script>
         /* Initialization of datatables */
         $(document).ready( function () {
-            $('#table-edit').DataTable();
+            // Solo inicializar DataTable si la tabla existe en esta página
+            if ($('#table-edit').length) {
+                $('#table-edit').DataTable();
+            }
 
                 $("#autorizarNotificacion").on("click", function(){
         autorizarNotificacion();
