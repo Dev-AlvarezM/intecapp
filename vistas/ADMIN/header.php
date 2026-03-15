@@ -21,21 +21,9 @@
     <link rel="stylesheet" href="css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
-    <link href="img/favicon.114x114.png" rel="apple-touch-icon" type="image/png" sizes="114x114">
-    <link href="img/favicon.72x72.png" rel="apple-touch-icon" type="image/png" sizes="72x72">
-    <link href="img/favicon.57x57.png" rel="apple-touch-icon" type="image/png">
-    <link href="img/favicon.png" rel="icon" type="image/png">
-    <link href="img/favicon.ico" rel="shortcut icon">
-    <link rel="stylesheet" href="css/lib/font-awesome/font-awesome.min.css">
-    <link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
 
     <!--jQuery library file -->
@@ -202,53 +190,9 @@ body {
 </head>
 
     <script>
-        /* Initialization of datatables */
         $(document).ready( function () {
-            // Solo inicializar DataTable si la tabla existe en esta página
-            if ($('#table-edit').length) {
+            if ($('#table-edit').length && !$.fn.DataTable.isDataTable('#table-edit')) {
                 $('#table-edit').DataTable();
             }
-
-                $("#autorizarNotificacion").on("click", function(){
-        autorizarNotificacion();
-    });
-    $("#mostrarNotificacion").on("click", function(){
-        mostrarNotifiacion();
-    });
-
-        } );
-
-        function mostrarNotifiacion(){
-
-        Push.create("Hola mundo",{
-            body: "Este es el cuerpo de la notificacion",
-            icon: "img/logo.png",
-            timeout: 4000,
-            onClick: function () {
-                window.focus();
-                this.close();
-        }
-    });
-
-}
-
-function autorizarNotificacion(){
-
-    Push.Permission.request(onGranted, onDenied);
-
-}
-
-function onGranted(){
-
-    $("#autorizarNotificacion").css("background-color", "green");
-
-}
-
-function onDenied(){
-
-    $("#autorizarNotificacion").css("background-color", "red");
-
-}
-
-
+        });
     </script>

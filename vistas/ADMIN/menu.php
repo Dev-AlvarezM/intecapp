@@ -62,7 +62,7 @@ if ($user['cargo']=="Admin" OR $user['cargo']=="Mantenimiento" OR $user['cargo']
         ?>
 
         <li class="blue-dirty">
-            <a href="../ADMIN/AGREGAR USUARIO.php">
+            <a href="../ADMIN/USUARIO.php">
                 <i class="fas fa-users"></i> 
                 <span class="lbl">Usuarios</span>
             </a>

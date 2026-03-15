@@ -16,15 +16,17 @@ mysqli_query($conn,
      VALUES('$id_taller','$f_reporte', $f_realizado, '$descripcion', '$estado','$id_encargado')"
 ) or die(mysqli_error($conn));
 
-// 2. Insertar notificación para el encargado asignado
-//    id_destino debe coincidir con $_SESSION['admin_intecap'] del encargado
+// 2. Insertar notificación para TODOS los usuarios activos
 $descripcion_safe = mysqli_real_escape_string($conn, $descripcion);
 $mensaje = "Nuevo mantenimiento asignado: " . $descripcion_safe;
 
-mysqli_query($conn,
-    "INSERT INTO notificaciones (mensaje, id_destino, leida)
-     VALUES('$mensaje', '$id_encargado', 0)"
-) or die(mysqli_error($conn));
+$usuarios = mysqli_query($conn, "SELECT id FROM usuario WHERE estado = 'activo'");
+while ($u = mysqli_fetch_assoc($usuarios)) {
+    mysqli_query($conn,
+        "INSERT INTO notificaciones (mensaje, id_destino, leida)
+         VALUES('$mensaje', '{$u['id']}', 0)"
+    );
+}
 
 echo "<script>document.location='../vistas/ADMIN/MANTENIMIENTO.php'</script>";
 ?>

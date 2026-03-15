@@ -25,12 +25,12 @@
             </style>
 
             <script>
-            var swReg       = null;
-            var ultimoTotal = 0;
-            var audioCtx    = null;
-            var audioBuffer = null;
+            var swReg        = null;
+            var ultimoTotal  = 0;
+            var audioCtx     = null;
+            var audioBuffer  = null;
+            var notifActiva  = false; // bloquea si ya hay un request en curso
 
-            // ── Desbloquear AudioContext en el primer click ──────────────────
             document.addEventListener('click', function() {
                 if (audioCtx) return;
                 try {
@@ -55,7 +55,6 @@
                 });
             }
 
-            // ── Service Worker ───────────────────────────────────────────────
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('sw.js')
                     .then(function(reg) { swReg = reg; verificarPermiso(); })
@@ -82,26 +81,32 @@
             }
 
             function arrancar() {
+                // Notificaciones cada 3 segundos como antes
                 verificarNotificaciones();
                 setInterval(verificarNotificaciones, 3000);
-                refrescarTabla();
-                setInterval(refrescarTabla, 3000);
+
+                // Refresco de tabla SOLO en página de MANTENIMIENTO
+                var paginaActual = window.location.pathname.toUpperCase();
+                if (paginaActual.indexOf('MANTENIMIENTO') !== -1) {
+                    refrescarTabla();
+                    setInterval(refrescarTabla, 3000);
+                }
             }
 
-            // ── Verificar → sonar → marcar leídas automáticamente ───────────
             function verificarNotificaciones() {
+                // Si el request anterior no terminó, saltar este ciclo
+                if (notifActiva) return;
+                notifActiva = true;
+
                 fetch('../../controladores/check_notificaciones.php', { cache: 'no-store' })
                     .then(function(r) { return r.json(); })
                     .then(function(data) {
                         var total = parseInt(data.total) || 0;
-
                         if (total > 0) {
                             reproducirAudio();
-
                             var msg = (data.notificaciones && data.notificaciones[0])
                                 ? data.notificaciones[0].mensaje
                                 : 'Nueva notificación';
-
                             var sw = swReg && (swReg.active || swReg.waiting || swReg.installing);
                             if (sw) {
                                 sw.postMessage({ tipo: 'nueva_notificacion', mensaje: msg });
@@ -110,17 +115,17 @@
                                     body: msg, icon: 'img/intecap.png'
                                 });
                             }
-
                             fetch('../../controladores/marcar_leidas.php', { cache: 'no-store' })
                                 .catch(function(){});
-
                             ultimoTotal = 0;
                         }
                     })
-                    .catch(function(){});
+                    .catch(function(){})
+                    .finally(function() {
+                        notifActiva = false; // liberar para el siguiente ciclo
+                    });
             }
 
-            // ── Refrescar tabla ──────────────────────────────────────────────
             function refrescarTabla() {
                 var params = new URLSearchParams(window.location.search);
                 var estado = params.get('estado') || 'General';
