@@ -1,70 +1,79 @@
 <?php include 'header.php'; ?>
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
+<link rel="stylesheet" href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>/intecapp/wwwroot/AGREGAR TALLER.css">
 
-       <!--Formulario agregar taller-->
-<body style="background-color: #f0f0f0; color: #333; font-family: Arial, sans-serif; text-align: center;">
-    <div style="width: 50%; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-        <h3 style="color: #007bff;">Agregar Nuevo Taller</h3>
+
+<!--Formulario agregar taller-->
+<body>
+    <div class="form-container">
+        <h3>Agregar Nuevo Taller</h3>
         <form action="../../modelos/taller_add.php" method="post" style="text-align: left;">
             <center>
-            <p>
-                <label for="nombre" style="color: #000000;">Año</label><br>
-                <input type="text" id="anio" name="anio" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
-            </p>
-            <p>
-                <label for="email" style="color: #000000;">Nombre del Taller</label><br>
-                <input type="text" id="nombre_taller" name="nombre_taller" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
-            </p>
-                <p>
-                    <label for="nombre" style="color: #000000;">Participantes</label><br>
-                    <input type="text" id="participantes" name="participantes" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+                <p class="form-group">
+                    <label for="anio">Año</label><br>
+                    <input type="text" id="anio" name="anio" required>
                 </p>
 
-                <p>
-                    <label for="nombre" style="color: #000000;">Condicion</label><br>
-                    <input type="text" id="condicion" name="condicion" style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+                <p class="form-group">
+                    <label for="nombre_taller">Nombre del Taller</label><br>
+                    <input type="text" id="nombre_taller" name="nombre_taller" required>
                 </p>
 
-                <p>
-                    <label for="nombre" style="color: #000000;">Hora de Entrada</label><br>
-                    <input type="time" id="hora_entrada" name="hora_entrada" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+                <p class="form-group">
+                    <label for="participantes">Participantes</label><br>
+                    <input type="text" id="participantes" name="participantes" required>
                 </p>
 
-                <p>
-                    <label for="nombre" style="color: #000000;">Hora de Salida</label><br>
-                    <input type="time" id="hora_salida" name="hora_salida" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+                <p class="form-group">
+                    <label for="condicion">Condición</label><br>
+                    <input type="text" id="condicion" name="condicion">
                 </p>
-                
-                <p style="text-align: center;">
-                    <label for="filtro" style="color: #000000;">Estado</label><br>
-                    <select id="estado" name="estado" required style="border: 1px solid #207ffc; padding: 4px; width: 30%; margin: 0 auto;">
+
+                <p class="form-group">
+                    <label for="hora_entrada">Hora de Entrada</label><br>
+                    <input type="time" id="hora_entrada" name="hora_entrada" required>
+                </p>
+
+                <p class="form-group">
+                    <label for="hora_salida">Hora de Salida</label><br>
+                    <input type="time" id="hora_salida" name="hora_salida" required>
+                </p>
+
+                <p class="form-group">
+                    <label for="estado">Estado</label><br>
+                    <select id="estado" name="estado" required>
                         <option value="">Seleccione</option>
                         <option value="Activo">Activo</option>
                         <option value="Inactivo">Inactivo</option>
                     </select>
                 </p>
-            <p><br><br>
-                <!--Botones de opciones-->
 
-                <button type="submit" class = "guardar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #0368d3; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" name="add" id="add"><i class="fa fa-save"></i> Guardar</button>
-                
-                <button type="reset" class="limpiar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #f44336; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" name="reset" id="reset"><i class="fa fa-eraser"></i> Limpiar</button>
-                
-                <button type="button" class="salir" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #555555; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" name="exit" id="exit" onclick="window.location.href='../ADMIN/TALLERES.php'">
-                    <i class="fa fa-sign-out"></i> <i class="fa fa-arrow-right"></i> Salir
-                </button>
-                <br><br><br>
-        </form>           
-    <!-- Pie de página -->
-    <?php include 'footer.php'; ?>
-</div>
-<!--Samayoa-->
+                <!--Botones de opciones-->
+                <p>
+                    <button type="submit" class="btn btn-guardar" name="add" id="add">
+                        <i class="fa fa-save"></i> Guardar
+                    </button>
+                    <button type="reset" class="btn btn-limpiar" name="reset" id="reset">
+                        <i class="fa fa-eraser"></i> Limpiar
+                    </button>
+                    <button type="button" class="btn btn-salir" name="exit" id="exit"
+                        onclick="window.location.href='../ADMIN/TALLERES.php'">
+                        <i class="fa fa-sign-out"></i> <i class="fa fa-arrow-right"></i> Salir
+                    </button>
+                </p>
+                <br><br>
+            </center>
+        </form>
+
+        <!-- Pie de página -->
+        <?php include 'footer.php'; ?>
+    </div><!-- .form-container -->
+
     <!-- jQuery y Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!--Samayoa-->
 </body>
 </html>
