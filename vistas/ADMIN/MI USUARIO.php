@@ -19,12 +19,7 @@
                         <H5> <?php echo $user['nom_usuario']; ?> </H5>
                     </label>
                 </p><br>
-                <p>
-                    <label for="nombre" style="color: #000000;">
-                        <i class="fas fa-map-marker-alt"></i> Dirección<br>
-                        <H5> <?php echo $user['direccion']; ?> </H5>
-                    </label>
-                </p><br>
+                
                 <p>
                     <label for="nombre" style="color: #000000;">
                         <i class="fas fa-briefcase"></i> Cargo<br>
