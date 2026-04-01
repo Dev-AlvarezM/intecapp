@@ -21,6 +21,7 @@ while ($row = $query->fetch_assoc()) {
             <?php else: ?>
                 <i class="fa fa-user-circle" style="font-size:36px; color:#ced4da; display:block; text-align:center;"></i>
             <?php endif; ?>
+            
         </td>
         <td><?php echo htmlspecialchars($row['nombre']); ?></td>
         <td><?php echo htmlspecialchars($row['telefono'] ?? '—'); ?></td>
