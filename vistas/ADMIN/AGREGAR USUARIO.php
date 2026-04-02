@@ -97,20 +97,13 @@
                     <label for="area_especializacion">Área de Especialización</label><br>
                     <select id="area_especializacion" name="area_especializacion">
                         <option value="">Seleccione un área</option>
-                        <option value="Informática">Informática</option>
+                        <option value="Soldadura Industrial">Soldadura Industrial</option>
                         <option value="Electricidad">Electricidad</option>
-                        <option value="Mecánica Automotriz">Mecánica Automotriz</option>
-                        <option value="Carpintería">Carpintería</option>
-                        <option value="Cocina">Cocina</option>
-                        <option value="Corte y Confección">Corte y Confección</option>
-                        <option value="Soldadura">Soldadura</option>
-                        <option value="Plomería">Plomería</option>
-                        <option value="Refrigeración y A/C">Refrigeración y A/C</option>
-                        <option value="Panadería y Repostería">Panadería y Repostería</option>
+                        <option value="Gastronomía">Gastronomía</option>
+                        <option value="Confección">Confección</option>
                         <option value="Belleza y Estética">Belleza y Estética</option>
-                        <option value="Contabilidad">Contabilidad</option>
-                        <option value="Administración">Administración</option>
-                        <option value="Idiomas">Idiomas</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Mecánica Automotriz">Mecánica Automotriz</option>
                         <option value="Otra">Otra</option>
                     </select>
                 </p>
@@ -128,8 +121,7 @@
 
             <p class="form-group">
                 <label for="estado">Estado</label><br>
-                <select id="estado" name="estado" required>
-                    <option value="">Seleccione</option>
+                <select id="estado" name="estado">
                     <option value="activo">Activo</option>
                     <option value="inactivo">Inactivo</option>
                 </select>
