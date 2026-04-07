@@ -12,7 +12,7 @@
             <center>
                 <p class="form-group">
                     <label for="anio">Año</label><br>
-                    <input type="text" id="anio" name="anio" required>
+                    <input type="text" id="anio" name="anio" value="<?php echo date('Y'); ?>" readonly>
                 </p>
 
                 <p class="form-group">
@@ -28,25 +28,6 @@
                 <p class="form-group">
                     <label for="condicion">Condición</label><br>
                     <input type="text" id="condicion" name="condicion">
-                </p>
-
-                <p class="form-group">
-                    <label for="hora_entrada">Hora de Entrada</label><br>
-                    <input type="time" id="hora_entrada" name="hora_entrada" required>
-                </p>
-
-                <p class="form-group">
-                    <label for="hora_salida">Hora de Salida</label><br>
-                    <input type="time" id="hora_salida" name="hora_salida" required>
-                </p>
-
-                <p class="form-group">
-                    <label for="estado">Estado</label><br>
-                    <select id="estado" name="estado" required>
-                        <option value="">Seleccione</option>
-                        <option value="Activo">Activo</option>
-                        <option value="Inactivo">Inactivo</option>
-                    </select>
                 </p>
 
                 <!--Botones de opciones-->

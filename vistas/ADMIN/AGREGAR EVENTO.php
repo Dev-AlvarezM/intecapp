@@ -12,7 +12,7 @@
             <center>
                 <p class="form-group">
                     <label for="anio_evento">Año</label><br>
-                    <input type="text" id="anio_evento" name="anio_evento" required>
+                    <input type="text" id="anio_evento" name="anio_evento" value="<?php echo date('Y'); ?>" readonly>
                 </p>
 
                 <p class="form-group">
@@ -35,12 +35,22 @@
 
                 <p class="form-group">
                     <label for="f_inicio">Fecha de Inicio</label><br>
-                    <input type="date" id="f_inicio" name="f_inicio" required>
+                    <input type="date" id="f_inicio" name="f_inicio" value="<?php echo date('Y-m-d'); ?>" required>
                 </p>
 
                 <p class="form-group">
                     <label for="f_fin">Fecha de Finalización</label><br>
                     <input type="date" id="f_fin" name="f_fin" required>
+                </p>
+
+                <p class="form-group">
+                    <label for="hora_entrada">Hora de Entrada</label><br>
+                    <input type="time" id="hora_entrada" name="hora_entrada" required>
+                </p>
+
+                <p class="form-group">
+                    <label for="hora_salida">Hora de Salida</label><br>
+                    <input type="time" id="hora_salida" name="hora_salida" required>
                 </p>
 
                 <p class="form-group">
@@ -57,15 +67,6 @@
                         <option value="">Seleccione</option>
                         <option value="Presencial">Presencial</option>
                         <option value="Virtual">Virtual</option>
-                    </select>
-                </p>
-
-                <p class="form-group">
-                    <label for="estado">Estado</label><br>
-                    <select id="estado" name="estado" required>
-                        <option value="">Seleccione</option>
-                        <option value="Activo">Activo</option>
-                        <option value="Inactivo">Inactivo</option>
                     </select>
                 </p>
 

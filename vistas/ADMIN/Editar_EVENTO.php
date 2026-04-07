@@ -44,6 +44,16 @@
                 </p>
                 
                 <p>
+                    <label for="hora_entrada" style="color: #000000;">Hora de Entrada</label><br>
+                    <input type="time" id="hora_entrada" name="hora_entrada" value="<?php echo $row['hora_entrada'];?>" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+                </p>
+
+                <p>
+                    <label for="hora_salida" style="color: #000000;">Hora de Salida</label><br>
+                    <input type="time" id="hora_salida" name="hora_salida" value="<?php echo $row['hora_salida'];?>" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+                </p>
+                
+                <p>
                     <label for="nombre" style="color: #000000;">Instructor</label><br>
                     <select id="id_instructor" name="id_instructor" required style="border: 1px solid #207ffc; padding: 4px; width: 30%; margin: 0 auto;">
                         <option value="">Seleccione</option>
@@ -57,14 +67,6 @@
                         <option value="Presencial" <?php if($row['modalidad']=="Presencial") {echo "selected"; }?> >Presencial</option>
                         <option value="Virtual" <?php if($row['modalidad']=="Virtual") {echo "selected"; }?> >Virtual</option>
                     </select>
-                    <p style="text-align: center;">
-                        <label for="filtro" style="color: #000000;">Estado</label><br>
-                        <select id="estado" name="estado" required style="border: 1px solid #207ffc; padding: 4px; width: 30%; margin: 0 auto;">
-                            <option value="">Seleccione</option>
-                            <option value="Activo" <?php if($row['estado']=="Activo") {echo "selected"; }?> >Activo</option>
-                            <option value="Inactivo" <?php if($row['estado']=="Inactivo") {echo "selected"; }?> >Inactivo</option>
-                        </select>
-                    </p>
                     <!--Botones de opciones-->
                 <td>
                 <button type="submit" class = "guardar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #0368d3; color: white; 

@@ -8,7 +8,7 @@
        <!-- Botón de hipervínculo alineado a la derecha -->
        <div class="mb-3 text-right">
         <?php
-        if (in_array($user['cargo'], ["Admin"])) {
+        if (in_array($user['cargo'], ["Admin" , "Instructor"])) {
             ?>
             <a href="../ADMIN/AGREGAR TALLER.php" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
                         font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;">
@@ -37,10 +37,7 @@
                    <th>Año</th>
                    <th>Nombre del Taller</th>
                    <th>Participantes</th>
-                   <th>Estatilla</th>
                    <th>Condición</th>
-                   <th>Hora de Entrada</th>
-                   <th>Hora de Salida</th>
                    <th>Estado</th>
                    <th>Acciones</th>
                </tr>

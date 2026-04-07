@@ -33,25 +33,6 @@
             <input type="text" id="condicion" name="condicion" value="<?php echo htmlspecialchars($row['condicion']); ?>">
         </div>
 
-        <div class="form-group">
-            <label for="hora_entrada">Hora de Entrada</label>
-            <input type="time" id="hora_entrada" name="hora_entrada" value="<?php echo htmlspecialchars($row['hora_entrada']); ?>" required>
-        </div>
-
-        <div class="form-group">
-            <label for="hora_salida">Hora de Salida</label>
-            <input type="time" id="hora_salida" name="hora_salida" value="<?php echo htmlspecialchars($row['hora_salida']); ?>" required>
-        </div>
-
-        <div class="form-group">
-            <label for="estado">Estado</label>
-            <select id="estado" name="estado" required>
-                <option value="">Seleccione</option>
-                <option value="Activo"   <?php if ($row['estado'] == "Activo")   echo "selected"; ?>>Activo</option>
-                <option value="Inactivo" <?php if ($row['estado'] == "Inactivo") echo "selected"; ?>>Inactivo</option>
-            </select>
-        </div>
-
         <div class="form-group" style="margin-top: 20px;">
             <button type="submit" class="btn-guardar" name="add" id="add">
                 <i class="fa fa-save"></i> Guardar

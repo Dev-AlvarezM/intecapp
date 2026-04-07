@@ -45,6 +45,9 @@
                    <th>Nombre del Evento</th>
                    <th>Fecha de Inicio</th>
                    <th>Fecha de Finalización</th>
+                   <th>Hora de Entrada</th>
+                   <th>Hora de Salida</th>
+                   <th>Estatilla</th>
                    <th>Instructor</th>
                    <th>Modalidad</th>
                    <th>Estado</th>

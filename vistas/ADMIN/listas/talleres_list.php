@@ -1,47 +1,36 @@
 <?php
 include('../../modelos/db.php');
 
-
 $sql = "SELECT * FROM talleres";
 $query = $conn->query($sql);
+
 while($row = $query->fetch_assoc()){
     $id_taller = $row['id'];
-
-    $hora_entrada = $row['hora_entrada'];
-    $hora_salida = $row['hora_salida'];
-
-    $fechaUno=new DateTime($hora_entrada);
-    $fechaDos=new DateTime($hora_salida);
-
-    $dateInterval = $fechaUno->diff($fechaDos);
+    
+    // Verificar si hay eventos activos en este taller
+    $sqlEventosActivos = "SELECT COUNT(*) as count FROM eventos WHERE id_talleres = '$id_taller' AND estado = 'Activo'";
+    $queryActivos = $conn->query($sqlEventosActivos);
+    $resultActivos = $queryActivos->fetch_assoc();
+    $estadoAutomatico = $resultActivos['count'] > 0 ? 'Ocupado' : 'Disponible';
 ?>
     <tr>
-        <td><?php echo $row['anio'];?></td>
-        <td><?php echo $row['nombre_taller'];?></td>
-        <td><?php echo $row['participantes'];?></td>
-        <td><?php echo $dateInterval->format('%H horas %i minutos').PHP_EOL;?></td>
-        <td><?php echo $row['condicion'];?></td>
-        <td><?php echo $row['hora_entrada'];?></td>
-        <td><?php echo $row['hora_salida'];?></td>
-        <td><?php echo $row['estado'];?></td>
-         <?php
-        if ($user['cargo']=="Admin") {
-        ?>
-
-            <td>
+        <td><?php echo $row['anio'] ?? '-';?></td>
+        <td><?php echo $row['nombre_taller'] ?? '-';?></td>
+        <td><?php echo $row['participantes'] ?? '-';?></td>
+        <td><?php echo $row['condicion'] ?? '-';?></td>
+        <td><?php echo $estadoAutomatico;?></td>
+        <td>
+            <?php if ($user['cargo']=="Admin") { ?>
                 <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_taller;?>)">
-                    <i class="fas fa-edit"></i> <!-- Icono de editar -->
+                    <i class="fas fa-edit"></i>
                 </button>
                 <button class="btn btn-danger btn-sm" onclick="eliminar(<?php echo $id_taller;?>)">
-                    <i class="fas fa-trash"></i> <!-- Icono de editar -->
+                    <i class="fas fa-trash"></i>
                 </button>
-            </td>
-
-        <?php
-        }else  {
-            echo "<td> - - - - - - </td>";
-        }
-        ?>
+            <?php } else { ?>
+                - - - - - -
+            <?php } ?>
+        </td>
     </tr>
 <?php 
-    }
+}
