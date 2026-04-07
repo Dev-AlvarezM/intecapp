@@ -17,10 +17,6 @@
                 <input type="text" id="nombre" name="nombre" value="<?php echo $row['nombre'];?>" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
             </p>
             
-            <p>
-                <label for="email" style="color: #000000;">Dirección</label><br>
-                <input type="text" id="direccion" name="direccion" value="<?php echo $row['direccion'];?>" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
-            </p>
             <center>
                 <p>
                     <label for="nombre" style="color: #000000;">Cargo</label><br>

@@ -1,12 +1,28 @@
 <?php include 'header.php'; ?>
 <?php include 'nav_bar.php'; ?>
-<?php include 'menu.php'; ?><h1>Eventos</h1>
-   
-   <div class="container-fluid">
-       <!-- Botón de hipervínculo alineado a la derecha -->
-       <div class="mb-3 text-right">
+<?php include 'menu.php'; ?>
+
+<h1>Eventos</h1>
+
+<div class="container-fluid">
+    <!-- Botón de hipervínculo alineado a la derecha -->
+    <div class="mb-3 text-right">
+     <?php
+     if ($user['cargo']=="Admin") {
+     ?>
+    <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
+                 font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" onclick="window.location.href='pdf/eventos_pdf.php'">
+                 <i class="fas fa-print"></i> Reporte
+     </button>
+     <?php
+     }else  {
+         
+     }
+     ?>
+    <!-- Botón de hipervínculo alineado a la derecha -->
+    
         <?php
-        if ($user['cargo']=="Admin") {
+        if (in_array($user['cargo'], ["Admin", "Instructor"])) {
         ?>
             <a href="../ADMIN/AGREGAR EVENTO.php" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
                         font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;">
@@ -45,21 +61,6 @@
 <canvas id="barChart"></canvas>
 </div>
    <div class="container-fluid">
-       <!-- Botón de hipervínculo alineado a la derecha -->
-       <div class="mb-3 text-right">
-        <?php
-        if ($user['cargo']=="Admin") {
-        ?>
-       <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" onclick="window.location.href='pdf/eventos_pdf.php'">
-                    <i class="fas fa-print"></i> Reporte
-        </button>
-        <?php
-        }else  {
-            
-        }
-        ?>
-       </div>
    <!-- Pie de página -->
    <?php include 'footer.php'; ?>
 </div>

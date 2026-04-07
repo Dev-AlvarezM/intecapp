@@ -5,7 +5,15 @@
 
 <h1>Instructores</h1>
 
+
 <div class="container-fluid">
+    <div class="container-fluid">
+        <div class="mb-3 text-right">
+            <button type="button" class="btn-reporte"
+                onclick="window.location.href='pdf/instructores_pdf.php'">
+                <i class="fas fa-print"></i> Reporte
+        </button>
+     </div>
 
     <div class="container-fluid">
         <table id="table-edit" class="table table-bordered table-hover">
@@ -27,13 +35,6 @@
         </table>
     </div>
 
-    <div class="container-fluid">
-        <div class="mb-3 text-right">
-            <button type="button" class="btn-reporte"
-                onclick="window.location.href='pdf/instructores_pdf.php'">
-                <i class="fas fa-print"></i> Reporte
-            </button>
-        </div>
 
         <?php include 'footer.php'; ?>
     </div>
