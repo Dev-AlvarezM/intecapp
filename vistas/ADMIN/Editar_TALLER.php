@@ -2,9 +2,7 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <?php include('../../modelos/taller.php'); ?>
-
-<link rel="stylesheet" href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>/intecapp/wwwroot/Editar_TALLER.css">
-
+<link rel="stylesheet" href="/intecapp/wwwroot/css/Editar_TALLER.css">
 
 <!-- Formulario editar taller -->
 <div class="form-container">

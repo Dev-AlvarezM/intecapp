@@ -1,8 +1,7 @@
 <?php include 'header.php'; ?>
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
-<link rel="stylesheet" href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>/intecapp/wwwroot/AGREGAR MANTENIMIENTO.css">
-
+<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_MANTENIMIENTO.css">
 
 <!--Formulario agregar mantenimiento-->
 <body>
