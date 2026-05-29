@@ -117,6 +117,8 @@ text-align: center;
       <tr>
         <th>No.</th>
         <th>Nombre del Instructor</th>
+        <th>Teléfono</th>
+        <th>Área de Especialización</th>
         <th>Estado</th>
       </tr>
   </thead>
@@ -133,6 +135,8 @@ text-align: center;
     <tr>
         <td><?php echo $num;?></td>
         <td><?php echo $row['nombre'];?></td>
+        <td><?php echo $row['telefono'];?></td>
+        <td><?php echo $row['area_especializacion'];?></td>
         <td><?php echo $row['estado'];?></td>
     </tr>
   <?php 

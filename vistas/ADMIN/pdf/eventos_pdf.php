@@ -121,6 +121,10 @@ text-align: center;
         <th>Nombre del Evento</th>
         <th>Fecha de Inicio</th>
         <th>Fecha de Finalización</th>
+        <th>Hora de Entrada</th>
+        <th>Hora de Salida</th>
+        <th>Estadilla</th>
+        
         <th>Instructor</th>
         <th>Modalidad</th>
         <th>Estado</th>
@@ -149,6 +153,9 @@ text-align: center;
         <td><?php echo $row['nombre_evento'];?></td>
         <td><?php echo date("d/m/Y", strtotime($row['f_inicio']));?></td>
         <td><?php echo date("d/m/Y", strtotime($row['f_fin']));?></td>
+        <td><?php echo date("H:i", strtotime($row['hora_entrada']));?></td>
+        <td><?php echo date("H:i", strtotime($row['hora_salida']));?></td>
+        <td><?php echo $dateInterval->format('%H:%I'); ?></td>
         <td><?php echo $row['nombre'];?></td>
         <td><?php echo $row['modalidad'];?></td>
         <td><?php echo $row['estado_e'];?></td>

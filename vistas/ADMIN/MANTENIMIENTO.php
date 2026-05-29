@@ -130,7 +130,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
             </button>
             
 
-        <?php if ($user['cargo'] == "Admin") { ?>
+        <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor") { ?>
             <!-- Botón para agregar nuevo mantenimiento (solo para Admins) -->
             <a href="../ADMIN/AGREGAR MANTENIMIENTO.php" 
                class="btn btn-primary" 

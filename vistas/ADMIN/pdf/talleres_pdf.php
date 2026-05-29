@@ -118,10 +118,7 @@ text-align: center;
         <th> Año </th>
         <th> Nombre del Taller </th>
         <th> Participantes </th>
-        <th> Estatilla </th>
-        <th> Condición</th>          
-        <th> Hora de Entrada </th>
-        <th> Hora de Salida </th>
+        <th> Condición</th>
         <th> Estado </th>
       </tr>
   </thead>
@@ -132,23 +129,12 @@ text-align: center;
   $query = $conn->query($sql);
   while($row = $query->fetch_assoc()){
       $id_taller = $row['id'];
-
-      $hora_entrada = $row['hora_entrada'];
-      $hora_salida = $row['hora_salida'];
-
-      $fechaUno=new DateTime($hora_entrada);
-      $fechaDos=new DateTime($hora_salida);
-
-      $dateInterval = $fechaUno->diff($fechaDos);
   ?>
     <tr>
         <td><?php echo $row['anio'];?></td>
         <td><?php echo $row['nombre_taller'];?></td>
         <td><?php echo $row['participantes'];?></td>
-        <td><?php echo $dateInterval->format('%H horas %i minutos').PHP_EOL;?></td>
         <td><?php echo $row['condicion'];?></td>
-        <td><?php echo $row['hora_entrada'];?></td>
-        <td><?php echo $row['hora_salida'];?></td>
         <td><?php echo $row['estado'];?></td>
     </tr>
   <?php 
