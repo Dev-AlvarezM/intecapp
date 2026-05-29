@@ -71,7 +71,7 @@ else {
 </td>
         <!-- Columna de acciones (comentarios, editar, eliminar) -->
         <td>
-             <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor") { ?>
+             <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor" || $user['cargo'] == "Mantenimiento") { ?>
     <!-- Botón para agregar comentarios -->
     <button class="btn btn-primary btn-sm" title="Agregar Comentario" onclick="comentario(<?php echo $id_mantenimiento; ?>)">
         <i class="fas fa-comments"></i>
@@ -80,7 +80,8 @@ else {
                   
 <?php
         // Botones de editar y eliminar solo para administradores
-        if ($user['cargo']=="Admin") {
+        if ($user['cargo']=="Admin" || $user['cargo'] == "Instructor") {
+            ?>
         ?>
             <!-- Botón para editar mantenimiento -->
                 <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_mantenimiento;?>)">

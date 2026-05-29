@@ -7,6 +7,14 @@
         <h3 style="color: #007bff;">Mi Usuario</h3><br>
         <form action="#" method="post" style="text-align: left;">
             <center>
+
+                <p>
+                    <label for="nombre" style="color: #000000;">
+                        <img src="<?php echo $user['foto']; ?>" alt="Foto de <?php echo htmlspecialchars($user['nombre']); ?>"
+                             style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:2px solid #007bff; display:block; margin:0 auto;">
+                    </label>
+                </p><br>
+
                 <p>
                     <label for="nombre" style="color: #000000;">
                         <i class="fas fa-user"></i> Nombre<br>
@@ -19,7 +27,21 @@
                         <H5> <?php echo $user['nom_usuario']; ?> </H5>
                     </label>
                 </p><br>
+
+                <p>
+                    <label for="nombre" style="color: #000000;">
+                        <i class="fas fa-mobile-alt"></i> Teléfono<br>
+                        <H5> <?php echo $user['telefono']; ?> </H5>
+                    </label>
+                </p><br>
                 
+                <p>
+                    <label for="nombre" style="color: #000000;">
+                        <i class="fas fa-graduation-cap"></i> Área de Especialización<br>
+                        <H5> <?php echo $user['area_especializacion']; ?> </H5>
+                    </label>
+                </p><br>
+
                 <p>
                     <label for="nombre" style="color: #000000;">
                         <i class="fas fa-briefcase"></i> Cargo<br>
