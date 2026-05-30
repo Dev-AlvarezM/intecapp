@@ -2,6 +2,9 @@
 // Incluir conexión a base de datos
 include('../../modelos/db.php');
 
+// Normalizar el cargo del usuario (eliminar espacios extra)
+$cargo = trim($user['cargo']);
+
 // Construir consulta SQL según el filtro seleccionado
 if ($estado=='Pendiente') {
     // Mostrar solo mantenimientos no realizados
@@ -52,13 +55,13 @@ while($row = $query->fetch_assoc()){
       <td>
 <?php
 // Mostrar botón para cambiar estado si es pendiente y el usuario es Admin o Instructor
-if ($row['estado_m'] =='no realizado' || ($user['cargo'] == "Admin" && $user['cargo'] == "Instructor")) { 
+if ($row['estado_m'] =='no realizado' || ($cargo == "Admin" && $cargo == "Instructor")) { 
 ?>
 <a class="small-box-footer btn-print" href="<?php  echo "../../modelos/cambiar_estado.php?id_mantenimiento=$id_mantenimiento&estado=".urlencode($estado);?>" onClick="return confirm('¿Está seguro de que quieres cambiar de estado a Realizada?');" >No realizado</a>  
 <?php
 }
 // Mostrar estado realizado como texto si está en estado Realizada
-elseif ($row['estado_m'] == 'Realizada' && ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor")) {
+elseif ($row['estado_m'] == 'Realizada' && ($cargo == "Admin" || $cargo == "Instructor")) {
     echo $row['estado_m'];
 ?>               
 <?php
@@ -71,34 +74,25 @@ else {
 </td>
         <!-- Columna de acciones (comentarios, editar, eliminar) -->
         <td>
-             <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor" || $user['cargo'] == "Mantenimiento") { ?>
-    <!-- Botón para agregar comentarios -->
-    <button class="btn btn-primary btn-sm" title="Agregar Comentario" onclick="comentario(<?php echo $id_mantenimiento; ?>)">
-        <i class="fas fa-comments"></i>
-    </button>
-<?php } ?>
-                  
-<?php
-        // Botones de editar y eliminar solo para administradores
-        if ($user['cargo']=="Admin" || $user['cargo'] == "Instructor") {
-            ?>
-        ?>
-            <!-- Botón para editar mantenimiento -->
+            <?php if ($cargo == "Admin" || $cargo == "Instructor" || $cargo == "Mantenimiento") { ?>
+                <button class="btn btn-primary btn-sm" title="Agregar Comentario" onclick="comentario(<?php echo $id_mantenimiento; ?>)">
+                    <i class="fas fa-comments"></i>
+                </button>
+            <?php } ?>
+            <?php if ($cargo == "Admin" || $cargo == "Mantenimiento") { ?>
+                <button class="btn btn-info btn-sm" title="Enviar Mensaje" onclick="mensaje(<?php echo $id_mantenimiento; ?>)">
+                    <i class="fas fa-envelope"></i>
+                </button>
+            <?php } ?>
+            <?php if ($cargo == "Admin" || $cargo == "Instructor") { ?>
                 <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_mantenimiento;?>)">
                     <i class="fas fa-edit"></i>
                 </button>
-                <!-- Botón para eliminar mantenimiento -->
                 <button class="btn btn-danger btn-sm" onclick="eliminar(<?php echo $id_mantenimiento;?>)">
                     <i class="fas fa-trash"></i>
-                </button>   
-                </td>
-        <?php
-        }else  {
-            ?>
-            </td> 
-        <?php
-        }
-        ?>
+                </button>
+            <?php } ?>
+        </td>
           
     
 <?php 

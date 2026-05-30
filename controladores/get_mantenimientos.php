@@ -73,7 +73,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         : htmlspecialchars($row['estado_m']);
 
     $acciones = '';
-    if ($user['cargo'] == 'Admin' || $user['cargo'] == 'Instructor') {
+    if ($user['cargo'] == 'Admin' || $user['cargo'] == 'Instructor' || $user['cargo'] == 'Mantenimiento') {
         $acciones .= "<button class='btn btn-primary btn-sm' onclick='comentario($id)'><i class='fas fa-comments'></i></button> ";
     }
     if ($user['cargo'] == 'Admin') {

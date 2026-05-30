@@ -14,5 +14,9 @@
     
     function comentario(id){
         document.location="../../vistas/ADMIN/COMENTARIOS.php?id="+id;    
-    } 
+    }
+    
+    function mensaje(id){
+        document.location="../../vistas/ADMIN/COMENTARIOS.php?id="+id;    
+    }
 </script>

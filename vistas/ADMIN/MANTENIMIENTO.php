@@ -4,6 +4,9 @@ include 'header.php'; ?>
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php';
 
+// Normalizar el cargo del usuario (eliminar espacios extra)
+$cargo = trim($user['cargo']);
+
 // Obtener el estado del filtro desde la solicitud, o establecer "General" por defecto
 if(isset($_REQUEST['estado']))
 {
@@ -130,7 +133,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
             </button>
             
 
-        <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor") { ?>
+        <?php if ($cargo == "Admin" || $cargo == "Instructor") { ?>
             <!-- Botón para agregar nuevo mantenimiento (solo para Admins) -->
             <a href="../ADMIN/AGREGAR MANTENIMIENTO.php" 
                class="btn btn-primary" 
