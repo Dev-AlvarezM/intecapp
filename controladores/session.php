@@ -1,6 +1,6 @@
 <?php
 	@session_start();
-	include '../../modelos/db.php';
+	include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/db.php');
 	date_default_timezone_set('America/Guatemala');
 
 
