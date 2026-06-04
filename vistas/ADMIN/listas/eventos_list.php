@@ -7,7 +7,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
 $cargo = trim($user['cargo']);
 
 // Construir consulta SQL según el rol del usuario
-if ($cargo == "Admin") {
+if ($cargo == "Admin" || $cargo == "Instructor") {
     $sql = "SELECT *, e.id_eventos as id_eventos, e.estado as estado_e, e.Estatilla as Estatilla 
             FROM eventos as e 
             INNER JOIN talleres as t ON e.id_talleres = t.id 
@@ -42,7 +42,7 @@ while($row = $query->fetch_assoc()){
         
         <td>
         <?php
-        if ($cargo == "Admin") {
+        if ($cargo == "Admin" || $cargo == "Instructor") {
             // Si el estado en tu BD viene como 'Activo' o 'En Proceso'
             if ($row['estado_e'] == "Activo" || $row['estado_e'] == "En Proceso") {
             ?>
