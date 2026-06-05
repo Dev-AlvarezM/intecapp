@@ -54,14 +54,14 @@ while($row = $query->fetch_assoc()){
       <!-- Columna de estado con opción de cambio -->
       <td>
 <?php
-// Mostrar botón para cambiar estado si es pendiente y el usuario es Admin o Instructor
-if ($row['estado_m'] =='no realizado' || ($cargo == "Admin" && $cargo == "Instructor")) { 
+// Mostrar botón para cambiar estado si es pendiente y el usuario es Admin o Mantenimiento
+if ($row['estado_m'] =='no realizado' && ($cargo == "Admin" || $cargo == "Mantenimiento")) { 
 ?>
 <a class="small-box-footer btn-print" href="<?php  echo "../../modelos/cambiar_estado.php?id_mantenimiento=$id_mantenimiento&estado=".urlencode($estado);?>" onClick="return confirm('¿Está seguro de que quieres cambiar de estado a Realizada?');" >No realizado</a>  
 <?php
 }
 // Mostrar estado realizado como texto si está en estado Realizada
-elseif ($row['estado_m'] == 'Realizada' && ($cargo == "Admin" || $cargo == "Instructor")) {
+elseif ($row['estado_m'] == 'Realizada' && ($cargo == "Admin" || $cargo == "Mantenimiento")) {
     echo $row['estado_m'];
 ?>               
 <?php
@@ -80,7 +80,7 @@ else {
                 </button>
             <?php } ?>
         
-            <?php if ($cargo == "Admin" || $cargo == "Instructor") { ?>
+            <?php if ($cargo == "Admin") { ?>
                 <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_mantenimiento;?>)">
                     <i class="fas fa-edit"></i>
                 </button>

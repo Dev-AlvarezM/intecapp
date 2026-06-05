@@ -2,6 +2,14 @@
 //session_start();
 include('db.php');
 
+// Validar que solo Admin y Mantenimiento puedan cambiar el estado
+$cargo = trim($user['cargo']);
+if ($cargo != "Admin" && $cargo != "Mantenimiento") {
+    echo "<script type='text/javascript'>alert('No tienes permiso para cambiar el estado.');</script>";
+    echo "<script>history.back();</script>";
+    exit();
+}
+
 if(isset($_REQUEST['id_mantenimiento']))
 {
     $id_mantenimiento=$_REQUEST['id_mantenimiento'];
