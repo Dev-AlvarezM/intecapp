@@ -79,11 +79,7 @@ else {
                     <i class="fas fa-comments"></i>
                 </button>
             <?php } ?>
-            <?php if ($cargo == "Admin" || $cargo == "Mantenimiento") { ?>
-                <button class="btn btn-info btn-sm" title="Enviar Mensaje" onclick="mensaje(<?php echo $id_mantenimiento; ?>)">
-                    <i class="fas fa-envelope"></i>
-                </button>
-            <?php } ?>
+        
             <?php if ($cargo == "Admin" || $cargo == "Instructor") { ?>
                 <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_mantenimiento;?>)">
                     <i class="fas fa-edit"></i>
