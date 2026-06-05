@@ -1,6 +1,17 @@
 <?php 
-//session_start();
+@session_start();
 include('db.php');
+
+// Validar que el usuario esté autenticado
+if(!isset($_SESSION['admin_intecap']) || trim($_SESSION['admin_intecap']) == ''){
+    header('location: ../index.php');
+    exit();
+}
+
+// Obtener datos del usuario
+$sql = "SELECT * FROM usuario WHERE id = '".$_SESSION['admin_intecap']."'";
+$query = $conn->query($sql);
+$user = $query->fetch_assoc();
 
 // Validar que solo Admin y Mantenimiento puedan cambiar el estado
 $cargo = trim($user['cargo']);
