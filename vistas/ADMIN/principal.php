@@ -24,10 +24,14 @@
     <link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/tema.css">
     <link rel="stylesheet" href="css/separate/pages/tasks.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../wwwroot/css/principal.css">
+
+    <!--Script para manejo de tema claro/oscuro -->
+    <script src="js/tema.js"></script>
 </head>
 
 <body class="with-side-menu-compact">

@@ -2,6 +2,7 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <?php include('../../modelos/instructor.php'); ?>
+<link rel="stylesheet" href="css/tema.css">
 
     <!--Formulario agregar instructor-->
     <body style="background-color: #f0f0f0; color: #333; font-family: Arial, sans-serif; text-align: center;">

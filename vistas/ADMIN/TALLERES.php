@@ -11,7 +11,7 @@
         if (in_array($user['cargo'], ["Admin" , "Instructor"])) {
             ?>
             <a href="../ADMIN/AGREGAR TALLER.php" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
-                        font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;">
+                        font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center;">
                 <i class="fa fa-calendar-plus"></i> Agregar
             </a>
         <?php
@@ -21,7 +21,7 @@
         if ($user['cargo']=="Admin") {
         ?>
         <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
-            font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" onclick="window.location.href='pdf/talleres_pdf.php'">
+            font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center;" onclick="window.location.href='pdf/talleres_pdf.php'">
             <i class="fas fa-print"></i> Reporte
         </button>
         <?php

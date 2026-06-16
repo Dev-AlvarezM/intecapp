@@ -2,6 +2,7 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_EVENTO.css">
+<link rel="stylesheet" href="css/tema.css">
 
 <!--Formulario agregar evento-->
 <body>
@@ -82,14 +83,14 @@
                         <i class="fa fa-sign-out"></i> <i class="fa fa-arrow-right"></i> Salir
                     </button>
                 </p>
-                <br><br>
             </center>
         </form>
-
-        <!-- Pie de página -->
-        <?php include 'footer.php'; ?>
+        
     </div><!-- .form-container -->
-
+    <br><br><br>
+    
+    <!-- Pie de página -->
+    <?php include 'footer.php'; ?>
     <!-- jQuery y Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>

@@ -3,64 +3,63 @@
 <?php include 'menu.php'; ?>
 <?php include('../../modelos/usuario.php'); ?>
 
-<!--Formulario de agregar usuario-->
-<body style="background-color: #f0f0f0; color: #333; font-family: Arial, sans-serif; text-align: center;">
-    <div style="width: 50%; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-        <h3 style="color: #007bff;">Editar Usuario</h3>
-        <form action="../../modelos/usuario_edit.php" method="post" style="text-align: left;">
-        <input type="hidden" id="id" name="id" value="<?php echo $row['id'];?>" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
-        <input type="hidden" id="instructor" name="instructor" value = "1" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+<link rel="stylesheet" href="/intecapp/wwwroot/css/Editar_INSTRUCTOR.css">
+<link rel="stylesheet" href="css/tema.css">
 
-            <center>
-            <p>
-                <label for="nombre" style="color: #000000;">Nombre</label><br>
-                <input type="text" id="nombre" name="nombre" value="<?php echo $row['nombre'];?>" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
-            </p>
-            
-            <center>
+<body class="editar-usuario-body">
+    <div class="usuario-container">
+        <h3 class="usuario-titulo">Editar Usuario</h3>
+        
+        <form action="../../modelos/usuario_edit.php" method="post" class="usuario-form">
+            <input type="hidden" id="id" name="id" value="<?php echo $row['id'];?>" required class="usuario-input">
+            <input type="hidden" id="instructor" name="instructor" value="1" required class="usuario-input">
+
+            <div style="text-align: center;">
                 <p>
-                    <label for="nombre" style="color: #000000;">Cargo</label><br>
-                    <select id="cargo" name="cargo" required style="border: 1px solid #207ffc; padding: 4px; width: 30%; margin: 0 auto;">
+                    <label for="nombre">Nombre</label><br>
+                    <input type="text" id="nombre" name="nombre" value="<?php echo $row['nombre'];?>" required class="usuario-input">
+                </p>
+                
+                <p>
+                    <label for="cargo">Cargo</label><br>
+                    <select id="cargo" name="cargo" required class="usuario-select">
                         <option value="Instructor" <?php if($row['cargo']=="Instructor") {echo "selected"; }?> >Instructor</option>
                     </select>
                 </p>
+
                 <p>
-                    <label for="nombre" style="color: #000000;">Usuario</label><br>
-                    <input type="text" id="nom_usuario" name="nom_usuario" value="<?php echo $row['nom_usuario'];?>" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+                    <label for="nom_usuario">Usuario</label><br>
+                    <input type="text" id="nom_usuario" name="nom_usuario" value="<?php echo $row['nom_usuario'];?>" required class="usuario-input">
                 </p>
-                <p style="text-align: center;">
-                    <label for="filtro" style="color: #000000;">Estado</label><br>
-                    <select id="estado" name="estado" required style="border: 1px solid #207ffc; padding: 4px; width: 30%; margin: 0 auto;">
+
+                <p>
+                    <label for="estado">Estado</label><br>
+                    <select id="estado" name="estado" required class="usuario-select">
                         <option value="">Seleccione</option>
                         <option value="activo" <?php if($row['estado']=="activo") {echo "selected"; }?> >Activo</option>
                         <option value="inactivo" <?php if($row['estado']=="inactivo") {echo "selected"; }?> >Inactivo</option>
                     </select>
                 </p>
-                <!--Botones de opciones-->
-                <td>
-                <button type="submit" class = "guardar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #0368d3; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" name="add" id="add"><i class="fa fa-save"></i> Guardar</button>
 
-                <button type="reset" class="limpiar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #f44336; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" name="reset" id="reset"><i class="fa fa-eraser"></i> Limpiar</button>
-                <button type="button" class="salir" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #555555; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" name="exit" id="exit" onclick="window.location.href='../ADMIN/INSTRUCTORES.php'">              
-                    <i class="fa fa-sign-out"></i> <i class="fa fa-arrow-right"></i> Salir
-                </button><br><br><br>
-    </form>        
-    <!-- Pie de página -->
-    <?php include 'footer.php'; ?>
+                <div class="botones-container">
+                    <button type="submit" class="btn-accion btn-guardar" name="add" id="add">
+                        <i class="fa fa-save"></i> Guardar
+                    </button>
 
-</div><!-- .main-container -->
+                    <button type="reset" class="btn-accion btn-limpiar" name="reset" id="reset">
+                        <i class="fa fa-eraser"></i> Limpiar
+                    </button>
 
+                    <button type="button" class="btn-accion btn-salir" name="exit" id="exit" onclick="window.location.href='../ADMIN/INSTRUCTORES.php'">
+                        <i class="fa fa-sign-out"></i> Salir
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+        <?php include 'footer.php'; ?>
+    </div>
 
-</div><!-- .main-container -->
-
-    <!-- jQuery y Bootstrap JS  -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
-<!--Samayoa-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
-
-</html>

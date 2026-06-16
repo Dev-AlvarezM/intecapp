@@ -52,18 +52,18 @@
             <input type="hidden" id="id_mantenimiento" name="id_mantenimiento" value="<?php echo $id_mantenimiento;?>" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
             <textarea id="Comentario" name="Comentario" rows="4" cols="50"></textarea>
 
-            <button type="submit" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" name="add" id="add">
+            <button type="submit" class="btn-accion btn-guardar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
+                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="add" id="add">
                     <i class="fas fa-plus"></i> Agregar
             </button>
                
-            <button type="reset" class="limpiar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #f44336; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" name="reset" id="reset">
+            <button type="reset" class="btn-accion btn-limpiar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #f44336; color: white; 
+                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="reset" id="reset">
                     <i class="fa fa-eraser"></i> Limpiar
             </button>
 
-            <button type="button" class="salir" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #555555; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center;" name="exit" id="exit" onclick="window.location.href='../ADMIN/MANTENIMIENTO.php'">
+            <button type="button" class="btn-accion btn-salir" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #555555; color: white; 
+                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="exit" id="exit" onclick="window.location.href='../ADMIN/MANTENIMIENTO.php'">
                     <i class="fa fa-sign-out"></i> <i class="fa fa-arrow-right"></i> Regresar
             </button>
         </form>

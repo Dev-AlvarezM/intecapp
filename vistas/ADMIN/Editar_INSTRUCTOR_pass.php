@@ -2,7 +2,7 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <?php include('../../modelos/usuario.php'); ?>
-
+<link rel="stylesheet" href="css/tema.css">
 <!--Formulario de agregar usuario-->
 <body style="background-color: #f0f0f0; color: #333; font-family: Arial, sans-serif; text-align: center;">
     <div style="width: 50%; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">

@@ -1,0 +1,61 @@
+/* Estilos para el formulario de Mantenimiento */
+.mantenimiento-body {
+    background-color: var(--color-fondo); 
+    color: var(--color-texto); 
+    font-family: Arial, sans-serif; 
+    text-align: center;
+}
+
+.mantenimiento-container {
+    margin: 0 auto;
+    background-color: var(--color-panel);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--color-sombra);
+    text-align: center;
+}
+
+.mantenimiento-titulo {
+    color: var(--color-primario);
+}
+
+.mantenimiento-form {
+    text-align: left;
+}
+
+.mantenimiento-input, .mantenimiento-select {
+    border: 1px solid var(--color-primario);
+    padding: 4px;
+    width: 30%;
+    display: block;
+    margin: 0 auto; /* Centra los select */
+}
+
+/* Ajuste para los labels */
+.mantenimiento-container label {
+    color: var(--color-texto-oscuro);
+}
+
+/* Contenedor de botones para mantener la alineación */
+.mantenimiento-botones {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-accion {
+        display: inline-block;
+        width: 120px;
+        padding: 10px 0;
+        color: white;
+        font-size: 13px;
+        font-family: 'Times New Roman', serif;
+        text-decoration: none;
+        border-radius: 4px;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+    }
+
+.btn-guardar { background-color: #0368d3; }
+.btn-limpiar { background-color: #f44336; }
+.btn-salir { background-color: #555555; }

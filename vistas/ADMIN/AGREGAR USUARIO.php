@@ -2,6 +2,8 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_USUARIO.css">
+<link rel="stylesheet" href="css/tema.css">
+<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_USUARIO.css">
 
 <body>
 <div class="form-container">
@@ -139,10 +141,10 @@
             <br><br><br>
         </center>
     </form>
-
-    <?php include 'footer.php'; ?>
 </div>
+    <br><br><br>
 
+<?php include 'footer.php'; ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 

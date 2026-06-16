@@ -3,6 +3,7 @@
 <?php include 'menu.php'; ?>
 <?php include('../../modelos/taller.php'); ?>
 <link rel="stylesheet" href="/intecapp/wwwroot/css/Editar_TALLER.css">
+<link rel="stylesheet" href="css/tema.css">
 
 <!-- Formulario editar taller -->
 <div class="form-container">

@@ -1,0 +1,80 @@
+body {
+    background-color: #f0f0f0;
+    color: #333;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Contenedor principal del formulario */
+.form-container {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Título */
+.evento-titulo {
+    text-align: center;
+    color: #007bff;
+}
+
+/* Formulario */
+.evento-form {
+    text-align: left;
+}
+
+/* Etiquetas (labels) */
+.evento-label {
+    color: #000000;
+}
+
+/* Inputs y Selects */
+.evento-input {
+    border: 1px solid #207ffc;
+    padding: 4px;
+    width: 30%;
+}
+
+.evento-select {
+    border: 1px solid #207ffc;
+    padding: 4px;
+    width: 30%;
+    margin: 0 auto;
+}
+
+/* Utilidades de alineación */
+.text-center {
+    text-align: center;
+}
+
+/* =========================================
+   ESTILOS DE BOTONES
+   ========================================= */
+.btn-accion {
+    display: inline-block;
+    width: 120px;
+    padding: 10px 0;
+    color: white;
+    font-size: 13px;
+    font-family: 'Times New Roman', serif;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+}
+
+/* Colores específicos de botones */
+.btn-guardar { background-color: #0368d3; }
+.btn-limpiar { background-color: #f44336; }
+.btn-salir { background-color: #555555; }
+
+.botones-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}

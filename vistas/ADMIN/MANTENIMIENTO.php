@@ -87,7 +87,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
             <a href="../ADMIN/MANTENIMIENTO.php?estado=General" 
                class="btn btn-primary" 
                style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white;
-                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center; margin-right: 10px;">
+                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; margin-right: 10px;">
                 <i class="fa fa-calendar-plus"></i> General
             </a>
 
@@ -95,7 +95,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
             <a href="../ADMIN/MANTENIMIENTO.php?estado=Pendiente" 
                class="btn btn-primary" 
                style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white;
-                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center; margin-right: 10px;">
+                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; margin-right: 10px;">
                 <i class="fa fa-calendar-plus"></i> Pendientes
             </a>
 
@@ -103,7 +103,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
             <a href="../ADMIN/MANTENIMIENTO.php?estado=Realizados" 
                class="btn btn-primary" 
                style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white;
-                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center; margin-right: 10px;">
+                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; margin-right: 10px;">
                 <i class="fa fa-calendar-plus"></i> Realizados
             </a>
             
@@ -111,7 +111,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
             <a href="../ADMIN/MANTENIMIENTO.php?estado=Mes" 
                class="btn btn-primary" 
                style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white;
-                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center; margin-right: 10px;">
+                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; margin-right: 10px;">
                 <i class="fa fa-calendar-plus"></i> Por Mes
             </a>            
 
@@ -119,7 +119,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
             <a href="../ADMIN/MANTENIMIENTO.php?estado=Rango" 
                class="btn btn-primary" 
                style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white;
-                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center; margin-right: 10px;">
+                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; margin-right: 10px;">
                 <i class="fa fa-calendar-plus"></i> Por Rango
             </a>
 
@@ -127,7 +127,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
             <button type="button" 
                     class="btn btn-primary" 
                     style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white;
-                           font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center; margin-right: 10px;"
+                           font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; margin-right: 10px;"
                     onclick="window.location.href='<?php echo $url;?>'">
                 <i class="fas fa-print"></i> Reporte
             </button>
@@ -138,7 +138,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
             <a href="../ADMIN/AGREGAR MANTENIMIENTO.php" 
                class="btn btn-primary" 
                style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white;
-                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 1px; text-align: center; margin-right: 10px;">
+                      font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; margin-right: 10px;">
                 <i class="fa fa-calendar-plus"></i> Agregar
             </a>
             

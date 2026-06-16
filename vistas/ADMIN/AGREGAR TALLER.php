@@ -2,6 +2,7 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_TALLER.css">
+<link rel="stylesheet" href="css/tema.css">
 
 <!--Formulario agregar taller-->
 <body>

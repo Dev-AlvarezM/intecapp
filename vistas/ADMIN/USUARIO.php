@@ -34,7 +34,7 @@
            class="btn btn-primary"
            style="width:120px; padding:10px 0; background-color:#007bff; color:white;
                   font-size:13px; font-family:'Times New Roman',serif; text-decoration:none;
-                  border-radius:1px; text-align:center; display:inline-block;">
+                  border-radius:4px; text-align:center; display:inline-block;">
             <i class="fa fa-user-plus"></i> Agregar
         </a>
         <?php } ?>
@@ -70,9 +70,9 @@
 
 <style>
     .active-filtro {
-        background-color: #007bff !important;
+        background-color: #0094F9 !important;
         color: white !important;
-        border-color: #007bff !important;
+        border-color: #0094F9 !important;
     }
 </style>
 

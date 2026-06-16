@@ -1,0 +1,279 @@
+/* Estilos para Modo Claro/Oscuro - APLICA A TODAS LAS VISTAS */
+
+:root {
+    /*--color-fondo: #f0f0f0;*/
+    --color-fondo-claro: #ffffff;
+    --color-texto: #333333;
+    --color-texto-oscuro: #000000;
+    --color-primario: #0195f9;
+    --color-sombra: rgba(0, 0, 0, 0.1);
+    --color-borde: #e0e0e0;
+    --color-header: #ffffff;
+    --color-header-texto: #333333;
+    --color-panel: #ffffff;
+    --color-input-bg: #ffffff;
+    /* Soporte para scrollbar en Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-borde) var(--color-fondo);
+}
+
+html[data-tema="oscuro"] {
+    --color-fondo: #2C2D2C;
+    --color-fondo-claro: #2d2d2d;
+    --color-texto: #e0e0e0;
+    --color-texto-oscuro: #f0f0f0;
+    --color-primario: #4fa3ff;
+    --color-sombra: rgba(0, 0, 0, 0.5);
+    --color-borde: #444444;
+    --color-header: #1f1f1f;
+    --color-header-texto: #e0e0e0;
+    --color-panel: #2d2d2d;
+    --color-input-bg: #3a3a3a;
+}
+
+/* Transiciones optimizadas (Solo elementos principales para no alentar el navegador) */
+body, .site-header, .side-menu, .panel, .card, table, footer, 
+.modal-content, input, select, textarea, button, a {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Estructura Base */
+html, body {
+    background-color: var(--color-fondo) !important;
+    color: var(--color-texto) !important;
+}
+
+/* Header */
+.site-header {
+    background-color: var(--color-header) !important;
+    border-bottom: 1px solid var(--color-borde) !important;
+}
+/* Solo heredamos el color de texto a elementos de texto directos, no a los botones del header */
+.site-header span, .site-header p, .site-header h1 {
+    color: var(--color-header-texto) !important;
+}
+
+/* Menú lateral - PROTEGER ICONOS */
+.side-menu, .side-menu-compact, .nav-drawer {
+    background-color: var(--color-header) !important;
+    border-right: 1px solid var(--color-borde) !important;
+}
+
+.side-menu a, .side-menu-compact a, .nav-drawer a, .side-menu-list a, .side-menu-list li span.lbl {
+    color: var(--color-header-texto) !important;
+}
+
+.side-menu a:hover, .side-menu-compact a:hover, .nav-drawer a:hover, .side-menu-list a:hover {
+    background-color: var(--color-fondo-claro) !important;
+    color: var(--color-primario) !important;
+}
+
+/* Menús desplegables */
+.dropdown-menu, .user-menu .dropdown-menu {
+    background-color: var(--color-panel) !important;
+    border-color: var(--color-borde) !important;
+}
+
+.dropdown-menu .dropdown-item {
+    color: var(--color-texto) !important;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    background-color: var(--color-fondo-claro) !important;
+    color: var(--color-texto) !important;
+}
+
+.dropdown-menu .dropdown-item.active {
+    background-color: var(--color-primario) !important;
+    color: white !important;
+}
+
+.mobile-menu-overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* PROTEGER ICONOS DEL MENÚ - MANTENER AZUL ORIGINAL */
+.side-menu i, .side-menu-compact i, .nav-drawer i, .side-menu-list i,
+.side-menu [class*="icon"], .side-menu-compact [class*="icon"],
+.nav-drawer [class*="icon"], .icon-menu, .menu-icon,
+.side-menu-item-icon, .side-menu-item i, .side-menu-compact-item i {
+    color: #007bff !important;
+}
+
+/* Paneles y contenedores */
+.main-container {
+    background-color: var(--color-fondo) !important;
+}
+
+.container, .container-fluid {
+    background-color: transparent !important;
+}
+
+.panel, .card, [role="dialog"], .modal-content, .content-box,
+.task-card, .box-typical, .sortable, .tasks-grid-container {
+    background-color: var(--color-panel) !important;
+    color: var(--color-texto) !important;
+    border-color: var(--color-borde);
+}
+
+/* Textos (Eliminamos el selector de div para no romper componentes y confiamos en la herencia) */
+label, p, h1, h2, h3, h4, h5, h6, span, td, th, .icon-text, .icon-text h3 {
+    color: var(--color-texto) !important;
+}
+
+/* Formularios e inputs */
+input[type="text"], input[type="password"], input[type="email"], 
+input[type="number"], input[type="date"], input[type="time"],
+textarea, select {
+    background-color: var(--color-input-bg) !important;
+    color: var(--color-texto) !important;
+    border: 1px solid var(--color-borde) !important;
+}
+
+input:focus, textarea:focus, select:focus {
+    background-color: var(--color-input-bg) !important;
+    color: var(--color-texto) !important;
+    border-color: var(--color-primario) !important;
+    outline: none;
+    box-shadow: 0 0 5px rgba(79, 163, 255, 0.3) !important;
+}
+
+input::placeholder, textarea::placeholder, select {
+    color: var(--color-texto) !important;
+    opacity: 0.7;
+}
+
+/* Botones */
+button, .btn {
+    border-color: var(--color-borde) !important;
+}
+
+.btn-primary, button[style*="background:#007bff"] {
+    background-color: var(--color-primario) !important;
+    border-color: var(--color-primario) !important;
+    color: white !important;
+}
+
+.btn-primary:hover, button[style*="background:#007bff"]:hover {
+    opacity: 0.9;
+}
+
+/* Tablas */
+table {
+    background-color: var(--color-panel) !important;
+    color: var(--color-texto) !important;
+}
+
+table th {
+    background-color: var(--color-primario) !important;
+    color: white !important;
+    border-color: var(--color-borde) !important;
+}
+
+table td {
+    border-color: var(--color-borde) !important;
+    color: var(--color-texto) !important;
+}
+
+table tbody tr:hover {
+    background-color: var(--color-fondo-claro) !important;
+}
+
+/* DataTables */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    background-color: var(--color-panel) !important;
+    color: var(--color-texto) !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    background-color: var(--color-input-bg) !important;
+    color: var(--color-texto) !important;
+    border: 1px solid var(--color-borde) !important;
+}
+
+/* Footer y NavBar Extras */
+footer, .navbar {
+    background-color: var(--color-header) !important;
+    border-color: var(--color-borde) !important;
+}
+
+footer, .nav-link, .nav-item {
+    color: var(--color-header-texto) !important;
+}
+
+.nav-link:hover {
+    color: var(--color-primario) !important;
+}
+
+/* Botón de cambio de tema */
+#btn-cambiar-tema {
+    background-color: var(--color-primario) !important;
+    color: white !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    border-radius: 6px !important;
+    cursor: pointer;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    margin-right: 15px !important;
+    transition: transform 0.2s;
+}
+
+#btn-cambiar-tema:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+#btn-cambiar-tema:active {
+    transform: scale(0.95);
+}
+
+/* Links */
+a, .task-card-title a {
+    color: var(--color-primario) !important;
+}
+
+a:hover, .task-card-title a:hover {
+    opacity: 0.8;
+}
+
+/* Modales y Alertas */
+.modal-header {
+    background-color: var(--color-header) !important;
+    border-bottom: 1px solid var(--color-borde) !important;
+}
+
+.modal-header .btn-close {
+    background-color: var(--color-header-texto) !important;
+    filter: brightness(0.7);
+}
+
+.alert, .form-container {
+    background-color: var(--color-panel) !important;
+    color: var(--color-texto) !important;
+    border-color: var(--color-borde) !important;
+}
+
+.form-container {
+    box-shadow: 0 0 10px var(--color-sombra) !important;
+}
+
+/* Scrollbar personalizado webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-fondo);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-borde);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primario);
+}

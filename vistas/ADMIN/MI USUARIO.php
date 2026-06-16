@@ -2,70 +2,72 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 
-<body style="background-color: #f0f0f0; color: #333; font-family: Arial, sans-serif; text-align: center;">
-    <div style="width: 50%; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-        <h3 style="color: #007bff;">Mi Usuario</h3><br>
-        <form action="#" method="post" style="text-align: left;">
-            <center>
+<link rel="stylesheet" href="/intecapp/wwwroot/css/MI_USUARIO.css">
+<link rel="stylesheet" href="css/tema.css">
 
-                <p>
-                    <label for="nombre" style="color: #000000;">
-                        <img src="<?php echo $user['foto']; ?>" alt="Foto de <?php echo htmlspecialchars($user['nombre']); ?>"
-                             style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:2px solid #007bff; display:block; margin:0 auto;">
-                    </label>
-                </p><br>
+<body>
+    <div class="form-container">
+        <br>
+        <h3 class="titulo-perfil">Mi Usuario</h3>
+        <br>
 
+        <form action="#" method="post">
+            <div style="text-align: center;">
                 <p>
-                    <label for="nombre" style="color: #000000;">
-                        <i class="fas fa-user"></i> Nombre<br>
-                        <H5> <?php echo $user['nombre']; ?> </H5>
-                    </label><br>
+                    <img src="<?php echo $user['foto']; ?>" alt="Foto de <?php echo htmlspecialchars($user['nombre']); ?>" class="foto-usuario">
                 </p>
-                <p>
-                    <label for="nombre" style="color: #000000;">
-                        <i class="fas fa-user-circle"></i> Usuario<br>
-                        <H5> <?php echo $user['nom_usuario']; ?> </H5>
-                    </label>
-                </p><br>
 
-                <p>
-                    <label for="nombre" style="color: #000000;">
-                        <i class="fas fa-mobile-alt"></i> Teléfono<br>
-                        <H5> <?php echo $user['telefono']; ?> </H5>
-                    </label>
-                </p><br>
-                
-                <p>
-                    <label for="nombre" style="color: #000000;">
-                        <i class="fas fa-graduation-cap"></i> Área de Especialización<br>
-                        <H5> <?php echo $user['area_especializacion']; ?> </H5>
-                    </label>
-                </p><br>
+                <br>
 
-                <p>
-                    <label for="nombre" style="color: #000000;">
-                        <i class="fas fa-briefcase"></i> Cargo<br>
-                        <H5> <?php echo $user['cargo']; ?> </H5>
-                    </label>
-                </p><br>
-                <p>
-                    <label for="nombre" style="color: #000000;">
-                        <i class="fas fa-check-circle"></i> Estado<br>
-                        <H5> <?php echo $user['estado']; ?></H5>
-                    </label><br><br>
+                <p class="dato-label">
+                    <i class="fas fa-user"></i> Nombre<br>
+                    <h5 class="dato-valor"><?php echo $user['nombre']; ?></h5>
                 </p>
+                <br>
+
+                <p class="dato-label">
+                    <i class="fas fa-user-circle"></i> Usuario<br>
+                    <h5 class="dato-valor"><?php echo $user['nom_usuario']; ?></h5>
+                </p>
+                <br>
+
+                <p class="dato-label">
+                    <i class="fas fa-mobile-alt"></i> Teléfono<br>
+                    <h5 class="dato-valor"><?php echo $user['telefono']; ?></h5>
+                </p>
+                <br>
                 
-                
-    <!-- Pie de página -->
-    <footer>
-        <p>&copy; INTECAP, QUICHÉ</p>
-    </footer>
-</div><!-- .main-container -->
-<?php include 'footer.php'; ?>
-</div><!-- .main-container -->
-<!--Samayoa-->
-    <!-- jQuery y Bootstrap JS (importante para el menú desplegable) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+                <p class="dato-label">
+                    <i class="fas fa-graduation-cap"></i> Área de Especialización<br>
+                    <h5 class="dato-valor"><?php echo $user['area_especializacion']; ?></h5>
+                </p>
+                <br>
+
+                <p class="dato-label">
+                    <i class="fas fa-briefcase"></i> Cargo<br>
+                    <h5 class="dato-valor"><?php echo $user['cargo']; ?></h5>
+                </p>
+                <br>
+
+                <p class="dato-label">
+                    <i class="fas fa-check-circle"></i> Estado<br>
+                    <h5 class="dato-valor"><?php echo $user['estado']; ?></h5>
+                </p>
+                <br>
+
+            </div>
+        </form>
+        <button id="btn-cambiar-tema" class="btn-tema">🌙 Oscuro</button>
+
+        <footer>
+            <p>&copy; INTECAP, QUICHÉ</p>
+        </footer>
+    </div>
+    <br><br><br>
+
+    <?php include 'footer.php'; ?>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

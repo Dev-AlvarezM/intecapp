@@ -1,6 +1,7 @@
 <?php include 'header.php'; ?>
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
+<link rel="stylesheet" href="css/tema.css">
 
 <!--Formulario agregar mantenimiento-->
 <body style="background-color: #f0f0f0; color: #333; font-family: Arial, sans-serif; text-align: center;">

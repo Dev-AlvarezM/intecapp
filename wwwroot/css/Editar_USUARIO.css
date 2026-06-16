@@ -1,0 +1,91 @@
+body {
+    background-color: #f0f0f0;
+    color: #333;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* --- Contenedor principal --- */
+.form-container {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Título --- */
+.card-container h3 {
+    color: #007bff;
+}
+
+/* --- Formulario --- */
+form {
+    text-align: left;
+}
+
+form center {
+    display: block;
+    text-align: center;
+}
+
+/* --- Etiquetas --- */
+form label {
+    color: #000;
+}
+
+/* --- Inputs y selects compartidos --- */
+.form-input {
+    border: 1px solid #207ffc;
+    padding: 4px;
+    width: 30%;
+}
+
+/* --- Vista previa de la foto --- */
+.foto-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #207ffc;
+}
+
+.foto-placeholder {
+    font-size: 80px;
+    color: #ccc;
+}
+
+.foto-hint {
+    color: #888;
+}
+
+/* --- Sección área (Instructor) --- */
+#area-section {
+    display: none; /* se controla por JS según el cargo */
+}
+
+/* --- Botones --- */
+.btn-form {
+    display: inline-block;
+    width: 120px;
+    padding: 10px 0;
+    color: white;
+    font-size: 13px;
+    font-family: 'Times New Roman', serif;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-guardar {
+    background-color: #0368d3;
+}
+
+.btn-limpiar {
+    background-color: #f44336;
+}
+
+.btn-salir {
+    background-color: #555;
+}
