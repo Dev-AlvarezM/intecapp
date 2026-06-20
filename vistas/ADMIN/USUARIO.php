@@ -40,22 +40,24 @@
         <?php } ?>
     </div>
 
-    <table id="table-edit" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Foto</th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Cargo</th>
-                <th>Usuario</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php include('listas/usuario_list.php'); ?>
-        </tbody>
-    </table>
+    <div class="container-fluid table-responsive-lg">
+         <table id="table-edit" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Cargo</th>
+                    <th>Usuario</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php include('listas/usuario_list.php'); ?>
+            </tbody>
+        </table>
+    </div>
 
 </div>
 
