@@ -8,6 +8,13 @@
 
     <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap" style="gap:8px;">
 
+    
+    <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
+                 font-size: 13px; font-family: Arial, Helvetica, sans-serif; text-decoration: none; border-radius: 4px; text-align: center;" onclick="generarReporte()">
+                 <i class="fas fa-print"></i> Reporte
+     </button>
+     
+
         <?php if ($user['cargo'] == "Admin") { ?>
             <div style="display:flex; gap:10px; flex-wrap:wrap; width: 100%;">
                 
@@ -47,7 +54,11 @@
        <table id="table-edit" class="table table-bordered table-hover">
            <thead>
                <tr>
-                   <th>Fecha</th> <th>Taller</th> <th>Evento</th> <th>Nombre</th> <th>Cargo</th>
+                   <th>Fecha</th> 
+                   <th>Taller</th> 
+                   <th>Evento</th> 
+                   <th>Nombre</th> 
+                   <th>Cargo</th>
                    <th>Modalidad</th>
                    <th>Estatilla</th>
                    <th>Hora Entrada</th>
@@ -139,6 +150,24 @@
             .column(3).search('')
             .draw();
     }
+
+    //Funcion para generar el reporte en PDF con los filtros aplicados
+    function generarReporte() {
+    // Capturamos los valores de los filtros
+    var fecha = document.getElementById('filtro-fecha').value;
+    var taller = document.getElementById('filtro-taller').value;
+    // Usamos option:selected.text para obtener el nombre del instructor, no su ID
+    var instructorElement = document.getElementById('filtro-instructor');
+    var instructor = instructorElement.options[instructorElement.selectedIndex].text;
+    
+    // Si la opción seleccionada es "Todos los instructores" (valor vacío), enviamos vacío
+    if (instructorElement.value === "") { instructor = ""; }
+
+    // Redirigimos enviando los datos por GET
+    window.location.href = 'pdf/asistencia_pdf.php?fecha=' + encodeURIComponent(fecha) + 
+                           '&taller=' + encodeURIComponent(taller) + 
+                           '&instructor=' + encodeURIComponent(instructor);
+}
 </script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
