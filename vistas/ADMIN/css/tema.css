@@ -122,6 +122,37 @@ label, p, h1, h2, h3, h4, h5, h6, span, td, th, .icon-text, .icon-text h3 {
     color: var(--color-texto) !important;
 }
 
+/* --- EXCEPCIÓN PARA LOS ICONOS DE LOS FILTROS --- */
+
+/* Color normal (gris oscuro) para el modo de día */
+.input-group-text span, 
+.input-group-text i {
+    color: #495057 !important; 
+}
+
+/* Color blanco para cuando actives el modo oscuro */
+body.dark-mode .input-group-text span, 
+body.dark-mode .input-group-text i {
+    color: #ffffff !important; 
+}
+
+/* 1. Obligamos a los campos a usar el color dinámico del portal */
+.form-control, 
+.form-select {
+    color: var(--color-texto) !important;
+}
+
+/* 2. Seguro de vida para el Modo Oscuro */
+/* Ajusta el fondo y borde de las cajas de texto cuando es de noche */
+body.dark-mode .form-control, 
+body.dark-mode .form-select,
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+    background-color: #2b2b2b !important; /* Fondo gris oscuro */
+    color: #ffffff !important;            /* Texto totalmente blanco */
+    border-color: #444444 !important;     /* Borde oscuro para que no deslumbre */
+}
+
 /* Formularios e inputs */
 input[type="text"], input[type="password"], input[type="email"], 
 input[type="number"], input[type="date"], input[type="time"],

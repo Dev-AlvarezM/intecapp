@@ -4,16 +4,50 @@
 
 <h1>Asistencia</h1>
    
+<div class="container-fluid">
 
-   <div class="container-fluid">
+    <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap" style="gap:8px;">
+
+        <?php if ($user['cargo'] == "Admin") { ?>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; width: 100%;">
+                
+                <div class="input-group input-group-sm" style="width: 180px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <input type="date" id="filtro-fecha" class="form-control" onchange="filtrarTabla()" title="Elegir Fecha">
+                </div>
+
+                <div class="input-group input-group-sm" style="width: 220px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-tools"></i></span>
+                    </div>
+                    <select id="filtro-taller" class="form-control" onchange="filtrarTabla()">
+                        <option value="">Todos los talleres</option>
+                        </select>
+                </div>
+
+                <div class="input-group input-group-sm" style="width: 220px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                    <select id="filtro-instructor" class="form-control" onchange="filtrarTabla()">
+                        <option value="">Todos los instructores</option>
+                        </select>
+                </div>
+
+                <button onclick="limpiarFiltros()" class="btn btn-sm btn-danger">
+                    <i class="fa fa-times"></i> Limpiar
+                </button>
+            </div>
+        <?php } ?>
+    </div>
+
+   <div class="container-fluid table-responsive-lg">
        <table id="table-edit" class="table table-bordered table-hover">
            <thead>
                <tr>
-                   <th>Fecha</th>
-                   <th>Taller</th>
-                   <th>Evento</th>
-                   <th>Nombre</th>
-                   <th>Cargo</th>
+                   <th>Fecha</th> <th>Taller</th> <th>Evento</th> <th>Nombre</th> <th>Cargo</th>
                    <th>Modalidad</th>
                    <th>Estatilla</th>
                    <th>Hora Entrada</th>
@@ -27,17 +61,86 @@
        </table>
        <br><br>
    </div>
-   <!--Samayoa-->
-   <!-- Pie de página -->
+</div>
+   
    <footer>
        <p>&copy; INTECAP, QUICHÉ</p>
    </footer>
 </div>
 
 <?php include 'footer.php'; ?>
-</div><!-- .main-container -->
+</div>
 
-<!-- jQuery y Bootstrap JS  -->
+<script>
+    // Usamos jQuery que ya viene con DataTables
+    $(document).ready(function() {
+        // Conectamos el script con tu tabla paginada
+        var table = $('#table-edit').DataTable();
+
+        // 1. Cargamos los selectores leyendo TODAS las páginas de DataTables
+        cargarOpcionesDinamicas(table);
+
+        // 2. Le decimos a los filtros que busquen cada vez que cambien de valor
+        $('#filtro-fecha, #filtro-taller, #filtro-instructor').on('change', function() {
+            filtrarTabla(table);
+        });
+    });
+
+    // Función para extraer datos de toda la base de la tabla (incluso lo oculto)
+    function cargarOpcionesDinamicas(table) {
+        var selectTaller = $('#filtro-taller');
+        var selectInstructor = $('#filtro-instructor');
+
+        // Extraer valores únicos de la Columna 1 (Taller) y llenar el select
+        table.column(1).data().unique().sort().each(function(d, j) {
+            // Limpiamos etiquetas HTML por si acaso y verificamos que no esté vacío
+            var valor = $(d).text() || d; 
+            if(valor.trim() !== '') {
+                selectTaller.append('<option value="' + valor.trim() + '">' + valor.trim() + '</option>');
+            }
+        });
+
+        // Extraer valores únicos de la Columna 3 (Nombre/Instructor) y llenar el select
+        table.column(3).data().unique().sort().each(function(d, j) {
+            var valor = $(d).text() || d;
+            if(valor.trim() !== '') {
+                selectInstructor.append('<option value="' + valor.trim() + '">' + valor.trim() + '</option>');
+            }
+        });
+    }
+
+    // Función que aplica el filtro usando el buscador interno de DataTables
+    function filtrarTabla(table) {
+        var filtroFecha = $('#filtro-fecha').val();
+        var filtroTaller = $('#filtro-taller').val();
+        var filtroInstructor = $('#filtro-instructor').val();
+
+        // Para la fecha, a veces hay que adaptar el formato (YYYY-MM-DD vs DD/MM/YYYY)
+        // Pero DataTables es muy inteligente con el .search()
+        
+        table
+            .column(0).search(filtroFecha)      // Busca en la columna Fecha
+            .column(1).search(filtroTaller)     // Busca en la columna Taller
+            .column(3).search(filtroInstructor) // Busca en la columna Nombre
+            .draw();                            // Refresca la tabla
+    }
+
+    // Función para el botón rojo de limpiar
+    function limpiarFiltros() {
+        $('#filtro-fecha').val('');
+        $('#filtro-taller').val('');
+        $('#filtro-instructor').val('');
+        
+        // Limpiamos las búsquedas en memoria y redibujamos la tabla a su estado original
+        var table = $('#table-edit').DataTable();
+        table
+            .column(0).search('')
+            .column(1).search('')
+            .column(3).search('')
+            .draw();
+    }
+</script>
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
