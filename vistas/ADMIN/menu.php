@@ -54,6 +54,13 @@
                 <span class="lbl">Usuarios</span>
             </a>
         </li>
+
+        <li class="blue-dirty">
+            <a href="../ADMIN/ASISTENCIA.php">
+                <i class="fas fa-check-circle"></i> 
+                <span class="lbl">Asistencia</span>
+            </a>
+        </li>
     </ul>
 </nav>
 
@@ -104,6 +111,13 @@
             <a href="../ADMIN/USUARIO.php">
                 <i class="fas fa-users"></i> 
                 <span class="lbl">Usuarios</span>
+            </a>
+        </li>
+
+        <li class="blue-dirty">
+            <a href="../ADMIN/ASISTENCIA.php">
+                <i class="fas fa-check-circle"></i> 
+                <span class="lbl">Asistencia</span>
             </a>
         </li>
     </ul>

@@ -146,6 +146,23 @@
                 </div>
             </div>
             <?php } ?>
+
+            <?php if ($user['cargo'] == "Admin" ) { ?>
+            <div class="tasks-grid-col">
+                <div class="sortable">
+                    <section class="box-typical task-card task">
+                        <div class="task-card-photo">
+                            <img src="img/instructores.jpg" alt="Task Image">
+                        </div>
+                        <div class="task-card-in">
+                            <div class="task-card-title">
+                                <a href="../ADMIN/USUARIO.php">Usuarios</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <?php } ?>
         </div>
     </div>
     <footer>
