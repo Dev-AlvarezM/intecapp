@@ -8,7 +8,11 @@ if(isset($_REQUEST['id_eventos'])){
     $id_eventos =$_POST['id_eventos'];
 }
 
-$sqlD = "SELECT * FROM asistencia WHERE id_evento = '$id_eventos'";
+// TODO: Refactorizar esta validación. 
+// Actualmente solo valida la tabla 'instructor'. 
+// Pendiente: Agregar validación para la tabla 'asistencia' para evitar registros huérfanos.
+// asistencia -> instructor
+$sqlD = "SELECT * FROM instructor WHERE id_eventos = '$id_eventos'";
 $queryD = $conn->query($sqlD);
 
 if($queryD->num_rows < 1){
