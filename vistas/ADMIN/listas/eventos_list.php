@@ -64,7 +64,7 @@ while($row = $query->fetch_assoc()){
         </td>
         
         <?php
-        if ($cargo == "Admin") {
+        if ($cargo == "Admin" || $cargo == "Instructor") {
         ?>
             <td>
                 <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_eventos;?>)" title="Editar Evento">

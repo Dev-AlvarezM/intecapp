@@ -95,6 +95,25 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-    <!--Samayoa-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fechaInicio = document.getElementById('f_inicio');
+            const fechaFin = document.getElementById('f_fin');
+
+            if (fechaInicio && fechaFin) {
+                const hoy = new Date().toISOString().split('T')[0];
+
+                if (!fechaFin.value) {
+                    fechaFin.value = fechaInicio.value || hoy;
+                }
+
+                fechaInicio.addEventListener('change', function() {
+                    if (!fechaFin.value || fechaFin.value < this.value) {
+                        fechaFin.value = this.value;
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

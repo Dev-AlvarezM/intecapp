@@ -47,7 +47,7 @@
                    <th>Fecha de Finalización</th>
                    <th>Hora de Entrada</th>
                    <th>Hora de Salida</th>
-                   <th>Estadilla</th>
+                   <th>Estadia</th>
                    <th>Instructor</th>
                    <th>Modalidad</th>
                    <th>Estado</th>
