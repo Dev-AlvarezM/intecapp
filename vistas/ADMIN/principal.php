@@ -44,6 +44,10 @@
                 <img class="hidden-md-down" src="img/intecap.png" alt="Logo">
             </a>
         </div>
+        <div class="user-status">
+            <span class="user-role"><?php echo htmlspecialchars($user['cargo']); ?></span>
+            <span class="user-name"><?php echo htmlspecialchars($user['nombre']); ?></span>
+        </div>
         <div class="dropdown user-menu">
             <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="img/perfil.png" alt="Perfil" class="user-avatar">

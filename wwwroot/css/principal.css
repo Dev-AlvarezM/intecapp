@@ -37,6 +37,13 @@
             transform: translateY(-50%);
         }
 
+        .user-status {
+            position: absolute;
+            right: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
         h4.portal-servicios {
             text-align: center;
             font-size: 28px;
