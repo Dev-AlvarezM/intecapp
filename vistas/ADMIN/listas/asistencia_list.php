@@ -1,7 +1,27 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/db.php');
 
-$sql = "SELECT a.*, u.nombre, u.cargo FROM asistencia a LEFT JOIN usuario u ON a.id_usuario = u.id";
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$usuarioSesion = '';
+if (isset($user['nombre'])) {
+    $usuarioSesion = $user['nombre'];
+} elseif (isset($_SESSION['admin_intecap'])) {
+    $usuarioSesion = 'Usuario #' . $_SESSION['admin_intecap'];
+}
+
+$cargo = isset($user['cargo']) ? trim($user['cargo']) : '';
+$filtroUsuario = '';
+if ($cargo === 'Instructor') {
+    $idUsuario = isset($user['id']) ? intval($user['id']) : (isset($_SESSION['admin_intecap']) ? intval($_SESSION['admin_intecap']) : 0);
+    if ($idUsuario > 0) {
+        $filtroUsuario = " WHERE a.id_usuario = $idUsuario";
+    }
+}
+
+$sql = "SELECT a.*, u.nombre, u.cargo FROM asistencia a LEFT JOIN usuario u ON a.id_usuario = u.id" . $filtroUsuario;
 $query = $conn->query($sql);
 
 function formatearHora($valor) {
@@ -35,6 +55,7 @@ while($row = $query->fetch_assoc()){
         
         <td><?php echo $row['nombre'];?></td>
         <td><?php echo $row['cargo'];?></td>
+        <td><?php echo htmlspecialchars($usuarioSesion);?></td>
         <td><?php echo $row['modalidad'] ?? '-';?></td>
         <td><?php echo $estadia;?></td>
         <td><?php echo formatearHora($hora_entrada);?></td>

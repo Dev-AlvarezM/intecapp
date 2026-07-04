@@ -2,20 +2,24 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 
+<?php
+$rolUsuario = isset($user['cargo']) ? trim($user['cargo']) : '';
+?>
+
 <h1>Asistencia</h1>
    
 <div class="container-fluid">
 
     <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap" style="gap:8px;">
 
-    <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor") { ?>
+    <?php if ($rolUsuario == "Admin" || $rolUsuario == "Instructor") { ?>
         <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
                  font-size: 13px; font-family: Arial, Helvetica, sans-serif; text-decoration: none; border-radius: 4px; text-align: center;" onclick="generarReporte()">
                  <i class="fas fa-print"></i> Reporte
         </button>
     <?php } ?>    
 
-        <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor") { ?>
+        <?php if ($rolUsuario == "Admin" || $rolUsuario == "Instructor") { ?>
             <div style="display:flex; gap:10px; flex-wrap:wrap; width: 100%;">
                 
                 <div class="input-group input-group-sm" style="width: 180px;">
@@ -25,7 +29,7 @@
                     <input type="date" id="filtro-fecha" class="form-control" onchange="filtrarTabla()" title="Elegir Fecha">
                 </div>
             
-            <?php if ($user['cargo'] == "Admin") { ?>
+            <?php if ($rolUsuario == "Admin") { ?>
                     <div class="input-group input-group-sm" style="width: 220px;">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-tools"></i></span>
@@ -61,6 +65,7 @@
                    <th>Evento</th> 
                    <th>Nombre</th> 
                    <th>Cargo</th>
+                   <th>Usuario sesión</th>
                    <th>Modalidad</th>
                    <th>Estadia</th>
                    <th>Hora Entrada</th>
