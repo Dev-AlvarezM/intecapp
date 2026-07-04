@@ -21,7 +21,7 @@ if ($cargo === 'Instructor') {
     }
 }
 
-$sql = "SELECT a.*, u.nombre, u.cargo FROM asistencia a LEFT JOIN usuario u ON a.id_usuario = u.id" . $filtroUsuario;
+$sql = "SELECT a.*, u.nombre, u.cargo FROM asistencia a LEFT JOIN usuario u ON a.id_usuario = u.id" . $filtroUsuario . " ORDER BY a.fecha DESC, a.hora_entrada DESC, a.id DESC";
 $query = $conn->query($sql);
 
 function formatearHora($valor) {
