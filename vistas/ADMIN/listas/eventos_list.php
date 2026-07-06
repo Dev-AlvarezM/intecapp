@@ -2,9 +2,11 @@
 // Incluir conexión a base de datos
 include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/db.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/cambiar_estado_evento.php');
 
 // Normalizar el cargo del usuario (eliminar espacios extra)
-$cargo = trim($user['cargo']);
+$cargo = isset($user['cargo']) ? trim($user['cargo']) : '';
+$userId = isset($user['id']) ? $user['id'] : 0;
 
 // Construir consulta SQL según el rol del usuario
 if ($cargo == "Admin" || $cargo == "Instructor") {
@@ -13,7 +15,6 @@ if ($cargo == "Admin" || $cargo == "Instructor") {
             INNER JOIN talleres as t ON e.id_talleres = t.id 
             INNER JOIN usuario as u ON u.id = e.id_instructor";
 } else {
-    $userId = $user['id'];
     // CORRECCIÓN: Se usa "e.id_eventos as id_eventos" para que coincida con el Admin
     $sql = "SELECT *, e.id_eventos as id_eventos, e.estado as estado_e, e.Estatilla as Estatilla 
             FROM eventos as e 
@@ -64,7 +65,7 @@ while($row = $query->fetch_assoc()){
         </td>
         
         <?php
-        if ($cargo == "Admin") {
+        if ($cargo == "Admin" || $cargo == "Instructor") {
         ?>
             <td>
                 <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_eventos;?>)" title="Editar Evento">

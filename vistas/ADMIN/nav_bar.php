@@ -155,9 +155,22 @@
             }
             </script>
 
+            <style>
+                .user-status {
+                    position: absolute;
+                    right: 100px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+            </style>
+                <div class="user-status">
+                    <span class="user-role"><?php echo htmlspecialchars($user['cargo']); ?></span>
+                    <span class="user-name"><?php echo htmlspecialchars($user['nombre']); ?></span>
+                </div>
             <div class="dropdown user-menu">
                 <button class="dropdown-toggle" id="dd-user-menu" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="img/perfil.png" alt="Perfil" class="user-avatar">
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">

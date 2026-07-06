@@ -2,20 +2,24 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 
+<?php
+$rolUsuario = isset($user['cargo']) ? trim($user['cargo']) : '';
+?>
+
 <h1>Asistencia</h1>
    
 <div class="container-fluid">
 
     <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap" style="gap:8px;">
 
-    
-    <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
+    <?php if ($rolUsuario == "Admin" || $rolUsuario == "Instructor") { ?>
+        <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
                  font-size: 13px; font-family: Arial, Helvetica, sans-serif; text-decoration: none; border-radius: 4px; text-align: center;" onclick="generarReporte()">
                  <i class="fas fa-print"></i> Reporte
-     </button>
-     
+        </button>
+    <?php } ?>    
 
-        <?php if ($user['cargo'] == "Admin") { ?>
+        <?php if ($rolUsuario == "Admin" || $rolUsuario == "Instructor") { ?>
             <div style="display:flex; gap:10px; flex-wrap:wrap; width: 100%;">
                 
                 <div class="input-group input-group-sm" style="width: 180px;">
@@ -24,24 +28,26 @@
                     </div>
                     <input type="date" id="filtro-fecha" class="form-control" onchange="filtrarTabla()" title="Elegir Fecha">
                 </div>
-
-                <div class="input-group input-group-sm" style="width: 220px;">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-tools"></i></span>
+            
+            <?php if ($rolUsuario == "Admin") { ?>
+                    <div class="input-group input-group-sm" style="width: 220px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-tools"></i></span>
+                        </div>
+                        <select id="filtro-taller" class="form-control" onchange="filtrarTabla()">
+                            <option value="">Todos los talleres</option>
+                            </select>
                     </div>
-                    <select id="filtro-taller" class="form-control" onchange="filtrarTabla()">
-                        <option value="">Todos los talleres</option>
-                        </select>
-                </div>
 
-                <div class="input-group input-group-sm" style="width: 220px;">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    <div class="input-group input-group-sm" style="width: 220px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        </div>
+                        <select id="filtro-instructor" class="form-control" onchange="filtrarTabla()">
+                            <option value="">Todos los instructores</option>
+                            </select>
                     </div>
-                    <select id="filtro-instructor" class="form-control" onchange="filtrarTabla()">
-                        <option value="">Todos los instructores</option>
-                        </select>
-                </div>
+            <?php } ?>    
 
                 <button onclick="limpiarFiltros()" class="btn btn-sm btn-danger">
                     <i class="fa fa-times"></i> Limpiar
@@ -59,8 +65,9 @@
                    <th>Evento</th> 
                    <th>Nombre</th> 
                    <th>Cargo</th>
+                   <th>Usuario sesión</th>
                    <th>Modalidad</th>
-                   <th>Estatilla</th>
+                   <th>Estadia</th>
                    <th>Hora Entrada</th>
                    <th>Hora salida</th>
                    <th>Estado</th> 
