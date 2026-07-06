@@ -93,6 +93,13 @@
                 <input type="text" id="telefono" name="telefono">
             </p>
 
+            <p class="form-group">
+                <label for="correo">Correo electrónico</label><br>
+                <input type="email" id="correo" name="correo" required
+                       placeholder="usuario@correo.com">
+                <small>Se usará para recuperar la contraseña si la olvida.</small>
+            </p>
+
             <!-- Solo Instructor -->
             <div id="area-section">
                 <p class="form-group">

@@ -3,13 +3,32 @@ include('db.php');
 
 $instructor           = $_POST['instructor']           ?? '0';
 $nombre               = $_POST['nombre']               ?? '';
-$telefono             = $_POST['telefono']             ?? '';
+$telefono              = $_POST['telefono']             ?? '';
 $cargo                = $_POST['cargo']                ?? '';
 $nom_usuario          = $_POST['nom_usuario']          ?? '';
+$correo               = trim($_POST['correo']          ?? '');
 $contraseña           = $_POST['contraseña']           ?? '';
-$estado               = $_POST['estado']               ?? '';
+$estado               = $_POST['estado']                ?? '';
 $area_especializacion = $_POST['area_especializacion'] ?? '';
 $foto_base64          = $_POST['foto_base64']          ?? '';
+
+// ── Validación del correo ──────────────────────────────────────────
+if ($correo === '' || !filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+    echo "<script>alert('Debes ingresar un correo electrónico válido.'); history.back();</script>";
+    exit;
+}
+
+$stmtCheck = $conn->prepare("SELECT id FROM usuario WHERE correo = ?");
+$stmtCheck->bind_param("s", $correo);
+$stmtCheck->execute();
+$stmtCheck->store_result();
+if ($stmtCheck->num_rows > 0) {
+    $stmtCheck->close();
+    echo "<script>alert('Ese correo ya está registrado con otra cuenta.'); history.back();</script>";
+    exit;
+}
+$stmtCheck->close();
+// ────────────────────────────────────────────────────────────────────
 
 $salt = "a1Bz20ydqelm8m1wql";
 $pass = $salt . md5($contraseña);
@@ -32,13 +51,13 @@ if (!empty($foto_base64) && strpos($foto_base64, 'data:image/') === 0) {
 }
 
 if ($foto_param !== null) {
-    $stmt = $conn->prepare("INSERT INTO usuario (nombre, telefono, cargo, nom_usuario, contraseña, estado, area_especializacion, foto)
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssss", $nombre, $telefono, $cargo, $nom_usuario, $pass, $estado, $area_especializacion, $foto_param);
+    $stmt = $conn->prepare("INSERT INTO usuario (nombre, telefono, cargo, nom_usuario, correo, contraseña, estado, area_especializacion, foto)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssssss", $nombre, $telefono, $cargo, $nom_usuario, $correo, $pass, $estado, $area_especializacion, $foto_param);
 } else {
-    $stmt = $conn->prepare("INSERT INTO usuario (nombre, telefono, cargo, nom_usuario, contraseña, estado, area_especializacion)
-                            VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssss", $nombre, $telefono, $cargo, $nom_usuario, $pass, $estado, $area_especializacion);
+    $stmt = $conn->prepare("INSERT INTO usuario (nombre, telefono, cargo, nom_usuario, correo, contraseña, estado, area_especializacion)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssss", $nombre, $telefono, $cargo, $nom_usuario, $correo, $pass, $estado, $area_especializacion);
 }
 
 if ($stmt->execute()) {
@@ -48,7 +67,7 @@ if ($stmt->execute()) {
         echo "<script>document.location='/intecapp/vistas/ADMIN/USUARIO.php'</script>";
     }
 } else {
-    echo "<script>alert('Error al guardar: " . $stmt->error . "'); history.back();</script>";
+    echo "<script>alert('Error al guardar: " . addslashes($stmt->error) . "'); history.back();</script>";
 }
 
 $stmt->close();

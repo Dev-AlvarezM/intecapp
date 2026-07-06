@@ -23,6 +23,13 @@
                 </p>
 
                 <p class="form-group">
+                    <label for="correo">Correo electrónico</label><br>
+                    <input type="email" id="correo" name="correo" required
+                           placeholder="instructor@correo.com">
+                    <small>Se usará para recuperar la contraseña si la olvida.</small>
+                </p>
+
+                <p class="form-group">
                     <label for="cargo">Cargo</label><br>
                     <select id="cargo" name="cargo" required>
                         <option value="Instructor">Instructor</option>

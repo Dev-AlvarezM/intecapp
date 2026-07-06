@@ -54,6 +54,15 @@
                            class="form-input">
                 </p>
 
+                <!-- Correo -->
+                <p>
+                    <label>Correo electrónico</label><br>
+                    <input type="email" id="correo" name="correo"
+                           value="<?php echo htmlspecialchars($row['correo'] ?? ''); ?>"
+                           required class="form-input">
+                    <br><small class="foto-hint">Se usará para recuperar la contraseña si la olvida.</small>
+                </p>
+
                 <!-- Cargo -->
                 <p>
                     <label>Cargo</label><br>

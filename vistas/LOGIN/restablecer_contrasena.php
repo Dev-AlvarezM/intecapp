@@ -1,9 +1,36 @@
+<?php
+/**
+ * Paso 2 de la recuperación de contraseña.
+ * Se llega aquí solo desde el enlace que recibe el usuario por correo.
+ * Valida el token antes de mostrar el formulario de nueva contraseña.
+ */
+include '../../modelos/db.php';
+
+$token = $_GET['token'] ?? '';
+$tokenValido = false;
+
+if ($token !== '') {
+    $stmt = $conn->prepare("SELECT expira, usado FROM recuperacion_password WHERE token = ?");
+    $stmt->bind_param("s", $token);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    if ($resultado->num_rows === 1) {
+        $fila = $resultado->fetch_assoc();
+        if ((int) $fila['usado'] === 0 && strtotime($fila['expira']) >= time()) {
+            $tokenValido = true;
+        }
+    }
+    $stmt->close();
+}
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar Contraseña — INTECAP Quiché</title>
+    <title>Restablecer Contraseña — INTECAP Quiché</title>
     <link href="../ADMIN/img/intecap.png" rel="icon" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -182,8 +209,8 @@
                 <div class="brand-sub">Centro de Capacitación — Quiché</div>
             </div>
             <div class="welcome-text">
-                <h2>Recuperar Contraseña</h2>
-                <p>Restablece tu acceso al sistema de gestión de INTECAP Quiché.</p>
+                <h2>Restablecer Contraseña</h2>
+                <p>Define tu nueva contraseña para volver a acceder al sistema.</p>
             </div>
             <svg class="wave-svg" viewBox="0 0 900 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0,60 C150,120 350,0 600,60 C750,100 850,20 900,60 L900,120 L0,120 Z" fill="white"/>
@@ -194,23 +221,31 @@
             </div>
         </div>
 
-        <div class="panel-right">
-            <div class="form-heading">Recuperar Contraseña</div>
-            <div class="form-heading-sub">Ingresa tu usuario y el correo con el que te registraste. Te enviaremos un enlace para cambiar tu contraseña.</div>
+        
+<?php if ($tokenValido): ?>
+<div class="panel-right">
+            <div class="form-heading">Nueva Contraseña</div>
+            <div class="form-heading-sub">Este enlace es válido. Define tu nueva contraseña.</div>
 
-            <form action="../../modelos/solicitar_recuperacion.php" method="post" autocomplete="off">
+            <form action="../../modelos/pass_olvidada.php" method="post" autocomplete="off">
+                <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
                 <div class="input-group">
-                    <label for="nom_usuario"><i class="fa-solid fa-user"></i>Usuario</label>
-                    <input type="text" id="nom_usuario" name="nom_usuario" class="input-field" placeholder="Nombre de usuario" required>
+                    <label for="contrasena"><i class="fa-solid fa-lock"></i>Nueva Contraseña</label>
+                    <input type="password" id="contrasena" name="contraseña" onkeyup="comparar();" class="input-field" placeholder="••••••••" required>
                 </div>
                 <div class="input-group">
-                    <label for="correo"><i class="fa-solid fa-envelope"></i>Correo electrónico</label>
-                    <input type="email" id="correo" name="correo" class="input-field" placeholder="tu-correo@ejemplo.com" required>
+                    <label for="contrasena1"><i class="fa-solid fa-lock-open"></i>Confirmar Contraseña</label>
+                    <input type="password" id="contrasena1" name="contraseña1" onkeyup="comparar();" class="input-field" placeholder="••••••••" required>
+                </div>
+
+                <div id="passError" class="alert-box alert-error alert-hidden">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>Las contraseñas no coinciden</span>
                 </div>
 
                 <div class="btn-row" style="margin-top:20px;">
                     <button type="submit" class="btn-login" name="add" id="addBtn">
-                        <i class="fa-solid fa-paper-plane" style="margin-right:7px;"></i>Enviar enlace
+                        <i class="fa-solid fa-key" style="margin-right:7px;"></i>Cambiar Contraseña
                     </button>
                     <button type="button" class="btn-clear" onclick="window.location.href='../../index.php'">
                         <i class="fa-solid fa-xmark" style="margin-right:5px;"></i>Cancelar
@@ -223,6 +258,27 @@
                 <a href="../../index.php">Volver al inicio</a>
             </div>
         </div>
+<?php else: ?>
+<div class="panel-right">
+            <div class="result-icon-wrap danger">
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <div class="result-title">Enlace inválido o expirado</div>
+            <div class="result-sub">
+                Este enlace de recuperación ya no es válido. Puede que ya lo hayas usado
+                o que haya pasado el tiempo límite. Solicita uno nuevo para continuar.
+            </div>
+            <div class="btn-row">
+                <button type="button" class="btn-login" onclick="window.location.href='recuperacion de contraseña.php'">
+                    <i class="fa-solid fa-rotate-right" style="margin-right:7px;"></i>Solicitar de nuevo
+                </button>
+                <button type="button" class="btn-clear" onclick="window.location.href='../../index.php'">
+                    <i class="fa-solid fa-xmark" style="margin-right:5px;"></i>Cancelar
+                </button>
+            </div>
+        </div>
+<?php endif; ?>
+
     </div>
 </body>
 </html>
@@ -240,4 +296,22 @@
             const v=document.getElementById('bgVideo');
             if(v) v.play().catch(()=>{});
         });
+    </script>
+    <script>
+        function comparar(){
+            const p1  = document.getElementById('contrasena');
+            const p2  = document.getElementById('contrasena1');
+            if(!p1 || !p2) return;
+            const err = document.getElementById('passError');
+            const btn = document.getElementById('addBtn');
+            if(p1.value !== p2.value){
+                err.classList.remove('alert-hidden');
+                btn.disabled = true;
+                btn.style.opacity = '.55';
+            } else {
+                err.classList.add('alert-hidden');
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            }
+        }
     </script>
