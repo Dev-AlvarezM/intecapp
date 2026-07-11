@@ -1,5 +1,6 @@
 <?php 
-include('../../../modelos/db.php');
+// Cargamos la sesión (incluye db.php) para obtener el usuario logueado
+include('../../../controladores/session.php');
 
 // --- LÓGICA DE FILTRADO ---
 // Iniciamos con 1=1 para que si no vienen filtros, la consulta traiga todo.
@@ -18,7 +19,49 @@ if (!empty($_GET['instructor'])) {
     $instructor = $conn->real_escape_string($_GET['instructor']);
     $where .= " AND u.nombre = '$instructor' ";
 }
+// Si el usuario logueado es Instructor, restringimos el reporte solo a sus registros
+if (isset($user['cargo']) && strtolower(trim($user['cargo'])) === 'instructor') {
+  $idUser = isset($user['id']) ? intval($user['id']) : 0;
+  if ($idUser > 0) {
+    $where .= " AND a.id_usuario = $idUser ";
+  }
+}
 // --------------------------
+?>
+
+<?php
+// Formatea una hora o datetime para mostrar solo HH:MM. Devuelve '-' si vacío.
+function formatoHoraHM($valor) {
+  if (empty($valor) || trim($valor) === '') {
+    return '-';
+  }
+  $ts = strtotime($valor);
+  if ($ts === false) {
+    return $valor; // si no podemos parsear, devolvemos el original
+  }
+  return date('H:i', $ts);
+}
+?>
+
+<?php
+// Formatea el campo 'estatilla' (puede venir como HH:MM:SS o HH:MM) para mostrar solo HH:MM
+function formatoEstatillaHM($valor) {
+  if (empty($valor) || trim($valor) === '') {
+    return '-';
+  }
+  $parts = explode(':', $valor);
+  if (count($parts) >= 2) {
+    $hh = str_pad($parts[0], 2, '0', STR_PAD_LEFT);
+    $mm = str_pad($parts[1], 2, '0', STR_PAD_LEFT);
+    return $hh . ':' . $mm;
+  }
+  // Si no tiene ':', intentar parsear como hora
+  $ts = strtotime($valor);
+  if ($ts === false) {
+    return $valor;
+  }
+  return date('H:i', $ts);
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -118,9 +161,9 @@ th, td { font-size: 15px; text-align: center; }
         <td><?php echo $row['nombre'];?></td>
         <td><?php echo $row['cargo'];?></td>
         <td><?php echo $row['modalidad'];?></td>
-        <td><?php echo $row['estatilla'];?></td>
-        <td><?php echo $row['hora_entrada'];?></td>
-        <td><?php echo $row['hora_salida'];?></td>
+        <td><?php echo formatoEstatillaHM($row['estatilla']);?></td>
+        <td><?php echo formatoHoraHM($row['hora_entrada']);?></td>
+        <td><?php echo formatoHoraHM($row['hora_salida']);?></td>
         <td><?php echo $row['estado'];?></td>
     </tr>
   <?php 

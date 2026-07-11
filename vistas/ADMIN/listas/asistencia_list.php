@@ -12,9 +12,17 @@ if (isset($user['nombre'])) {
     $usuarioSesion = 'Usuario #' . $_SESSION['admin_intecap'];
 }
 
+// Aseguramos que $user esté disponible cuando el archivo se carga directamente
+if (!isset($user)) {
+    if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php')) {
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
+    }
+}
+
 $cargo = isset($user['cargo']) ? trim($user['cargo']) : '';
+$cargo_lc = strtolower($cargo);
 $filtroUsuario = '';
-if ($cargo === 'Instructor') {
+if ($cargo_lc === 'instructor') {
     $idUsuario = isset($user['id']) ? intval($user['id']) : (isset($_SESSION['admin_intecap']) ? intval($_SESSION['admin_intecap']) : 0);
     if ($idUsuario > 0) {
         $filtroUsuario = " WHERE a.id_usuario = $idUsuario";
@@ -44,7 +52,8 @@ while($row = $query->fetch_assoc()){
         $fechaUno = new DateTime($hora_entrada);
         $fechaDos = new DateTime($hora_salida);
         $dateInterval = $fechaUno->diff($fechaDos);
-        $estadia = $dateInterval->format('%H:%I');
+        // Usar %h (horas) y %i (minutos) en DateInterval::format
+        $estadia = $dateInterval->format('%h:%i');
     }
 ?>
     <tr>

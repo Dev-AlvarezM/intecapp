@@ -4,6 +4,8 @@
 
 <?php
 $rolUsuario = isset($user['cargo']) ? trim($user['cargo']) : '';
+// Normalizar a minúsculas para evitar problemas de mayúsculas/espacios
+$rolUsuario = strtolower($rolUsuario);
 ?>
 
 <h1>Asistencia</h1>
@@ -12,14 +14,14 @@ $rolUsuario = isset($user['cargo']) ? trim($user['cargo']) : '';
 
     <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap" style="gap:8px;">
 
-    <?php if ($rolUsuario == "Admin" || $rolUsuario == "Instructor") { ?>
+    <?php if (in_array($rolUsuario, ['admin','instructor'])) { ?>
         <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
-                 font-size: 13px; font-family: Arial, Helvetica, sans-serif; text-decoration: none; border-radius: 4px; text-align: center;" onclick="generarReporte()">
-                 <i class="fas fa-print"></i> Reporte
+                font-size: 13px; font-family: Arial, Helvetica, sans-serif; text-decoration: none; border-radius: 4px; text-align: center;" onclick="generarReporte()">
+                <i class="fas fa-print"></i> Reporte
         </button>
     <?php } ?>    
 
-        <?php if ($rolUsuario == "Admin" || $rolUsuario == "Instructor") { ?>
+        <?php if (in_array($rolUsuario, ['admin','instructor'])) { ?>
             <div style="display:flex; gap:10px; flex-wrap:wrap; width: 100%;">
                 
                 <div class="input-group input-group-sm" style="width: 180px;">
@@ -29,7 +31,7 @@ $rolUsuario = isset($user['cargo']) ? trim($user['cargo']) : '';
                     <input type="date" id="filtro-fecha" class="form-control" onchange="filtrarTabla()" title="Elegir Fecha">
                 </div>
             
-            <?php if ($rolUsuario == "Admin") { ?>
+                <?php if ($rolUsuario == "admin") { ?>
                     <div class="input-group input-group-sm" style="width: 220px;">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-tools"></i></span>
@@ -160,21 +162,25 @@ $rolUsuario = isset($user['cargo']) ? trim($user['cargo']) : '';
 
     //Funcion para generar el reporte en PDF con los filtros aplicados
     function generarReporte() {
-    // Capturamos los valores de los filtros
-    var fecha = document.getElementById('filtro-fecha').value;
-    var taller = document.getElementById('filtro-taller').value;
-    // Usamos option:selected.text para obtener el nombre del instructor, no su ID
-    var instructorElement = document.getElementById('filtro-instructor');
-    var instructor = instructorElement.options[instructorElement.selectedIndex].text;
-    
-    // Si la opción seleccionada es "Todos los instructores" (valor vacío), enviamos vacío
-    if (instructorElement.value === "") { instructor = ""; }
+        // Capturamos los valores de los filtros de forma segura (pueden no existir para algunos roles)
+        var fechaEl = document.getElementById('filtro-fecha');
+        var fecha = fechaEl ? fechaEl.value : '';
 
-    // Redirigimos enviando los datos por GET
-    window.location.href = 'pdf/asistencia_pdf.php?fecha=' + encodeURIComponent(fecha) + 
-                           '&taller=' + encodeURIComponent(taller) + 
-                           '&instructor=' + encodeURIComponent(instructor);
-}
+        var tallerEl = document.getElementById('filtro-taller');
+        var taller = tallerEl ? tallerEl.value : '';
+
+        var instructorEl = document.getElementById('filtro-instructor');
+        var instructor = '';
+        if (instructorEl && instructorEl.selectedIndex >= 0) {
+            instructor = instructorEl.options[instructorEl.selectedIndex].text || '';
+            if (instructorEl.value === '') { instructor = ''; }
+        }
+
+        // Redirigimos enviando los datos por GET
+        window.location.href = 'pdf/asistencia_pdf.php?fecha=' + encodeURIComponent(fecha) +
+                               '&taller=' + encodeURIComponent(taller) +
+                               '&instructor=' + encodeURIComponent(instructor);
+    }
 </script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
