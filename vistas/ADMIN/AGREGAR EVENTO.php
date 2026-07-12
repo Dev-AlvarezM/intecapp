@@ -45,12 +45,12 @@
 
                 <p class="form-group">
                     <label for="hora_entrada">Hora de Entrada</label><br>
-                    <input type="time" id="hora_entrada" name="hora_entrada" required>
+                    <input type="time" id="hora_entrada" name="hora_entrada" step="60" required>
                 </p>
 
                 <p class="form-group">
                     <label for="hora_salida">Hora de Salida</label><br>
-                    <input type="time" id="hora_salida" name="hora_salida" required>
+                    <input type="time" id="hora_salida" name="hora_salida" step="60" required>
                 </p>
 
                 <p class="form-group">
@@ -68,6 +68,11 @@
                         <option value="Presencial">Presencial</option>
                         <option value="Virtual">Virtual</option>
                     </select>
+                </p>
+
+                <p class="form-group" id="detalle-modalidad">
+                    <label id="detalle-label" for="detalle-input">Detalle</label><br>
+                    <input type="text" id="detalle-input" name="detalle_modalidad">
                 </p>
 
                 <!--Botones de opciones-->
@@ -99,6 +104,33 @@
         document.addEventListener('DOMContentLoaded', function() {
             const fechaInicio = document.getElementById('f_inicio');
             const fechaFin = document.getElementById('f_fin');
+            const modalidad = document.getElementById('modalidad');
+            const detalleModalidad = document.getElementById('detalle-modalidad');
+            const detalleLabel = document.getElementById('detalle-label');
+            const detalleInput = document.getElementById('detalle-input');
+
+            function actualizarDetalleModalidad() {
+                const valor = modalidad.value;
+                if (valor === 'Presencial') {
+                    detalleLabel.textContent = 'Módulo';
+                    detalleInput.placeholder = 'Escriba el módulo';
+                    detalleInput.name = 'detalle_modalidad';
+                    detalleModalidad.style.display = 'block';
+                } else if (valor === 'Virtual') {
+                    detalleLabel.textContent = 'URL';
+                    detalleInput.placeholder = 'Escriba la URL';
+                    detalleInput.name = 'detalle_modalidad';
+                    detalleModalidad.style.display = 'block';
+                } else {
+                    detalleModalidad.style.display = 'none';
+                    detalleInput.name = '';
+                }
+            }
+
+            if (modalidad) {
+                modalidad.addEventListener('change', actualizarDetalleModalidad);
+                actualizarDetalleModalidad();
+            }
 
             if (fechaInicio && fechaFin) {
                 const hoy = new Date().toISOString().split('T')[0];

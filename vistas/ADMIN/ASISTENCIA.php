@@ -67,7 +67,6 @@ $rolUsuario = strtolower($rolUsuario);
                    <th>Evento</th> 
                    <th>Nombre</th> 
                    <th>Cargo</th>
-                   <th>Usuario sesión</th>
                    <th>Modalidad</th>
                    <th>Estadia</th>
                    <th>Hora Entrada</th>

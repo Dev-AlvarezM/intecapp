@@ -1,6 +1,9 @@
 <?php include 'header.php'; ?>
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
+<?php
+include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/cambiar_estado_evento.php');
+?>
 
 <h1>Eventos</h1>
 
@@ -50,8 +53,9 @@
                    <th>Estadia</th>
                    <th>Instructor</th>
                    <th>Modalidad</th>
+                   <th>Modulo</th>
                    <th>Estado</th>
-                   <th>Acciones</th> <!-- Nueva columna para las opciones de editar y eliminar -->
+                   <th>Acciones</th>
                </tr>
            </thead>
            <tbody>

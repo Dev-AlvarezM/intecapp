@@ -64,7 +64,6 @@ while($row = $query->fetch_assoc()){
         
         <td><?php echo $row['nombre'];?></td>
         <td><?php echo $row['cargo'];?></td>
-        <td><?php echo htmlspecialchars($usuarioSesion);?></td>
         <td><?php echo $row['modalidad'] ?? '-';?></td>
         <td><?php echo $estadia;?></td>
         <td><?php echo formatearHora($hora_entrada);?></td>
