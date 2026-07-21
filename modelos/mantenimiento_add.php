@@ -5,6 +5,7 @@ include('db.php');
 
 $id_taller    = $_POST["id_taller"];
 $id_encargado = $_POST["id_encargado"];
+$id_instructor = $_POST["id_instructor"];
 $f_reporte    = $_POST['f_reporte'];
 $f_realizado  = (isset($_POST["f_realizado"]) && $_POST["f_realizado"] != '') ? $_POST["f_realizado"] : 'NULL';
 $descripcion  = $_POST['descripcion'];
@@ -12,9 +13,9 @@ $estado       = 'no realizado';
 
 // 1. Insertar mantenimiento
 mysqli_query($conn,
-    "INSERT INTO mantenimiento (id_taller, f_reporte, f_realizado, descripcion, estado, id_encargado)
-     VALUES('$id_taller','$f_reporte', $f_realizado, '$descripcion', '$estado','$id_encargado')"
-) or die(mysqli_error($conn));
+    "INSERT INTO mantenimiento (id_taller, f_reporte, f_realizado, descripcion, estado, id_encargado, id_instructor)
+    VALUES('$id_taller','$f_reporte', $f_realizado, '$descripcion', '$estado','$id_encargado','$id_instructor')"
+    ) or die(mysqli_error($conn));
 
 // 2. Insertar notificación para TODOS los usuarios activos
 $descripcion_safe = mysqli_real_escape_string($conn, $descripcion);

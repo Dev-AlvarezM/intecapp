@@ -155,6 +155,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
                     <tr>
                         <th>Año</th>
                         <th>Nombre del Encargado</th>
+                        <th>Quien reporta</th>
                         <th>Taller</th>
                         <th>Fecha de Reporte</th>
                         <th>Fecha de Realizado</th>

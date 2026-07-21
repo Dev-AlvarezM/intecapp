@@ -32,7 +32,7 @@ if ($estado=='Pendiente') {
     $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado";
 }
 // Ejecutar consulta y recorrer resultados
-$query = $conn->query($sql);
+$query = $conn->query($sql) or die("Error en la consulta: " . $conn->error);
 while($row = $query->fetch_assoc()){
     $id_mantenimiento = $row['id_mantenimiento'];
 ?>
@@ -41,37 +41,39 @@ while($row = $query->fetch_assoc()){
         <!-- Año del reporte -->
         <td> <?php echo date("Y", strtotime($row['f_reporte']));?> </td>
         <!-- Nombre del encargado -->
-        <td> <?php echo $row['nombre'];?> </td>
+        <td><?php echo htmlspecialchars($row['nombre']); ?></td>
+        <!-- Nombre de quien reportó -->
+        <td><?php echo htmlspecialchars($row['nombre_reporta']); ?></td>         
         <!-- Nombre del taller -->
-        <td><?php echo $row['nombre_taller'];?></td>        
-       
+        <td><?php echo htmlspecialchars($row['nombre_taller']);?></td>        
         <!-- Fecha de reporte -->
         <td><?php echo date("d/m/Y", strtotime($row['f_reporte']));?></td>
         <!-- Fecha de realización (solo se muestra si el mantenimiento está realizado) -->
         <td><?php echo ($row['estado_m'] == 'Realizada' && $row['f_realizado'] != NULL) ? date("d/m/Y", strtotime($row['f_realizado'])) : '--'; ?></td>
         <!-- Descripción del mantenimiento -->
-        <td><?php echo $row['descripcion'];?></td>
-      <!-- Columna de estado con opción de cambio -->
-      <td>
-<?php
-// Mostrar botón para cambiar estado si es pendiente y el usuario es Admin o Mantenimiento
-if ($row['estado_m'] =='no realizado' && ($cargo == "Admin" || $cargo == "Mantenimiento")) { 
-?>
-<a class="small-box-footer btn-print" href="<?php  echo "../../modelos/cambiar_estado.php?id_mantenimiento=$id_mantenimiento&estado=".urlencode($estado);?>" onClick="return confirm('¿Está seguro de que quieres cambiar de estado a Realizada?');" >No realizado</a>  
-<?php
-}
-// Mostrar estado realizado como texto si está en estado Realizada
-elseif ($row['estado_m'] == 'Realizada' && ($cargo == "Admin" || $cargo == "Mantenimiento")) {
-    echo $row['estado_m'];
-?>               
-<?php
-} 
-// Mostrar estado para otros usuarios
-else {
-    echo $row['estado_m'];
-}       
-?>
-</td>
+        <td><?php echo htmlspecialchars($row['descripcion']);?></td>
+        <!-- Columna de estado con opción de cambio -->
+
+    <td>
+        <?php
+        // Mostrar botón para cambiar estado si es pendiente y el usuario es Admin o Mantenimiento
+        if ($row['estado_m'] =='no realizado' && ($cargo == "Admin" || $cargo == "Mantenimiento")) { 
+        ?>
+        <a class="small-box-footer btn-print" href="<?php  echo "../../modelos/cambiar_estado.php?id_mantenimiento=$id_mantenimiento&estado=".urlencode($estado);?>" onClick="return confirm('¿Está seguro de que quieres cambiar de estado a Realizada?');" >No realizado</a>  
+        <?php
+        }
+        // Mostrar estado realizado como texto si está en estado Realizada
+        elseif ($row['estado_m'] == 'Realizada' && ($cargo == "Admin" || $cargo == "Mantenimiento")) {
+            echo $row['estado_m'];
+        ?>               
+        <?php
+        } 
+        // Mostrar estado para otros usuarios
+        else {
+            echo $row['estado_m'];
+        }       
+        ?>
+    </td>
         <!-- Columna de acciones (comentarios, editar, eliminar) -->
         <td>
             <?php if ($cargo == "Admin" || $cargo == "Instructor" || $cargo == "Mantenimiento") { ?>
@@ -89,7 +91,6 @@ else {
                 </button>
             <?php } ?>
         </td>
-          
     
 <?php 
     }

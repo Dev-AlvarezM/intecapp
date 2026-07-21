@@ -84,6 +84,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $filas[] = [
         'anio'        => $anio,
         'nombre'      => htmlspecialchars($row['nombre']),
+        'id_instructor' => htmlspecialchars($row['id_instructor']),
         'taller'      => htmlspecialchars($row['nombre_taller']),
         'f_reporte'   => $f_reporte,
         'f_realizado' => $f_realizado,
