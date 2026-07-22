@@ -1,7 +1,8 @@
 <?php include 'header.php'; ?>
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
-<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_MANTENIMIENTO.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR MANTENIMIENTO.css">
 <link rel="stylesheet" href="css/tema.css">
 
 <!--Formulario agregar mantenimiento-->

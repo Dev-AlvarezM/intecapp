@@ -6,7 +6,7 @@
 <h1>Área de Mantenimiento</h1>
    
 
-   <div class="container-fluid">
+   <div class="container-fluid table-responsive-lg">
        <table id="table-edit" class="table table-bordered table-hover">
            <thead>
                <tr>
@@ -26,20 +26,22 @@
        
            <h1>Lista de comentarios</h1>
 
+    <div>
         <table id="table-edit" class="table table-bordered table-hover">
-           <thead>
-               <tr>
-                   <th>No.</th>
-                   <th>Fecha</th>
-                   <th>Comentario</th>
-                   <th>Acciones</th>
-           </thead>
-           <tbody>
-               <tr>
-                    <?php include 'listas/comentario_list2.php'; ?>
-               </tr>
-           </tbody>
-       </table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Fecha</th>
+                    <th>Comentario</th>
+                    <th>Acciones</th>
+            </thead>
+                <tbody>
+                    <tr>
+                        <?php include 'listas/comentario_list2.php'; ?>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
 
    </div>
 
@@ -50,7 +52,7 @@
         <div class="mb-3 text-left">
         <form action="../../modelos/comentario_add.php" method="post" style="text-align: left;">
             <input type="hidden" id="id_mantenimiento" name="id_mantenimiento" value="<?php echo $id_mantenimiento;?>" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
-            <textarea id="Comentario" name="Comentario" rows="4" cols="50"></textarea>
+            <textarea class="table-responsive-lg" id="Comentario" name="Comentario" rows="4" cols="50"></textarea>
 
             <button type="submit" class="btn-accion btn-guardar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
                     font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="add" id="add">

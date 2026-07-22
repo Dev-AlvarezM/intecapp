@@ -1,7 +1,8 @@
 <?php include 'header.php'; ?>
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
-<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_TALLER.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR TALLER.css">
 <link rel="stylesheet" href="css/tema.css">
 
 <!--Formulario agregar taller-->
@@ -28,7 +29,7 @@
                 <p class="form-group">
                     <label for="condicion">Condición</label><br>
                     <input type="text" id="condicion" name="condicion">
-                </p>
+                </p><br>
 
                 <!--Botones de opciones-->
                 <p>
@@ -43,12 +44,12 @@
                         <i class="fa fa-sign-out"></i> <i class="fa fa-arrow-right"></i> Salir
                     </button>
                 </p>
-                <br><br>
             </center>
         </form>
 
         <!-- Pie de página -->
         <?php include 'footer.php'; ?>
+        <br><br>
     </div><!-- .form-container -->
 
     <!-- jQuery y Bootstrap JS -->
