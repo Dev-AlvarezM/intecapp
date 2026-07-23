@@ -1,7 +1,16 @@
 <?php
   session_start();
+
+  // Evita que el navegador cachee esta página (parte del arreglo del
+  // problema de "atrás" del navegador).
+  header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+  header('Pragma: no-cache');
+  header('Expires: Sat, 01 Jan 2000 00:00:00 GMT');
+
   if(isset($_SESSION['admin_intecap'])){
     header('location:vistas/ADMIN/principal.php');
+    exit; // CRÍTICO: faltaba, así que el formulario de login se seguía
+          // generando/enviando debajo del redirect.
   }
 ?>
 <!DOCTYPE html>

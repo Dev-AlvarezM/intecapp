@@ -1,5 +1,6 @@
 <?php
 include('db.php');
+include('password_helper.php');
 
 $instructor           = $_POST['instructor']           ?? '0';
 $nombre               = $_POST['nombre']               ?? '';
@@ -30,8 +31,7 @@ if ($stmtCheck->num_rows > 0) {
 $stmtCheck->close();
 // ────────────────────────────────────────────────────────────────────
 
-$salt = "a1Bz20ydqelm8m1wql";
-$pass = $salt . md5($contraseña);
+$pass = hashPasswordSeguro($contraseña);
 
 if ($cargo !== 'Instructor') {
     $area_especializacion = '';
