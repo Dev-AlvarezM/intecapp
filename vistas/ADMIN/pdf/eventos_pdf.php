@@ -8,171 +8,132 @@ include('../../../modelos/db.php');
 <head>
   <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 
-
   <link href="../img/intecap.png" rel="icon" type="image/png">
   <link rel='stylesheet' type='text/css' href='css1/style.css' />
   <link rel='stylesheet' type='text/css' href='css1/print.css' media="print" />
   <script type='text/javascript' src='js/jquery-1.3.2.min.js'></script>
   <script type='text/javascript' src='js/example.js'></script>
 
-
-<style>
-
-.left{
-    float: left;
-
-}
-.right{
-    float: right;
-
-}
-.center{
-
-   display:inline-block
-}
-@media print {
-    .btn-print {
-      display:none !important;
-    size:30px;
+  <style>
+    /* Centrado del logo */
+    .logo-container {
+        text-align: center;
+        margin: 15px 0;
     }
 
-}
-th, td {
-font-size: 15px;
-text-align: center;
-}
+    #image {
+        display: inline-block;
+    }
 
-</style>
-</style>
+    @media print {
+        .btn-print {
+            display: none !important;
+        }
+    }
+
+    /* Fuente Arial para la tabla y sus celdas */
+    table, th, td {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px; /* Ligera reducción para acomodar mejor las 12 columnas */
+        text-align: center;
+    }
+  </style>
 </head>
 
 <body>
 
-   <br>
+  <br>
 
-       <center>                       
-
-   
-
-
-    <a class = "btn btn-success btn-print" style="    text-decoration: none;
+  <center> 
+    <a class="btn btn-success btn-print" style="text-decoration: none;
+    font-family: Arial, sans-serif;
     padding: 10px;
     font-weight: 600;
     font-size: 20px;
     color: #ffffff;
     background-color: #1883ba;
     border-radius: 6px;
-    border: 2px solid #0016b0; " href = "../EVENTOS.php" ><i class ="glyphicon glyphicon-print"></i>Regresar</a>
+    border: 2px solid #0016b0;" href="../EVENTOS.php"><i class="glyphicon glyphicon-print"></i> Regresar</a>
 
-<a class = "btn btn-success btn-print" style="    text-decoration: none;
+    <a class="btn btn-success btn-print" style="text-decoration: none;
+    font-family: Arial, sans-serif;
     padding: 10px;
     font-weight: 600;
     font-size: 20px;
     color: #ffffff;
     background-color: #1883ba;
     border-radius: 6px;
-    border: 2px solid #0016b0; " href = "" onclick = "window.print()"><i class ="glyphicon glyphicon-print"></i> Impresión </a>
+    border: 2px solid #0016b0;" href="" onclick="window.print()"><i class="glyphicon glyphicon-print"></i> Impresión </a>
   </center>
+
   <div id="page-wrap">
 
     <textarea id="header">Lista de Eventos</textarea>
 
     <div id="identity">
+      <div style="clear:both"></div>
 
- 
+      <!-- Contenedor del logo centrado -->
+      <div class="logo-container">
+        <img id="image" src="../img/intecap.png" alt="logo" /><br /><br />
+      </div>
 
+      <table style="width:100%">
+        <thead>
+            <tr>
+              <th>Año</th>
+              <th>Taller</th>
+              <th>No. Programa</th>
+              <th>Nombre del Evento</th>
+              <th>Fecha de Inicio</th>
+              <th>Fecha de Finalización</th>
+              <th>Hora de Entrada</th>
+              <th>Hora de Salida</th>
+              <th>Estadía</th>
+              <th>Instructor</th>
+              <th>Modalidad</th>
+              <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
 
+        <?php 
+        $sql = "SELECT *, e.id_eventos as id_eventos, e.estado as estado_e FROM eventos as e INNER JOIN talleres as t ON e.id_talleres = t.id INNER JOIN usuario as u ON u.id = e.id_instructor";
+        $query = $conn->query($sql);
+        while($row = $query->fetch_assoc()){
+            $id_taller = $row['id'];
 
+            $hora_entrada = $row['hora_entrada'];
+            $hora_salida = $row['hora_salida'];
 
-    <div style="clear:both"></div>
+            $fechaUno = new DateTime($hora_entrada);
+            $fechaDos = new DateTime($hora_salida);
 
-
-
-    <div class="container">
-   <div class="left">
-
-
-   <img id="image" src="../img/intecap.png" alt="logo"  /><br /><br />
-       </div>
-
-   <div class="right">
-
-     <div id="customer">
-
-
-
-
-     </div>
-
-       </div>
-
-   <div class="center">
-
-       </div>
-   </div>
-
-
-<table id="" style="width:100%"  >
-  <thead>
-      <tr>
-        <th>Año</th>
-        <th>Taller</th>
-        <th>No. Programa</th>
-        <th>Nombre del Evento</th>
-        <th>Fecha de Inicio</th>
-        <th>Fecha de Finalización</th>
-        <th>Hora de Entrada</th>
-        <th>Hora de Salida</th>
-        <th>Estadilla</th>
-        
-        <th>Instructor</th>
-        <th>Modalidad</th>
-        <th>Estado</th>
-      </tr>
-  </thead>
-  <tbody>
-
-  <?php 
-  $sql = "SELECT *,e.id_eventos as id_eventos, e.estado as estado_e FROM eventos as e INNER JOIN talleres as t ON e.id_talleres = t.id INNER JOIN usuario as u ON u.id = e.id_instructor";
-  $query = $conn->query($sql);
-  while($row = $query->fetch_assoc()){
-      $id_taller = $row['id'];
-
-      $hora_entrada = $row['hora_entrada'];
-      $hora_salida = $row['hora_salida'];
-
-      $fechaUno=new DateTime($hora_entrada);
-      $fechaDos=new DateTime($hora_salida);
-
-      $dateInterval = $fechaUno->diff($fechaDos);
-  ?>
-    <tr>
-        <td><?php echo $row['anio_evento'];?></td>
-        <td><?php echo $row['nombre_taller'];?></td>
-        <td><?php echo $row['programa'];?></td>
-        <td><?php echo $row['nombre_evento'];?></td>
-        <td><?php echo date("d/m/Y", strtotime($row['f_inicio']));?></td>
-        <td><?php echo date("d/m/Y", strtotime($row['f_fin']));?></td>
-        <td><?php echo date("H:i", strtotime($row['hora_entrada']));?></td>
-        <td><?php echo date("H:i", strtotime($row['hora_salida']));?></td>
-        <td><?php echo $dateInterval->format('%H:%I'); ?></td>
-        <td><?php echo $row['nombre'];?></td>
-        <td><?php echo $row['modalidad'];?></td>
-        <td><?php echo $row['estado_e'];?></td>
-    </tr>
-  <?php 
-    }
-  ?>
-           
- <!--end of modal-->
-  </tbody>
-
-</table>
-                  
-     </div>
-
-       </div>
+            $dateInterval = $fechaUno->diff($fechaDos);
+        ?>
+          <tr>
+              <td><?php echo $row['anio_evento'];?></td>
+              <td><?php echo $row['nombre_taller'];?></td>
+              <td><?php echo $row['programa'];?></td>
+              <td><?php echo $row['nombre_evento'];?></td>
+              <td><?php echo date("d/m/Y", strtotime($row['f_inicio']));?></td>
+              <td><?php echo date("d/m/Y", strtotime($row['f_fin']));?></td>
+              <td><?php echo date("H:i", strtotime($row['hora_entrada']));?></td>
+              <td><?php echo date("H:i", strtotime($row['hora_salida']));?></td>
+              <td><?php echo $dateInterval->format('%H:%I'); ?></td>
+              <td><?php echo $row['nombre'];?></td>
+              <td><?php echo $row['modalidad'];?></td>
+              <td><?php echo $row['estado_e'];?></td>
+          </tr>
+        <?php 
+          }
+        ?>
+                 
+        </tbody>
+      </table>
+              
+    </div>
+  </div>
 
 </body>
-
 </html>

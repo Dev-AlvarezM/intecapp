@@ -55,17 +55,17 @@
             <textarea class="table-responsive-lg" id="Comentario" name="Comentario" rows="4" cols="50"></textarea>
 
             <button type="submit" class="btn-accion btn-guardar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="add" id="add">
+                    font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="add" id="add">
                     <i class="fas fa-plus"></i> Agregar
             </button>
                
             <button type="reset" class="btn-accion btn-limpiar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #f44336; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="reset" id="reset">
+                    font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="reset" id="reset">
                     <i class="fa fa-eraser"></i> Limpiar
             </button>
 
             <button type="button" class="btn-accion btn-salir" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #555555; color: white; 
-                    font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="exit" id="exit" onclick="window.location.href='../ADMIN/MANTENIMIENTO.php'">
+                    font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="exit" id="exit" onclick="window.location.href='../ADMIN/MANTENIMIENTO.php'">
                     <i class="fa fa-sign-out"></i> <i class="fa fa-arrow-right"></i> Regresar
             </button>
         </form>
