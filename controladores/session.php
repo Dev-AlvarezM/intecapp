@@ -1,4 +1,16 @@
 <?php
+	// Evita que este archivo se ejecute más de una vez en la misma petición.
+	// Algunas páginas incluyen session.php de forma indirecta más de una vez
+	// (por ejemplo: header.php lo incluye, y luego un modelo como
+	// cambiar_estado_evento.php lo vuelve a incluir). Sin esta guardia, la
+	// segunda ejecución intenta llamar header() cuando ya se envió HTML al
+	// navegador (el <!DOCTYPE...> de header.php), causando el error
+	// "Cannot modify header information - headers already sent".
+	if (defined('INTECAP_SESSION_LOADED')) {
+		return;
+	}
+	define('INTECAP_SESSION_LOADED', true);
+
 	if (session_status() === PHP_SESSION_NONE) session_start();
 	include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/db.php');
 	include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/config.php');
