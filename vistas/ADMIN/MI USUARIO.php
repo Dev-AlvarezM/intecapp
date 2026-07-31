@@ -36,6 +36,12 @@
                     <h5 class="dato-valor"><?php echo $user['telefono']; ?></h5>
                 </p>
                 <br>
+
+                <p class="dato-label">
+                    <i class="fas fa-mobile-alt"></i> Correo<br>
+                    <h5 class="dato-valor"><?php echo $user['correo']; ?></h5>
+                </p>
+                <br>
                 
                 <p class="dato-label">
                     <i class="fas fa-graduation-cap"></i> Área de Especialización<br>

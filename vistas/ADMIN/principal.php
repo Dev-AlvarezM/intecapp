@@ -79,7 +79,7 @@
         <a href="../ADMIN/MI USUARIO.php">
             <i class="fas fa-user"></i>
         </a> 
-        <h3>Usuario</h3>
+        <h3>Mi Usuario</h3>
     </div>
 </div><br>
         <!-- Módulos -->
