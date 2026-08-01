@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="mb-3 text-right">
           <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
-            font-size: 13px; font-family: 'Times New Roman', serif; text-decoration: none; border-radius: 4px; text-align: center;" onclick="window.location.href='pdf/instructores_pdf.php'">
+            font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center;" onclick="window.location.href='pdf/instructores_pdf.php'">
             <i class="fas fa-print"></i> Reporte
         </button>  
         </div>

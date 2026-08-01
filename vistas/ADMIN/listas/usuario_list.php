@@ -25,6 +25,7 @@ while ($row = $query->fetch_assoc()) {
         </td>
         <td><?php echo htmlspecialchars($row['nombre']); ?></td>
         <td><?php echo htmlspecialchars($row['telefono'] ?? '—'); ?></td>
+        <td><?php echo htmlspecialchars($row['correo'] ?? '—'); ?></td>
         <td><?php echo htmlspecialchars($row['cargo']); ?></td>
         <td><?php echo htmlspecialchars($row['nom_usuario']); ?></td>
         <td><?php echo htmlspecialchars($row['estado']); ?></td>

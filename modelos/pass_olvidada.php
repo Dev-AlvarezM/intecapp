@@ -9,6 +9,7 @@
  */
 
 include('db.php');
+include('password_helper.php');
 
 $volverError = function ($mensaje) {
     echo "<script type='text/javascript'>alert('" . addslashes($mensaje) . "');</script>";
@@ -53,9 +54,8 @@ if (strtotime($fila['expira']) < time()) {
 
 $idUsuario = (int) $fila['id_usuario'];
 
-// Encriptar la nueva contraseña (mismo esquema usado en el resto del sistema)
-$salt = "a1Bz20ydqelm8m1wql";
-$pass = $salt . md5($contraseña);
+// Encriptar la nueva contraseña con hash seguro (bcrypt)
+$pass = hashPasswordSeguro($contraseña);
 
 $stmtUpdate = $conn->prepare("UPDATE usuario SET contraseña = ? WHERE id = ?");
 $stmtUpdate->bind_param("si", $pass, $idUsuario);

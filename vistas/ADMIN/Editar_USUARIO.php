@@ -2,7 +2,7 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <?php include('../../modelos/usuario.php'); ?>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/intecapp/wwwroot/css/Editar_USUARIO.css">
 <link rel="stylesheet" href="/intecapp/wwwroot/css/tema.css">
 <link rel="stylesheet" href="/intecapp/wwwroot/css/Editar_USUARIO.css">

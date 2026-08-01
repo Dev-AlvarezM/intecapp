@@ -2,13 +2,13 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <?php include('../../modelos/mantenimiento.php'); ?>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/intecapp/wwwroot/css/Editar_MANTENIMIENTO.css">
 <link rel="stylesheet" href="css/tema.css">
 
 <body class="mantenimiento-body">
     <div class="mantenimiento-container">
-        <h3 class="mantenimiento-titulo">Editar Encargado de Mantenimiento</h3>
+        <h3 class="mantenimiento-titulo">Editar Mantenimiento</h3>
         
         <form action="../../modelos/mantenimiento_edit.php" method="post" class="mantenimiento-form">
             <input type="hidden" id="id" name="id" value="<?php echo $row['id'];?>" required>
