@@ -38,7 +38,7 @@
                 <br>
 
                 <p class="dato-label">
-                    <i class="fas fa-mobile-alt"></i> Correo<br>
+                    <i class="fas fa-envelope"></i> Correo<br>
                     <h5 class="dato-valor"><?php echo $user['correo']; ?></h5>
                 </p>
                 <br>
