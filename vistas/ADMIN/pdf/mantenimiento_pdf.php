@@ -153,17 +153,17 @@ $url = "../MANTENIMIENTO.php?estado=".$estado;
 
         <?php 
         if ($estado=='Pendiente') {
-            $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado WHERE m.estado = 'no realizado' ";
+            $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado WHERE m.estado = 'no realizado' ORDER BY m.f_reporte DESC, m.id DESC";
         }elseif ($estado=='Realizados') {
-            $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado WHERE m.estado = 'Realizada' ";
+            $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado WHERE m.estado = 'Realizada' ORDER BY m.f_reporte DESC, m.id DESC";
         }elseif ($estado=='Mes') {
             $mes = date("m");
             $ano = date("Y");
-            $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado WHERE MONTH(f_reporte) = $mes AND YEAR(f_reporte) = $ano";
+            $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado WHERE MONTH(f_reporte) = $mes AND YEAR(f_reporte) = $ano ORDER BY m.f_reporte DESC, m.id DESC";
         }elseif ($estado=='Rango') {
-            $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado WHERE f_reporte BETWEEN '$fecha_inicio' and '$fecha_final'";
+            $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado WHERE f_reporte BETWEEN '$fecha_inicio' and '$fecha_final' ORDER BY m.f_reporte DESC, m.id DESC";
         }elseif ($estado=='General') {
-            $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado";
+            $sql = "SELECT *,m.id as id_mantenimiento, m.estado as estado_m FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado ORDER BY m.f_reporte DESC, m.id DESC";
         }
 
         $query = $conn->query($sql);

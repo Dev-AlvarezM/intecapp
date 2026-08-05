@@ -161,7 +161,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
                         <th>Fecha de Realizado</th>
                         <th>Descripción</th>
                         <th>Estado</th>
-                        <th>Acciones</th> 
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

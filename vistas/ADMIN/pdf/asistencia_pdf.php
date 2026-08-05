@@ -160,7 +160,8 @@ function formatoEstatillaHM($valor) {
         $sql = "SELECT a.*, u.nombre, u.cargo
                 FROM asistencia a 
                 INNER JOIN usuario u ON a.id_usuario = u.id 
-                $where";
+                $where
+                ORDER BY a.fecha DESC, a.hora_entrada DESC, a.id DESC";
                 
         $query = $conn->query($sql);
         while($row = $query->fetch_assoc()){

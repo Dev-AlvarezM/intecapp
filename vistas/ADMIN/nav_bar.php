@@ -139,14 +139,15 @@
                         var html = '';
                         data.filas.forEach(function(f) {
                             html += '<tr>' +
-                                '<td>' + f.anio        + '</td>' +
-                                '<td>' + f.nombre      + '</td>' +
-                                '<td>' + f.taller      + '</td>' +
-                                '<td>' + f.f_reporte   + '</td>' +
-                                '<td>' + f.f_realizado + '</td>' +
-                                '<td>' + f.descripcion + '</td>' +
-                                '<td>' + f.estado      + '</td>' +
-                                '<td>' + f.acciones    + '</td>' +
+                                '<td>' + f.anio           + '</td>' +
+                                '<td>' + f.nombre         + '</td>' +
+                                '<td>' + f.nombre_reporta + '</td>' +
+                                '<td>' + f.taller         + '</td>' +
+                                '<td>' + f.f_reporte      + '</td>' +
+                                '<td>' + f.f_realizado    + '</td>' +
+                                '<td>' + f.descripcion    + '</td>' +
+                                '<td>' + f.estado         + '</td>' +
+                                '<td>' + f.acciones       + '</td>' +
                             '</tr>';
                         });
                         tbody.innerHTML = html;
