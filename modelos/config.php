@@ -9,53 +9,35 @@ if (!defined('BASE_URL')) {
     define('BASE_URL', 'http://localhost/intecapp');
 }
 
-// Identidad con la que se envían los correos del sistema.
-if (!defined('MAIL_FROM')) {
-    define('MAIL_FROM', 'espotify921@gmail.com'); // debe coincidir con SMTP_USER si usas Gmail
-}
-if (!defined('MAIL_FROM_NAME')) {
-    define('MAIL_FROM_NAME', 'INTECAP Quiché - Sistema de Gestión');
-}
-
 // Minutos de validez del enlace de recuperación de contraseña.
 if (!defined('RECUPERACION_MINUTOS_VALIDEZ')) {
     define('RECUPERACION_MINUTOS_VALIDEZ', 30);
 }
 
 /**
- * ── Envío real de correos (SMTP) ─────────────────────────────────────
- * La función mail() nativa de PHP casi nunca funciona en XAMPP/local
- * (no hay servidor de correo instalado en tu máquina), por eso los
- * correos "se pierden" sin avisar de ningún error.
- *
- * Activa SMTP_ENABLED = true y llena estos datos para que los correos
- * se envíen de verdad a través de una cuenta SMTP real (Gmail, tu
- * hosting, etc). Si lo dejas en false, se usa mail() nativa (rara vez
- * funciona en local).
- *
- * Para Gmail:
- *  1. Activa la verificación en dos pasos en la cuenta de Gmail que
- *     vas a usar para enviar.
- *  2. Genera una "contraseña de aplicación" en:
- *     https://myaccount.google.com/apppasswords
- *  3. Usa esa contraseña de 16 caracteres en SMTP_PASS (NO tu
- *     contraseña normal de Gmail).
+ * ── Credenciales de correo (SMTP) ─────────────────────────────────────
+ * IMPORTANTE: las credenciales reales YA NO están en este archivo.
+ * Están en modelos/credenciales.php, que está en .gitignore y por lo
+ * tanto NUNCA se sube a GitHub. Si ese archivo no existe, cópialo desde
+ * modelos/credenciales.example.php y llena tus datos ahí.
  */
-if (!defined('SMTP_ENABLED')) {
-    define('SMTP_ENABLED', true);
-}
-if (!defined('SMTP_HOST')) {
-    define('SMTP_HOST', 'smtp.gmail.com');
-}
-if (!defined('SMTP_PORT')) {
-    define('SMTP_PORT', 587);          // 587 = TLS (recomendado), 465 = SSL
-}
-if (!defined('SMTP_SECURE')) {
-    define('SMTP_SECURE', 'tls');      // 'tls' o 'ssl'
-}
-if (!defined('SMTP_USER')) {
-    define('SMTP_USER', 'espotify921@gmail.com');
-}
-if (!defined('SMTP_PASS')) {
-    define('SMTP_PASS', 'jdfy lalj ulwl lymn'); // contraseña de aplicación de 16 caracteres
+$credenciales = __DIR__ . '/credenciales.php';
+
+if (file_exists($credenciales)) {
+    require_once $credenciales;
+} else {
+    // Si falta el archivo de credenciales, se deshabilita el envío real
+    // por SMTP para no romper el sitio, y queda registrado en el log.
+    error_log('CONFIG: No se encontró modelos/credenciales.php. '
+        . 'Copia modelos/credenciales.example.php a modelos/credenciales.php '
+        . 'y llena tus datos reales de SMTP.');
+    if (!defined('SMTP_ENABLED')) {
+        define('SMTP_ENABLED', false);
+    }
+    if (!defined('MAIL_FROM')) {
+        define('MAIL_FROM', 'no-reply@example.com');
+    }
+    if (!defined('MAIL_FROM_NAME')) {
+        define('MAIL_FROM_NAME', 'INTECAP Quiché - Sistema de Gestión');
+    }
 }
