@@ -8,7 +8,7 @@
 <!--Formulario agregar mantenimiento-->
 <body>
     <div class="form-container">
-        <h3>Agregar Nuevo Encargado de Mantenimiento</h3>
+        <h3>Nuevo Mantenimiento</h3>
         <form action="../../modelos/mantenimiento_add.php" method="post" style="text-align: left;">
             <center>
                 <p class="form-group">
@@ -36,6 +36,14 @@
                 <p class="form-group">
                     <label for="descripcion">Descripción</label><br>
                     <input type="text" id="descripcion" name="descripcion" required>
+                </p>
+
+                <p class="form-group">
+                    <label for="id_instructor">Quien reporta</label><br>
+                    <select id="id_instructor" name="id_instructor" required>
+                        <option value="">Seleccione</option>
+                        <?php include 'listas/instructores_combobox.php'; ?>
+                    </select>
                 </p>
 
                 <!--Botones de opciones-->

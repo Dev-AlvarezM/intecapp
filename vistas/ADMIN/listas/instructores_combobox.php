@@ -1,5 +1,6 @@
 <?php
 include('../../modelos/db.php');
+include_once('../../controladores/session.php');
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -18,7 +19,7 @@ if (isset($user['id'])) {
 }
 
 if ($rolUsuario === 'Admin') {
-    $sql = "SELECT * FROM usuario WHERE cargo = 'Instructor' ORDER BY nombre";
+    $sql = "SELECT * FROM usuario WHERE cargo IN ('Instructor', 'Admin') ORDER BY nombre";
 } else {
     $sql = "SELECT * FROM usuario WHERE cargo = 'Instructor' AND id = $idUsuario ORDER BY nombre";
 }
@@ -26,7 +27,7 @@ if ($rolUsuario === 'Admin') {
 $query = $conn->query($sql);
 while($row = $query->fetch_assoc()) {
     $selected = '';
-    if ($rolUsuario !== 'Admin' && $idUsuario > 0 && intval($row['id']) === $idUsuario) {
+    if ($idUsuario > 0 && intval($row['id']) === $idUsuario) {
         $selected = 'selected';
     }
 ?>

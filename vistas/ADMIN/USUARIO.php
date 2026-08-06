@@ -47,6 +47,7 @@
                     <th>Foto</th>
                     <th>Nombre</th>
                     <th>Teléfono</th>
+                    <th>Correo</th>
                     <th>Cargo</th>
                     <th>Usuario</th>
                     <th>Estado</th>

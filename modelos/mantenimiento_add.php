@@ -10,7 +10,24 @@ if (!isset($_SESSION['admin_intecap']) || trim($_SESSION['admin_intecap']) == ''
     header('location: ' . BASE_URL . '/index.php');
     exit;
 }
-$id_solicitante = (int) $_SESSION['admin_intecap'];
+$id_solicitante = 0;
+if (isset($_POST['id_instructor']) && trim($_POST['id_instructor']) !== '') {
+    if (is_numeric($_POST['id_instructor']) && (int) $_POST['id_instructor'] > 0) {
+        $id_solicitante = (int) $_POST['id_instructor'];
+    } else {
+        echo "<script>alert('Selecciona un responsable válido en \"Quien reporta\".');window.history.back();</script>";
+        exit;
+    }
+}
+
+if ($id_solicitante === 0) {
+    $id_solicitante = (int) $_SESSION['admin_intecap'];
+}
+
+if ($id_solicitante <= 0) {
+    echo "<script>alert('No se pudo determinar quién reporta el mantenimiento. Inicia sesión de nuevo.');window.location.href='../index.php';</script>";
+    exit;
+}
 
 $id_taller    = $_POST["id_taller"];
 $id_encargado = (int) $_POST["id_encargado"];

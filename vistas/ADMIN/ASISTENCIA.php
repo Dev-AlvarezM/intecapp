@@ -94,7 +94,14 @@ $rolUsuario = strtolower($rolUsuario);
     // Usamos jQuery que ya viene con DataTables
     $(document).ready(function() {
         // Conectamos el script con tu tabla paginada
-        var table = $('#table-edit').DataTable();
+        var table = $.fn.DataTable.isDataTable('#table-edit')
+            ? $('#table-edit').DataTable()
+            : $('#table-edit').DataTable({
+                order: [[0, 'desc']]
+            });
+
+        // Aseguramos que siempre se aplique el orden de fecha descendente
+        table.order([[0, 'desc']]).draw();
 
         // 1. Cargamos los selectores leyendo TODAS las páginas de DataTables
         cargarOpcionesDinamicas(table);
