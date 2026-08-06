@@ -9,7 +9,7 @@
 
   if(isset($_SESSION['admin_intecap'])){
     header('location:vistas/ADMIN/principal.php');
-    exit; // CRÍTICO: faltaba, así que el formulario de login se seguía
+    exit; // faltaba, así que el formulario de login se seguía
           // generando/enviando debajo del redirect.
   }
 ?>
