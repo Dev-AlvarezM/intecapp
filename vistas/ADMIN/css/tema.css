@@ -54,18 +54,28 @@ html, body {
 }
 
 /* Menú lateral - PROTEGER ICONOS */
+:root {
+    --menu-lateral-bg: linear-gradient(180deg, #0A4197 0%, #308FE2 100%);
+    --menu-lateral-borde: #0d47a1;
+}
+
+html[data-tema="oscuro"] {
+    --menu-lateral-bg: linear-gradient(180deg, #2D2D2D 0%, #2D2D2D 100%);
+    --menu-lateral-borde: #555050;
+}
+
 .side-menu, .side-menu-compact, .nav-drawer {
-    background-color: var(--color-header) !important;
-    border-right: 1px solid var(--color-borde) !important;
+    background: var(--menu-lateral-bg) !important;
+    border-right: 1px solid var(--menu-lateral-borde) !important;
 }
 
 .side-menu a, .side-menu-compact a, .nav-drawer a, .side-menu-list a, .side-menu-list li span.lbl {
-    color: var(--color-header-texto) !important;
+    color: #ffffff !important;
 }
 
 .side-menu a:hover, .side-menu-compact a:hover, .nav-drawer a:hover, .side-menu-list a:hover {
-    background-color: var(--color-fondo-claro) !important;
-    color: var(--color-primario) !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
 }
 
 /* Menús desplegables */
@@ -93,12 +103,52 @@ html, body {
     background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
-/* PROTEGER ICONOS DEL MENÚ - MANTENER AZUL ORIGINAL */
+/* ICONOS DEL MENÚ CON COLORES DISTINTOS */
 .side-menu i, .side-menu-compact i, .nav-drawer i, .side-menu-list i,
 .side-menu [class*="icon"], .side-menu-compact [class*="icon"],
 .nav-drawer [class*="icon"], .icon-menu, .menu-icon,
 .side-menu-item-icon, .side-menu-item i, .side-menu-compact-item i {
-    color: #007bff !important;
+    color: #ffffff !important;
+}
+
+.side-menu a:nth-child(1) i, .side-menu-compact a:nth-child(1) i, .nav-drawer a:nth-child(1) i {
+    color: #fbfbf6 !important;
+}
+
+.side-menu a:nth-child(2) i, .side-menu-compact a:nth-child(2) i, .nav-drawer a:nth-child(2) i {
+    color: #4ecdc4 !important;
+}
+
+.side-menu a:nth-child(3) i, .side-menu-compact a:nth-child(3) i, .nav-drawer a:nth-child(3) i {
+    color: #ffe66d !important;
+}
+
+.side-menu a:nth-child(4) i, .side-menu-compact a:nth-child(4) i, .nav-drawer a:nth-child(4) i {
+    color: #8bc34a !important;
+}
+
+.side-menu a:nth-child(5) i, .side-menu-compact a:nth-child(5) i, .nav-drawer a:nth-child(5) i {
+    color: #ab47bc !important;
+}
+
+.side-menu a:nth-child(6) i, .side-menu-compact a:nth-child(6) i, .nav-drawer a:nth-child(6) i {
+    color: #ff8f00 !important;
+}
+
+.side-menu a:nth-child(7) i, .side-menu-compact a:nth-child(7) i, .nav-drawer a:nth-child(7) i {
+    color: #ec407a !important;
+}
+
+.side-menu a:nth-child(8) i, .side-menu-compact a:nth-child(8) i, .nav-drawer a:nth-child(8) i {
+    color: #42a5f5 !important;
+}
+
+.side-menu a:nth-child(9) i, .side-menu-compact a:nth-child(9) i, .nav-drawer a:nth-child(9) i {
+    color: #66bb6a !important;
+}
+
+.side-menu a:nth-child(10) i, .side-menu-compact a:nth-child(10) i, .nav-drawer a:nth-child(10) i {
+    color: #26c6da !important;
 }
 
 /* Paneles y contenedores */

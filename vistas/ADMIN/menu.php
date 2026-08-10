@@ -55,12 +55,14 @@
             </a>
         </li>
 
+        <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor"): ?>
         <li class="blue-dirty">
             <a href="../ADMIN/ASISTENCIA.php">
                 <i class="fas fa-check-circle"></i> 
                 <span class="lbl">Asistencia</span>
             </a>
         </li>
+        <?php endif; ?>
 
         <li class="blue-dirty">
             <a href="../ADMIN/MI USUARIO.php">
@@ -121,12 +123,14 @@
             </a>
         </li>
 
+        <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor"): ?>
         <li class="blue-dirty">
             <a href="../ADMIN/ASISTENCIA.php">
                 <i class="fas fa-check-circle"></i> 
                 <span class="lbl">Asistencia</span>
             </a>
         </li>
+        <?php endif; ?>
 
         <li class="blue-dirty">
             <a href="../ADMIN/MI USUARIO.php">

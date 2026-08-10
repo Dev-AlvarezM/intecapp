@@ -38,8 +38,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/cambiar_estado_evento.php
         ?>
 
        </div>
-   <div class="container-fluid table-responsive-lg">
-       <table id="table-edit" class="table table-bordered table-hover">
+      <div class="container-fluid table-responsive">
+        <table id="table-edit" class="table table-bordered table-hover rounded overflow-hidden">
            <thead>
                <tr>
                    <th>Año</th>

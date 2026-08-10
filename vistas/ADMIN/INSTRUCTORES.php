@@ -16,7 +16,7 @@
         </div>
 
     <div class="container-fluid table-responsive-lg">
-        <table id="table-edit" class="table table-bordered table-hover">
+        <table id="table-edit" class="table table-bordered table-hover rounded overflow-hidden">
             <thead>
                 <tr>
                     <th>No.</th>

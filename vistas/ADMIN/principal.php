@@ -69,7 +69,7 @@
     <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor") { ?>
         <div class="icon-text">
             <a href="../ADMIN/ASISTENCIA.php">
-                <i class="fas fa-file-alt"></i>
+                <i class="fas fa-check-circle"></i>
             </a> 
             <h3>Asistencia</h3>
         </div>

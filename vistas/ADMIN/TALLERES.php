@@ -8,30 +8,30 @@
        <!-- Botón de hipervínculo alineado a la derecha -->
        <div class="mb-3 text-right">
         <?php
-        if (in_array($user['cargo'], ["Admin" , "Instructor"])) {
-            ?>
+            if ($user['cargo']=="Admin") {
+        ?>
+            <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
+                font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center;" onclick="window.location.href='pdf/talleres_pdf.php'">
+                <i class="fas fa-print"></i> Reporte
+            </button>
+        <?php
+        }else  {    
+            }
+        ?>
+
+        <?php
+            if (in_array($user['cargo'], ["Admin" , "Instructor"])) {
+        ?>
             <a href="../ADMIN/AGREGAR TALLER.php" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
-                        font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center;">
-                <i class="fa fa-calendar-plus"></i> Agregar
+                font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center;">
+                    <i class="fa fa-calendar-plus"></i> Agregar
             </a>
         <?php
         }
         ?>
-        <?php
-        if ($user['cargo']=="Admin") {
-        ?>
-        <button type="button" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
-            font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center;" onclick="window.location.href='pdf/talleres_pdf.php'">
-            <i class="fas fa-print"></i> Reporte
-        </button>
-        <?php
-        }else  {
-            
-        }
-        ?>
        </div>
    <div class="container-fluid table-responsive-lg">
-       <table id="table-edit" class="table table-bordered table-hover">
+        <table id="table-edit" class="table table-bordered table-hover rounded overflow-hidden">
            <thead>
                <tr>
                    <th>Año</th>
