@@ -30,12 +30,12 @@ define('SMTP_HOST', 'smtp.gmail.com');
 define('SMTP_PORT', 587);          // 587 = TLS (STARTTLS) | 465 = SSL
 define('SMTP_SECURE', 'tls');      // 'tls' o 'ssl'
 
-define('SMTP_USER', 'tu-correo@gmail.com');
-define('SMTP_PASS', 'contraseniadeaplicacion16'); // 16 caracteres, sin espacios
+define('SMTP_USER', 'sp.space.deveolopers@gmail.com');
+define('SMTP_PASS', 'qcxukxkgkjeleikl'); // 16 caracteres, sin espacios
 
 define('MAIL_FROM', SMTP_USER);
 define('MAIL_FROM_NAME', 'INTECAP Quiché - Sistema de Gestión');
 
 // Secreto para firmar/verificar los tokens JWT de recuperación de
 // contraseña. Cámbialo por una cadena larga y aleatoria propia.
-define('JWT_SECRET', 'CAMBIA-ESTO-por-una-cadena-larga-y-aleatoria');
+define('JWT_SECRET', '4d89533fa2e3c3c725758429569f7020a08ba3751135987e080c6a83cc96bf13');

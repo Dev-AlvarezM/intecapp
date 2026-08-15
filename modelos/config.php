@@ -15,7 +15,7 @@ if (!defined('RECUPERACION_MINUTOS_VALIDEZ')) {
 }
 
 /**
- * ── Credenciales de correo (SMTP) ─────────────────────────────────────
+ * ── Credenciales de correo (SMTP) y secreto JWT ────────────────────────
  * IMPORTANTE: las credenciales reales YA NO están en este archivo.
  * Están en modelos/credenciales.php, que está en .gitignore y por lo
  * tanto NUNCA se sube a GitHub. Si ese archivo no existe, cópialo desde
@@ -30,7 +30,7 @@ if (file_exists($credenciales)) {
     // por SMTP para no romper el sitio, y queda registrado en el log.
     error_log('CONFIG: No se encontró modelos/credenciales.php. '
         . 'Copia modelos/credenciales.example.php a modelos/credenciales.php '
-        . 'y llena tus datos reales de SMTP.');
+        . 'y llena tus datos reales de SMTP y tu propio JWT_SECRET.');
     if (!defined('SMTP_ENABLED')) {
         define('SMTP_ENABLED', false);
     }
@@ -40,4 +40,15 @@ if (file_exists($credenciales)) {
     if (!defined('MAIL_FROM_NAME')) {
         define('MAIL_FROM_NAME', 'INTECAP Quiché - Sistema de Gestión');
     }
+}
+
+// Si por alguna razón credenciales.php no definió JWT_SECRET (archivo
+// viejo sin actualizar, por ejemplo), se genera uno de emergencia por
+// petición. OJO: esto invalida los enlaces de recuperación ya enviados
+// cada vez que se recargue sin JWT_SECRET fijo; agrega la constante en
+// tu credenciales.php lo antes posible.
+if (!defined('JWT_SECRET')) {
+    error_log('CONFIG: JWT_SECRET no está definido en credenciales.php. '
+        . 'Agrega define(\'JWT_SECRET\', \'...\'); con una cadena aleatoria propia.');
+    define('JWT_SECRET', bin2hex(random_bytes(32)));
 }

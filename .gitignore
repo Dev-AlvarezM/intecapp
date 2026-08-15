@@ -1,7 +1,0 @@
-.DS_Store
-node_modules/
-vendor/
-.env
-
-# Credenciales / secretos - NUNCA deben subirse al repositorio
-modelos/credenciales.php
