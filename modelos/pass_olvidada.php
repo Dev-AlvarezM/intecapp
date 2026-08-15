@@ -2,14 +2,19 @@
 /**
  * Paso 2 de la recuperación de contraseña.
  *
- * Ya NO cambia la contraseña solo con el nombre de usuario (eso permitía
- * que cualquiera cambiara la contraseña de cualquiera). Ahora exige un
- * token válido, no usado y no vencido, generado en solicitar_recuperacion.php
- * y entregado únicamente por correo al dueño real de la cuenta.
+ * CAMBIO respecto a la versión anterior:
+ *  Antes se validaba el token contra la tabla `recuperacion_password`
+ *  (columnas token / expira / usado). Ahora el token es un JWT que se
+ *  autovalida (firma + expiración) y el "single use" se logra
+ *  comparando un fragmento del hash de la contraseña actual guardado
+ *  dentro del propio token: si ya cambiaste la contraseña con ese
+ *  enlace (o de cualquier otra forma), el token deja de ser válido
+ *  aunque todavía no haya expirado.
  */
 
 include('db.php');
 include('password_helper.php');
+include('jwt_helper.php');
 
 $volverError = function ($mensaje) {
     echo "<script type='text/javascript'>alert('" . addslashes($mensaje) . "');</script>";
@@ -31,28 +36,25 @@ if ($contraseña === '' || $contraseña !== $contraseña1) {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT id_usuario, expira, usado FROM recuperacion_password WHERE token = ?");
-$stmt->bind_param("s", $token);
-$stmt->execute();
-$resultado = $stmt->get_result();
+$payload = verificarJWT($token, JWT_SECRET);
 
-if ($resultado->num_rows !== 1) {
-    $stmt->close();
-    $volverError('El enlace de recuperación no es válido.');
+if ($payload === null || !isset($payload['uid'], $payload['phv'])) {
+    $volverError('El enlace de recuperación no es válido o ya expiró. Solicita uno nuevo.');
 }
 
-$fila = $resultado->fetch_assoc();
+$idUsuario = (int) $payload['uid'];
+
+// Confirmar que la contraseña no haya cambiado desde que se generó el link
+// (esto reemplaza la columna "usado" de la tabla vieja).
+$stmt = $conn->prepare("SELECT contraseña FROM usuario WHERE id = ?");
+$stmt->bind_param("i", $idUsuario);
+$stmt->execute();
+$fila = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
-if ((int) $fila['usado'] === 1) {
-    $volverError('Este enlace ya fue utilizado. Solicita uno nuevo.');
+if (!$fila || substr($fila['contraseña'], 0, 12) !== $payload['phv']) {
+    $volverError('Este enlace ya fue utilizado o ya no es válido. Solicita uno nuevo.');
 }
-
-if (strtotime($fila['expira']) < time()) {
-    $volverError('Este enlace ya expiró. Solicita uno nuevo.');
-}
-
-$idUsuario = (int) $fila['id_usuario'];
 
 // Encriptar la nueva contraseña con hash seguro (bcrypt)
 $pass = hashPasswordSeguro($contraseña);
@@ -61,11 +63,5 @@ $stmtUpdate = $conn->prepare("UPDATE usuario SET contraseña = ? WHERE id = ?");
 $stmtUpdate->bind_param("si", $pass, $idUsuario);
 $stmtUpdate->execute();
 $stmtUpdate->close();
-
-// Invalidar el token para que no se pueda volver a usar.
-$stmtUsado = $conn->prepare("UPDATE recuperacion_password SET usado = 1 WHERE token = ?");
-$stmtUsado->bind_param("s", $token);
-$stmtUsado->execute();
-$stmtUsado->close();
 
 echo "<script>document.location='../vistas/LOGIN/cambio de contraseña.html'</script>";

@@ -2,7 +2,7 @@
 /**
  * Paso 1 de la recuperación de contraseña.
  *
- * Recibe nom_usuario + correo. Reglas:
+ * Reglas (sin cambios respecto al flujo anterior):
  *  - Si el usuario no existe -> error.
  *  - Si el usuario existe pero el correo NO coincide con el correo
  *    registrado en la cuenta -> error para quien lo solicitó, y además
@@ -10,12 +10,24 @@
  *    cuenta avisando que alguien intentó recuperar su contraseña con
  *    un correo distinto.
  *  - Si el usuario existe y el correo SÍ coincide -> se genera un
- *    token de un solo uso (30 min de validez) y se envía un correo
- *    con el enlace para cambiar la contraseña.
+ *    token de un solo uso (RECUPERACION_MINUTOS_VALIDEZ minutos de
+ *    validez) y se envía un correo con el enlace para cambiar la
+ *    contraseña.
+ *
+ * CAMBIO respecto a la versión anterior:
+ *  Antes el token era aleatorio y se guardaba en la tabla
+ *  `recuperacion_password` para poder validarlo después.
+ *  Ahora el token es un JWT (HS256) que se autovalida con firma +
+ *  expiración: ya no se inserta nada en la base de datos. El "single
+ *  use" se logra incluyendo un fragmento del hash de la contraseña
+ *  actual como claim (`phv`): en cuanto el usuario cambia su
+ *  contraseña, cualquier link viejo deja de servir automáticamente,
+ *  aunque no haya expirado.
  */
 
 include('db.php');
 include('mailer.php');
+include('jwt_helper.php');
 
 $volver = '../vistas/LOGIN/recuperacion de contraseña.php';
 
@@ -28,7 +40,7 @@ if ($nom_usuario === '' || $correo === '') {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT id, nombre, correo FROM usuario WHERE nom_usuario = ?");
+$stmt = $conn->prepare("SELECT id, nombre, correo, contraseña FROM usuario WHERE nom_usuario = ?");
 $stmt->bind_param("s", $nom_usuario);
 $stmt->execute();
 $resultado = $stmt->get_result();
@@ -55,7 +67,7 @@ if (empty($correoReal)) {
 // ── Caso: el correo ingresado NO coincide con el de la cuenta ──────
 if (strcasecmp($correo, $correoReal) !== 0) {
 
-    // Aviso de seguridad al dueño real de la cuenta.
+    // Aviso de seguridad al dueño real de la cuenta. (Sin cambios.)
     $cuerpo = plantillaCorreo(
         'Intento de recuperación de contraseña',
         '<p>Hola <strong>' . htmlspecialchars($usuario['nombre']) . '</strong>,</p>
@@ -75,15 +87,21 @@ if (strcasecmp($correo, $correoReal) !== 0) {
     exit;
 }
 
-// ── Caso correcto: generar token y enviar enlace de recuperación ────
-$token  = bin2hex(random_bytes(32));
-$creado = date('Y-m-d H:i:s');
-$expira = date('Y-m-d H:i:s', strtotime('+' . RECUPERACION_MINUTOS_VALIDEZ . ' minutes'));
+// ── Caso correcto: generar token JWT y enviar enlace de recuperación ────
 
-$stmtToken = $conn->prepare("INSERT INTO recuperacion_password (id_usuario, token, creado, expira, usado) VALUES (?, ?, ?, ?, 0)");
-$stmtToken->bind_param("isss", $usuario['id'], $token, $creado, $expira);
-$stmtToken->execute();
-$stmtToken->close();
+// Fragmento del hash de la contraseña actual. Es lo que hace que el
+// token deje de servir en cuanto el usuario cambie su contraseña,
+// sin necesitar tabla ni columna "usado".
+$fragmentoHash = substr($usuario['contraseña'] ?? '', 0, 12);
+
+$token = generarJWT(
+    [
+        'uid' => (int) $usuario['id'],
+        'phv' => $fragmentoHash,
+    ],
+    JWT_SECRET,
+    RECUPERACION_MINUTOS_VALIDEZ * 60
+);
 
 $enlace = BASE_URL . '/vistas/LOGIN/restablecer_contrasena.php?token=' . urlencode($token);
 
