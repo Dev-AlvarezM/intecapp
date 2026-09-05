@@ -3,10 +3,10 @@
 <?php include 'menu.php'; ?>
 
 <h1>Talleres</h1>
-   
-   <div class="container-fluid">
-       <!-- Botón de hipervínculo alineado a la derecha -->
-       <div class="mb-3 text-right">
+
+    <div class="container-fluid">
+        <!-- Botón de hipervínculo alineado a la derecha -->
+        <div class="mb-3 text-right">
         <?php
             if ($user['cargo']=="Admin") {
         ?>
@@ -36,6 +36,7 @@
                <tr>
                    <th>Año</th>
                    <th>Nombre del Taller</th>
+                   <th>Instructor a Cargo</th>
                    <th>Participantes</th>
                    <th>Condición</th>
                    <th>Estado</th>

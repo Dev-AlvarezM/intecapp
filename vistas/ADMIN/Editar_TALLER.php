@@ -24,6 +24,21 @@
         </div>
 
         <div class="form-group">
+            <label for="id_instructor">Instructor a Cargo</label>
+            <select name="id_instructor" id="id_instructor" required>
+                <option value="">Seleccione</option>
+                <?php
+                $selectedInstructorId = isset($row['id_instructor']) ? (int) $row['id_instructor'] : 0;
+                $instructoresQuery = $conn->query("SELECT id, nombre FROM usuario WHERE cargo IN ('Instructor', 'Admin') ORDER BY nombre");
+                while ($instructor = $instructoresQuery->fetch_assoc()) {
+                    $selected = $selectedInstructorId === (int) $instructor['id'] ? 'selected' : '';
+                    echo '<option value="' . (int) $instructor['id'] . '" ' . $selected . '>' . htmlspecialchars($instructor['nombre']) . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="participantes">Participantes</label>
             <input type="text" id="participantes" name="participantes" value="<?php echo htmlspecialchars($row['participantes']); ?>" required>
         </div>

@@ -22,6 +22,14 @@
                 </p>
 
                 <p class="form-group">
+                    <label for="nom_instructor">Instructor</label><br>
+                    <select name="nom_instructor" id="nom_instructor" required>
+                        <option value="">Seleccione</option>
+                        <?php include 'listas/instructores_combobox.php'; ?>
+                    </select>
+                </p>    
+
+                <p class="form-group">
                     <label for="participantes">Participantes</label><br>
                     <input type="text" id="participantes" name="participantes" required>
                 </p>

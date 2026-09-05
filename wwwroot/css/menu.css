@@ -19,8 +19,8 @@
 .nav-drawer {
     position: fixed;
     top: 0;
-    left: -280px;
-    /*width: 210px;*/
+    left: -260px;
+    /*width: 260px;*/
     height: 100%;
     background-color: #FFFFFF;
     overflow-y: auto;
@@ -30,6 +30,29 @@
 
 .nav-drawer.open {
     left: 0;
+}
+
+/* Menú lateral compacto para escritorio */
+@media (min-width: 1057px) {
+    .side-menu.side-menu-compact {
+        width: 140px;
+        overflow-x: hidden;
+    }
+
+    .with-side-menu-compact .page-content {
+        padding-left: 155px;
+    }
+
+    .side-menu.side-menu-compact .side-menu-list .lbl {
+        white-space: nowrap;
+    }
+
+    .with-side-menu-compact .table-responsive,
+    .with-side-menu-compact .table-responsive-lg {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .nav-drawer .side-menu-list {
