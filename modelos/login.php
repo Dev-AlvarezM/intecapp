@@ -5,7 +5,7 @@
 
 	if(isset($_POST['login'])){
 		$nom_usuario = trim($_POST['nom_usuario'] ?? '');
-		$contraseña  = $_POST['contraseña'] ?? '';
+		$password = $_POST['password'] ?? '';
 
 		// Consulta preparada: evita inyección SQL (antes se concatenaba
 		// $nom_usuario directo en el SQL, lo que permitía bypass tipo
@@ -25,7 +25,7 @@
 		}
 		else{
 			$row = $query->fetch_assoc();
-			if(verificarPasswordSeguro($contraseña, $row['contraseña'], $conn, (int)$row['id'])){
+			if(verificarPasswordSeguro($password, $row['password'], $conn, (int)$row['id'])){
 				// Login correcto: regenerar el ID de sesión evita
 				// ataques de "fijación de sesión" (session fixation).
 				session_regenerate_id(true);
