@@ -14,12 +14,12 @@
             <center>
             <p>
                 <label for="nombre" style="color: #000000;">Contraseña Nueva</label><br>
-                <input type="password" id="contraseña" name="contraseña" onkeyup="comparar();" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+                <input type="password" id="password" name="password" onkeyup="comparar();" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
             </p>
             
             <p>
                 <label for="email" style="color: #000000;">Repetir contraseña</label><br>
-                <input type="password" id="contraseña1" name="contraseña1" onkeyup="comparar();" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
+                <input type="password" id="password1" name="password1" onkeyup="comparar();" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
             </p>
             <style type="text/css">
                 .ocultar {

@@ -219,8 +219,8 @@
                     <input type="text" id="nom_usuario" name="nom_usuario" class="input-field" placeholder="Nombre de usuario" required>
                 </div>
                 <div class="input-group">
-                    <label for="contrasena"><i class="fa-solid fa-lock"></i>Contraseña</label>
-                    <input type="password" id="contrasena" name="contraseña" class="input-field" placeholder="••••••••" required>
+                    <label for="password"><i class="fa-solid fa-lock"></i>Contraseña</label>
+                    <input type="password" id="password" name="password" class="input-field" placeholder="••••••••" required>
                 </div>
                 <div class="btn-row">
                     <button type="submit" class="btn-login" name="login">

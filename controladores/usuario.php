@@ -17,8 +17,8 @@
     }  
 
     function comparar() {
-        pass1 = document.getElementById('contraseña').value;
-        pass2 = document.getElementById('contraseña1').value;
+        pass1 = document.getElementById('password').value;
+        pass2 = document.getElementById('password1').value;
 
         if (pass1 != pass2) {
             document.getElementById("error").classList.add("mostrar");

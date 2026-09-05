@@ -5,21 +5,21 @@ include('password_helper.php');
 
 $instructor  = $_POST["instructor"]  ?? '0';
 $id          = $_POST["id"]          ?? '';
-$contraseña  = $_POST["contraseña"]  ?? '';
-$contraseña1 = $_POST['contraseña1'] ?? '';
+$password  = $_POST["password"]  ?? '';
+$password1 = $_POST['password1'] ?? '';
 
 if ($id === '' || !ctype_digit((string)$id)) {
     echo "<script>alert('Solicitud inválida.'); history.back();</script>";
     exit;
 }
 
-if ($contraseña !== '' && $contraseña === $contraseña1) {
+if ($password !== '' && $password === $password1) {
     // Hash seguro (bcrypt) en vez del esquema viejo (salt fijo + md5)
-    $pass = hashPasswordSeguro($contraseña);
+    $pass = hashPasswordSeguro($password);
 
     // Consulta preparada: antes se concatenaba $pass y $id directo en el
     // SQL (inyección SQL). Ahora va con parámetros ligados.
-    $stmt = $conn->prepare("UPDATE usuario SET contraseña = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE usuario SET password = ? WHERE id = ?");
     $stmt->bind_param("si", $pass, $id);
     $stmt->execute();
     $stmt->close();

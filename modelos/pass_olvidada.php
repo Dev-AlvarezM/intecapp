@@ -23,14 +23,14 @@ $volverError = function ($mensaje) {
 };
 
 $token       = $_POST['token']        ?? '';
-$contraseña  = $_POST['contraseña']   ?? '';
-$contraseña1 = $_POST['contraseña1']  ?? '';
+$password  = $_POST['password']   ?? '';
+$password1 = $_POST['password1']  ?? '';
 
 if ($token === '') {
     $volverError('Enlace inválido.');
 }
 
-if ($contraseña === '' || $contraseña !== $contraseña1) {
+if ($password === '' || $password !== $password1) {
     echo "<script type='text/javascript'>alert('Las contraseñas no coinciden.');</script>";
     echo "<script>document.location='../vistas/LOGIN/restablecer_contrasena.php?token=" . urlencode($token) . "'</script>";
     exit;
@@ -46,20 +46,20 @@ $idUsuario = (int) $payload['uid'];
 
 // Confirmar que la contraseña no haya cambiado desde que se generó el link
 // (esto reemplaza la columna "usado" de la tabla vieja).
-$stmt = $conn->prepare("SELECT contraseña FROM usuario WHERE id = ?");
+$stmt = $conn->prepare("SELECT password FROM usuario WHERE id = ?");
 $stmt->bind_param("i", $idUsuario);
 $stmt->execute();
 $fila = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
-if (!$fila || substr($fila['contraseña'], 0, 12) !== $payload['phv']) {
+if (!$fila || substr($fila['password'], 0, 12) !== $payload['phv']) {
     $volverError('Este enlace ya fue utilizado o ya no es válido. Solicita uno nuevo.');
 }
 
 // Encriptar la nueva contraseña con hash seguro (bcrypt)
-$pass = hashPasswordSeguro($contraseña);
+$pass = hashPasswordSeguro($password);
 
-$stmtUpdate = $conn->prepare("UPDATE usuario SET contraseña = ? WHERE id = ?");
+$stmtUpdate = $conn->prepare("UPDATE usuario SET password = ? WHERE id = ?");
 $stmtUpdate->bind_param("si", $pass, $idUsuario);
 $stmtUpdate->execute();
 $stmtUpdate->close();

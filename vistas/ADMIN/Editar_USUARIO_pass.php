@@ -15,12 +15,12 @@
 
             <p>
                 <label for="nombre" class="label-input">Contraseña Nueva</label><br>
-                <input type="password" id="contraseña" name="contraseña" onkeyup="comparar();" required class="form-input">
+                <input type="password" id="password" name="password" onkeyup="comparar();" required class="form-input">
             </p>
             
             <p>
                 <label for="email" class="label-input">Repetir contraseña</label><br>
-                <input type="password" id="contraseña1" name="contraseña1" onkeyup="comparar();" required class="form-input">
+                <input type="password" id="password1" name="password1" onkeyup="comparar();" required class="form-input">
             </p>
 
             <div id="error" class="alert alert-danger ocultar" role="alert">

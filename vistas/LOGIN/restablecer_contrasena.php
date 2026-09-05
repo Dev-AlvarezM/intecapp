@@ -230,12 +230,12 @@ $conn->close();
             <form action="../../modelos/pass_olvidada.php" method="post" autocomplete="off">
                 <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
                 <div class="input-group">
-                    <label for="contrasena"><i class="fa-solid fa-lock"></i>Nueva Contraseña</label>
-                    <input type="password" id="contrasena" name="contraseña" onkeyup="comparar();" class="input-field" placeholder="••••••••" required>
+                    <label for="password"><i class="fa-solid fa-lock"></i>Nueva Contraseña</label>
+                    <input type="password" id="password" name="password" onkeyup="comparar();" class="input-field" placeholder="••••••••" required>
                 </div>
                 <div class="input-group">
-                    <label for="contrasena1"><i class="fa-solid fa-lock-open"></i>Confirmar Contraseña</label>
-                    <input type="password" id="contrasena1" name="contraseña1" onkeyup="comparar();" class="input-field" placeholder="••••••••" required>
+                    <label for="password1"><i class="fa-solid fa-lock-open"></i>Confirmar Contraseña</label>
+                    <input type="password" id="password1" name="password1" onkeyup="comparar();" class="input-field" placeholder="••••••••" required>
                 </div>
 
                 <div id="passError" class="alert-box alert-error alert-hidden">
@@ -299,8 +299,8 @@ $conn->close();
     </script>
     <script>
         function comparar(){
-            const p1  = document.getElementById('contrasena');
-            const p2  = document.getElementById('contrasena1');
+            const p1  = document.getElementById('password');
+            const p2  = document.getElementById('password1');
             if(!p1 || !p2) return;
             const err = document.getElementById('passError');
             const btn = document.getElementById('addBtn');

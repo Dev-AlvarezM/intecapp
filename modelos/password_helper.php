@@ -22,11 +22,11 @@
 define('LEGACY_SALT', 'a1Bz20ydqelm8m1wql');
 
 /**
- * Genera un hash seguro (bcrypt) listo para guardar en la columna `contraseña`.
+ * Genera un hash seguro (bcrypt) listo para guardar en la columna `password`.
  */
-function hashPasswordSeguro(string $contraseñaPlano): string
+function hashPasswordSeguro(string $passwordPlano): string
 {
-    return password_hash($contraseñaPlano, PASSWORD_BCRYPT);
+    return password_hash($passwordPlano, PASSWORD_BCRYPT);
 }
 
 /**
@@ -35,22 +35,22 @@ function hashPasswordSeguro(string $contraseñaPlano): string
  * a bcrypt automáticamente (requiere la conexión mysqli y el id del usuario
  * para poder actualizar la fila).
  */
-function verificarPasswordSeguro(string $contraseñaPlano, string $hashGuardado, mysqli $conn, int $idUsuario): bool
+function verificarPasswordSeguro(string $passwordPlano, string $hashGuardado, mysqli $conn, int $idUsuario): bool
 {
     // ¿Ya es un hash bcrypt (formato nuevo)? password_get_info lo detecta.
     $info = password_get_info($hashGuardado);
     if ($info['algo'] !== null && $info['algo'] !== 0) {
-        return password_verify($contraseñaPlano, $hashGuardado);
+        return password_verify($passwordPlano, $hashGuardado);
     }
 
     // Si no, es el hash legado: salt fijo + md5(contraseña).
-    $hashLegado = LEGACY_SALT . md5($contraseñaPlano);
+    $hashLegado = LEGACY_SALT . md5($passwordPlano);
 
     // hash_equals() compara en tiempo constante (evita "timing attacks").
     if (hash_equals($hashGuardado, $hashLegado)) {
         // Coincide: migramos esta cuenta a bcrypt de una vez.
-        $nuevoHash = hashPasswordSeguro($contraseñaPlano);
-        $stmt = $conn->prepare("UPDATE usuario SET contraseña = ? WHERE id = ?");
+        $nuevoHash = hashPasswordSeguro($passwordPlano);
+        $stmt = $conn->prepare("UPDATE usuario SET password = ? WHERE id = ?");
         $stmt->bind_param("si", $nuevoHash, $idUsuario);
         $stmt->execute();
         $stmt->close();

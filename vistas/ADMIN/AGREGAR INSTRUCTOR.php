@@ -42,8 +42,8 @@
                 </p>
 
                 <p class="form-group">
-                    <label for="contraseña">Contraseña</label><br>
-                    <input type="password" id="contraseña" name="contraseña" required>
+                    <label for="password">Contraseña</label><br>
+                    <input type="password" id="password" name="password" required>
                 </p>
 
                 <p class="form-group">

@@ -236,7 +236,7 @@ CREATE TABLE `usuario` (
   `direccion` varchar(70) DEFAULT NULL,
   `cargo` varchar(150) DEFAULT NULL,
   `nom_usuario` varchar(100) DEFAULT NULL,
-  `contraseña` varchar(64) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `id_rol` int(11) DEFAULT NULL,
   `estado` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -245,7 +245,7 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `direccion`, `cargo`, `nom_usuario`, `contraseña`, `id_rol`, `estado`) VALUES
+INSERT INTO `usuario` (`id`, `nombre`, `direccion`, `cargo`, `nom_usuario`, `password`, `id_rol`, `estado`) VALUES
 (1, 'Kan', 'Santa Cruz del Quiche, Quiche', 'Instructor', 'admin_Space', 'a1Bz20ydqelm8m1wql8c0d82130ba591e442e1ce7f99ad62a9', NULL, 'inactivo'),
 (3, 'Kan', 'Santa Cruz del Quiche', 'Instructor', 'admin', 'a1Bz20ydqelm8m1wqle10adc3949ba59abbe56e057f20f883e', NULL, 'activo'),
 (4, 'Kan', 'Quiche', 'Admin', 'kan', 'a1Bz20ydqelm8m1wqle10adc3949ba59abbe56e057f20f883e', NULL, 'activo'),
