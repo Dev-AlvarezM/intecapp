@@ -18,7 +18,7 @@ $sql = "SELECT t.*, COALESCE(
         LEFT JOIN usuario AS u ON u.id = t.id_instructor";
 
 $cargo = trim($user['cargo'] ?? '');
-if ($cargo !== 'Admin') {
+if ($cargo === 'Instructor') {
     $areaInstructor = trim($user['area_especializacion'] ?? '');
     if ($areaInstructor !== '') {
         $areaInstructor = $conn->real_escape_string($areaInstructor);
@@ -47,15 +47,17 @@ while($row = $query->fetch_assoc()){
         <td><?php echo $row['condicion'] ?? '-';?></td>
         <td><?php echo $estadoAutomatico;?></td>
         <td>
-            <?php if ($user['cargo']=="Admin") { ?>
+            <?php if ($user['cargo'] === "Admin" || ($user['cargo'] === "Instructor" && (int) $row['id_instructor'] === (int) $user['id'])) { ?>
                 <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_taller;?>)">
                     <i class="fas fa-edit"></i>
                 </button>
+            <?php } ?>
+            <?php if ($user['cargo']=="Admin") { ?>
                 <button class="btn btn-danger btn-sm" onclick="eliminar(<?php echo $id_taller;?>)">
                     <i class="fas fa-trash"></i>
                 </button>
             <?php } else { ?>
-                - - - - - -
+                <?php if ($user['cargo'] !== 'Instructor') { ?>- - - - - -<?php } ?>
             <?php } ?>
         </td>
     </tr>

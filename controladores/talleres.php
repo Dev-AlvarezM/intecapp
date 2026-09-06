@@ -16,7 +16,7 @@
             LEFT JOIN usuario AS u ON u.id = t.id_instructor";
 
     $cargo = trim($user['cargo'] ?? '');
-    if ($cargo !== 'Admin') {
+    if ($cargo === 'Instructor') {
         $areaInstructor = trim($user['area_especializacion'] ?? '');
         if ($areaInstructor !== '') {
             $areaInstructor = $conn->real_escape_string($areaInstructor);

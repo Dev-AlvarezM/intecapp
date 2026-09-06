@@ -1,6 +1,7 @@
 <?php
-//session_start();
 include('db.php');
+if (session_status() === PHP_SESSION_NONE) session_start();
+include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
 
 $checkCol = $conn->query("SHOW COLUMNS FROM talleres LIKE 'id_instructor'");
 if ($checkCol && $checkCol->num_rows === 0) {
@@ -12,6 +13,9 @@ $nombre_taller = $_POST['nombre_taller'];
 $participantes = $_POST['participantes'];
 $condicion = $_POST['condicion'];
 $id_instructor = isset($_POST['nom_instructor']) ? (int) $_POST['nom_instructor'] : 0;
+if ($user['cargo'] === 'Instructor') {
+    $id_instructor = (int) $user['id'];
+}
 $estado = 'Disponible';
 
 $instructorValue = $id_instructor > 0 ? "$id_instructor" : "NULL";

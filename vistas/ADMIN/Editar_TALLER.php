@@ -29,7 +29,10 @@
                 <option value="">Seleccione</option>
                 <?php
                 $selectedInstructorId = isset($row['id_instructor']) ? (int) $row['id_instructor'] : 0;
-                $instructoresQuery = $conn->query("SELECT id, nombre FROM usuario WHERE cargo IN ('Instructor', 'Admin') ORDER BY nombre");
+                $instructoresSql = $user['cargo'] === 'Instructor'
+                    ? "SELECT id, nombre FROM usuario WHERE id = " . (int) $user['id']
+                    : "SELECT id, nombre FROM usuario WHERE cargo IN ('Instructor', 'Admin') ORDER BY nombre";
+                $instructoresQuery = $conn->query($instructoresSql);
                 while ($instructor = $instructoresQuery->fetch_assoc()) {
                     $selected = $selectedInstructorId === (int) $instructor['id'] ? 'selected' : '';
                     echo '<option value="' . (int) $instructor['id'] . '" ' . $selected . '>' . htmlspecialchars($instructor['nombre']) . '</option>';
