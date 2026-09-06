@@ -29,6 +29,15 @@ if ($cargo === 'Instructor') {
     }
 }
 
+$idUsuarioActual = (int) ($user['id'] ?? 0);
+$prioridadEdicion = $cargo === 'Admin'
+    ? '1'
+    : "t.id_instructor = $idUsuarioActual";
+$sql .= " ORDER BY CASE
+                WHEN $prioridadEdicion THEN 0
+                ELSE 1
+            END, t.nombre_taller ASC, t.id ASC";
+
 $query = $conn->query($sql);
 
 while($row = $query->fetch_assoc()){

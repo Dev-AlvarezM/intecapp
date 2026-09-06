@@ -1,6 +1,8 @@
 <?php
 //session_start();
 include('db.php');
+if (session_status() === PHP_SESSION_NONE) session_start();
+include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
 
 $anio_evento = isset($_POST["anio_evento"]) ? $_POST["anio_evento"] : '';
 $id_talleres = isset($_POST['id_talleres']) ? $_POST['id_talleres'] : '';
@@ -15,6 +17,26 @@ $modalidad = isset($_POST['modalidad']) ? $_POST['modalidad'] : '';
 $detalle_modalidad = isset($_POST['detalle_modalidad']) ? trim($_POST['detalle_modalidad']) : '';
 $Modulo = isset($_POST['Modulo']) ? trim($_POST['Modulo']) : '';
 $Url = isset($_POST['Url']) ? trim($_POST['Url']) : '';
+
+if (trim($user['cargo']) === 'Instructor') {
+    $id_talleres = (int) $id_talleres;
+    $id_instructor = (int) $user['id'];
+
+    $stmtTaller = $conn->prepare(
+        "SELECT id FROM talleres WHERE id = ? AND id_instructor = ?"
+    );
+    $stmtTaller->bind_param("ii", $id_talleres, $id_instructor);
+    $stmtTaller->execute();
+    $stmtTaller->store_result();
+
+    if ($stmtTaller->num_rows === 0) {
+        $stmtTaller->close();
+        echo "<script>alert('No está a cargo de este taller.'); window.location.href='../vistas/ADMIN/AGREGAR EVENTO.php';</script>";
+        exit;
+    }
+
+    $stmtTaller->close();
+}
 
 if ($modalidad === 'Presencial') {
     $Modulo = $detalle_modalidad;
