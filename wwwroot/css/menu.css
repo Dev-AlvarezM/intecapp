@@ -19,12 +19,13 @@
 .nav-drawer {
     position: fixed;
     top: 0;
-    left: -260px;
+    left: -100%;
     /*width: 260px;*/
-    height: 100%;
+    width: min(280px, 88vw);
+    height: 100dvh;
     background-color: #FFFFFF;
     overflow-y: auto;
-    transition: left 0.3s ease-in-out;
+    transition: left 0.25s ease-in-out;
     z-index: 1000;
 }
 
@@ -35,12 +36,14 @@
 /* Menú lateral compacto para escritorio */
 @media (min-width: 1057px) {
     .side-menu.side-menu-compact {
-        width: 140px;
-        overflow-x: hidden;
+        width: 175px;
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
     }
 
     .with-side-menu-compact .page-content {
-        padding-left: 155px;
+        padding-left: 190px;
     }
 
     .side-menu.side-menu-compact .side-menu-list .lbl {
@@ -59,6 +62,34 @@
     margin: 0;
     padding: 20px 0;
     list-style: none;
+}
+
+.menu-logo {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.menu-logo a {
+    justify-content: center;
+    text-align: center;
+    padding: 16px 12px !important;
+}
+
+.nav-drawer .menu-logo img,
+.side-menu.side-menu-compact .menu-logo img {
+    display: block;
+    width: 78px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    filter: brightness(0) invert(1);
+}
+
+.side-menu.side-menu-compact .menu-logo a {
+    padding: 12px 8px !important;
+}
+
+.side-menu.side-menu-compact .menu-logo img {
+    width: 78px;
 }
 
 .nav-drawer .side-menu-list li {
@@ -107,13 +138,31 @@
     padding: 10px 12px;
     font-size: 20px;
     cursor: pointer;
-    z-index: 998;
-    border-radius: 4px;
+    z-index: 1001;
+    border-radius: 6px;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Responsividad: Mostrar botón de menú solo en pantallas pequeñas */
 @media (max-width: 768px) {
     .menu-toggle-btn {
         display: block;
+    }
+
+    .nav-drawer .menu-logo img {
+        width: 88px;
+    }
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+@media (min-width: 769px) {
+    .mobile-menu-overlay,
+    .nav-drawer,
+    .menu-toggle-btn {
+        display: none !important;
     }
 }

@@ -2,6 +2,7 @@
 include('db.php');
 
 $instructor           = $_POST['instructor']           ?? '0';
+$modulo_origen        = $_POST['modulo_origen']        ?? '';
 $id                   = $_POST['id']                   ?? '';
 $nombre               = $_POST['nombre']               ?? '';
 $telefono              = $_POST['telefono']             ?? '';
@@ -59,7 +60,9 @@ if ($foto_param !== null) {
 
 if ($stmt->execute()) {
     echo "<script>alert('Registro actualizado correctamente.');</script>";
-    if ($instructor == '1') {
+    if ($modulo_origen === 'usuarios') {
+        echo "<script>document.location='/intecapp/vistas/ADMIN/USUARIO.php'</script>";
+    } elseif ($instructor == '1') {
         echo "<script>document.location='/intecapp/vistas/ADMIN/INSTRUCTORES.php'</script>";
     } else {
         echo "<script>document.location='/intecapp/vistas/ADMIN/USUARIO.php'</script>";

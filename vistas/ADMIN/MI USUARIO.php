@@ -63,8 +63,6 @@
 
             </div>
         </form>
-        <button id="btn-cambiar-tema" class="btn-tema">🌙 Oscuro</button>
-
         <footer>
             <p>&copy; INTECAP, QUICHÉ</p>
         </footer>

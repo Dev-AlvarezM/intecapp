@@ -141,10 +141,10 @@
                 <i class="fa fa-save"></i> Guardar
             </button>
             <button type="reset" class="btn btn-limpiar" onclick="resetFormulario()">
-                <i class="fa fa-eraser"></i> Limpiar
+                <i class="fa fa-eraser"></i> Limpiar formulario
             </button>
             <button type="button" class="btn btn-salir" onclick="window.location.href='../ADMIN/USUARIO.php'">
-                <i class="fa fa-sign-out"></i> Salir
+                <i class="fa fa-sign-out"></i> Volver
             </button>
             <br><br><br>
         </center>

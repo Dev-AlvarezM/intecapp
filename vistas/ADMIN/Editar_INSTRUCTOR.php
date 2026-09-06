@@ -51,7 +51,7 @@
                     </button>
 
                     <button type="button" class="btn-accion btn-salir" name="exit" id="exit" onclick="window.location.href='../ADMIN/INSTRUCTORES.php'">
-                        <i class="fa fa-sign-out"></i> Salir
+                        <i class="fa fa-sign-out"></i> Volver
                     </button>
                 </div>
             </div>

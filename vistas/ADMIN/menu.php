@@ -1,4 +1,4 @@
-<button class="menu-toggle-btn" id="menuToggleBtn">
+<button class="menu-toggle-btn" id="menuToggleBtn" type="button" aria-label="Abrir menú" aria-controls="navDrawer" aria-expanded="false">
     <i class="fas fa-bars"></i>
 </button>
 
@@ -6,8 +6,13 @@
 <div class="mobile-menu-left-overlay"></div>
 
 <!-- Drawer de navegación para móviles -->
-<nav class="nav-drawer" id="navDrawer">
+<nav class="nav-drawer" id="navDrawer" aria-hidden="true">
     <ul class="side-menu-list">
+        <li class="menu-logo">
+            <a href="../ADMIN/principal.php" aria-label="Ir al inicio">
+                <img src="img/intecap.png" alt="INTECAP">
+            </a>
+        </li>
         <li class="brown">
             <a href="../ADMIN/principal.php">
                 <i class="fas fa-home"></i> 
@@ -76,6 +81,11 @@
 <!-- Menú lateral para PC -->
 <nav class="side-menu side-menu-compact">
     <ul class="side-menu-list">
+        <li class="menu-logo">
+            <a href="../ADMIN/principal.php" aria-label="Ir al inicio">
+                <img src="img/intecap.png" alt="INTECAP">
+            </a>
+        </li>
         <li class="brown">
             <a href="../ADMIN/principal.php">
                 <i class="fas fa-home"></i> 
@@ -140,7 +150,6 @@
         </li>
     </ul>
 </nav>
-<br><br>
 
 <script src="menu.js"></script>
 <link rel="stylesheet" href="../../wwwroot/css/menu.css">

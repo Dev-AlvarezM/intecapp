@@ -252,6 +252,8 @@ table th {
     border-color: var(--color-borde) !important;
 }
 
+
+
 table td {
     border-color: var(--color-borde) !important;
     color: var(--color-texto) !important;

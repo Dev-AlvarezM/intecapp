@@ -15,6 +15,7 @@
             <!-- Campos ocultos -->
             <input type="hidden" id="id"         name="id"         value="<?php echo $row['id']; ?>">
             <input type="hidden" id="instructor"  name="instructor"  value="<?php echo ($row['cargo'] === 'Instructor') ? '1' : '0'; ?>">
+            <input type="hidden" name="modulo_origen" value="usuarios">
 
             <center>
 
@@ -122,12 +123,12 @@
                     <i class="fa fa-save"></i> Guardar
                 </button>
                 <button type="reset" class="btn-form btn-limpiar">
-                    <i class="fa fa-eraser"></i> Limpiar
+                    <i class="fa fa-eraser"></i> Limpiar formulario
                 </button>
                 <button type="button"
                         onclick="window.location.href='../ADMIN/USUARIO.php'"
                         class="btn-form btn-salir">
-                    <i class="fa fa-sign-out"></i> Salir
+                    <i class="fa fa-sign-out"></i> Volver
                 </button>                
             </center>
         </form>        

@@ -184,3 +184,30 @@ footer {
     text-align: center;
     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
 }
+
+.btn-tema {
+    position: fixed;
+    left: 24px;
+    top: 20px;
+    z-index: 1000;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.btn-tema:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 480px) {
+    .btn-tema {
+        left: 12px;
+        top: 12px;
+        padding: 10px 14px;
+    }
+}

@@ -32,10 +32,10 @@
                     <i class="fa fa-save"></i> Guardar
                 </button>
                 <button type="reset" class="btn-form btn-limpiar" name="reset" id="reset">
-                    <i class="fa fa-eraser"></i> Limpiar
+                    <i class="fa fa-eraser"></i> Limpiar formulario
                 </button>
                 <button type="button" class="btn-form btn-salir" name="exit" id="exit" onclick="window.location.href='../ADMIN/USUARIO.php'">
-                    <i class="fa fa-sign-out"></i> Salir
+                    <i class="fa fa-sign-out"></i> Volver
                 </button>
             </div>
         </form>
