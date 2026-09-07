@@ -39,10 +39,51 @@
 
         .user-status {
             position: absolute;
-            right: 100px;
+                    right: 86px;
             top: 50%;
-            transform: translateY(-50%);
-        }
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                    max-width: 320px;
+                    padding: 7px 14px 7px 8px;
+                    border: 1px solid #cfe3f7;
+                    border-radius: 999px;
+                    background: #ffffff;
+                    box-shadow: 0 2px 8px rgba(23, 66, 105, 0.08);
+                    text-align: left;
+                    transform: translateY(-50%);
+                }
+
+                .user-status .user-role {
+                    padding: 5px 9px;
+                    border-radius: 999px;
+                    background: #4FA2FE;
+                    color: #ffffff;
+                    font-size: 0.72rem;
+                    font-weight: 700;
+                    letter-spacing: 0.06em;
+                    line-height: 1.2;
+                    text-transform: uppercase;
+                }
+
+                .user-status .user-name {
+                    overflow: hidden;
+                    max-width: 210px;
+                    color: #243447;
+                    font-size: 0.95rem;
+                    font-weight: 600;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                html[data-tema="oscuro"] .user-status {
+                    background: #2D2D2D;
+                    border-color: #ffffff;
+                }
+
+                html[data-tema="oscuro"] .user-status .user-name {
+                    color: #ffffff;
+                }
 
         h4.portal-servicios {
             text-align: center;

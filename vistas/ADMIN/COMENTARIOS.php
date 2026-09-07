@@ -6,8 +6,8 @@
 <h1>Área de Mantenimiento</h1>
    
 
-   <div class="container-fluid table-responsive-lg">
-       <table id="table-edit" class="table table-bordered table-hover">
+   <div class="container-fluid table-responsive-lg admin-pilot-table-wrap">
+       <table id="table-edit" class="table table-bordered table-hover rounded overflow-hidden admin-pilot-table">
            <thead>
                <tr>
                    <th>Año</th>
@@ -26,8 +26,8 @@
        
            <h1>Lista de comentarios</h1>
 
-    <div>
-        <table id="table-edit" class="table table-bordered table-hover">
+    <div class="container-fluid table-responsive-lg admin-pilot-table-wrap">
+        <table id="table-edit" class="table table-bordered table-hover rounded overflow-hidden admin-pilot-table">
             <thead>
                 <tr>
                     <th>No.</th>

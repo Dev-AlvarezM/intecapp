@@ -40,8 +40,8 @@
         <?php } ?>
     </div>
 
-    <div class="container-fluid table-responsive-lg">
-         <table id="table-edit" class="table table-bordered table-hover rounded overflow-hidden">
+    <div class="container-fluid table-responsive-lg admin-pilot-table-wrap">
+         <table id="table-edit" class="table table-bordered table-hover rounded overflow-hidden admin-pilot-table">
             <thead>
                 <tr>
                     <th>Foto</th>
@@ -59,7 +59,7 @@
             </tbody>
         </table>
     </div>
-
+    <br><br>
 </div>
 
 <footer>

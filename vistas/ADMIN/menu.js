@@ -13,11 +13,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('menu-open', isOpen);
         menuToggleBtn.setAttribute('aria-expanded', String(isOpen));
         menuToggleBtn.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+        menuToggleBtn.style.setProperty('display', isOpen ? 'none' : '', 'important');
+        menuToggleBtn.style.setProperty('visibility', isOpen ? 'hidden' : '', 'important');
+        menuToggleBtn.style.setProperty('pointer-events', isOpen ? 'none' : '', 'important');
         navDrawer.setAttribute('aria-hidden', String(!isOpen));
     };
 
     const toggleMenu = () => setMenuState(!navDrawer.classList.contains('open'));
     const closeMenu = () => setMenuState(false);
+
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.side-menu-list a.menu-link').forEach((link) => {
+        const linkPath = new URL(link.href, window.location.href).pathname;
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+        }
+    });
 
     // Abrir/Cerrar al presionar el botón de hamburguesa
     if (menuToggleBtn) {

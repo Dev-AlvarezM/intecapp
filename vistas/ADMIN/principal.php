@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../wwwroot/css/principal.css">
     <link rel="stylesheet" href="../../wwwroot/css/responsive.css">
+    <link rel="stylesheet" href="../../wwwroot/css/admin-pilot.css">
 
     <!--Script para manejo de tema claro/oscuro -->
     <script src="js/tema.js"></script>

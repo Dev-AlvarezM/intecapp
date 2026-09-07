@@ -1,0 +1,612 @@
+:root {
+    --admin-blue: #4FA2FE;
+    --admin-blue-dark: #2679c9;
+    --admin-blue-soft: #eaf4ff;
+    --admin-border: #cfe3f7;
+    --admin-text: #243447;
+    --admin-muted: #64748b;
+}
+
+body {
+    background: #f7fbfe;
+    color: var(--admin-text);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.user-status {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 320px;
+    padding: 7px 14px 7px 8px;
+    border: 1px solid var(--admin-border);
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(23, 66, 105, 0.08);
+    text-align: left;
+    transform: translateY(-50%);
+}
+
+.user-status .user-role {
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--admin-blue);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.user-status .user-name {
+    overflow: hidden;
+    max-width: 210px;
+    color: var(--admin-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.site-header .user-status:has(+ .user-menu) {
+    right: 100px;
+}
+
+.site-header:not(:has(.user-menu)) .user-status {
+    right: 12px;
+}
+
+html[data-tema="oscuro"] .user-status {
+    background: #2D2D2D;
+    border-color: #ffffff;
+}
+
+html[data-tema="oscuro"] .user-status .user-name {
+    color: #ffffff;
+}
+
+@media (max-width: 1056px) {
+    .user-status {
+        right: 64px;
+        max-width: calc(100% - 150px);
+        padding: 6px 10px 6px 7px;
+    }
+
+    .user-status .user-name {
+        max-width: 160px;
+    }
+
+    .site-header .user-status:has(+ .user-menu) {
+        right: 76px;
+    }
+
+    .site-header:not(:has(.user-menu)) .user-status {
+        right: 24px;
+    }
+}
+
+.user-status .user-role,
+.user-status .user-name {
+    text-align: left;
+}
+
+.with-side-menu-compact .side-menu.side-menu-compact {
+    background: linear-gradient(180deg, #0A4197 0%, #308FE2 100%) !important;
+    border-right: 1px solid #0d47a1;
+    box-shadow: 3px 0 16px rgba(23, 83, 145, 0.18);
+}
+
+.with-side-menu-compact .side-menu.side-menu-compact .side-menu-list li a {
+    border-left: 3px solid transparent;
+    color: #ffffff !important;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.with-side-menu-compact .side-menu.side-menu-compact .side-menu-list li a:hover,
+.with-side-menu-compact .side-menu.side-menu-compact .side-menu-list li a:focus {
+    border-left-color: #ffffff;
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+
+.with-side-menu-compact .side-menu.side-menu-compact .menu-logo {
+    background: transparent !important;
+}
+
+.with-side-menu-compact .site-header {
+    border-bottom: 1px solid var(--admin-border);
+    background: #ffffff !important;
+    box-shadow: 0 2px 10px rgba(52, 133, 177, 0.06);
+}
+
+.admin-pilot-title {
+    margin: 30px 0 20px;
+    color: var(--admin-blue-dark);
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.admin-pilot-content {
+    padding: 0 20px 72px;
+}
+
+.admin-pilot-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.admin-pilot-actions .btn {
+    width: auto !important;
+    min-width: 142px;
+    padding: 10px 16px !important;
+    border: 1px solid var(--admin-blue) !important;
+    border-radius: 7px !important;
+    background: linear-gradient(180deg, #0A4197 0%, #308FE2 100%) !important;
+    box-shadow: none;
+    font-family: inherit !important;
+    font-size: 0.875rem !important;
+    font-weight: 600;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.admin-pilot-actions .btn:hover {
+    background: linear-gradient(180deg, #083878 0%, #2679c9 100%) !important;
+    transform: translateY(-1px);
+}
+
+.admin-pilot-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--admin-border);
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(23, 66, 105, 0.07);
+}
+
+.admin-pilot-table {
+    min-width: 920px;
+    margin: 0 !important;
+    border: 0 !important;
+    color: var(--admin-text);
+}
+
+.admin-pilot-table thead th {
+    padding: 14px 12px;
+    border: 0;
+    border-bottom: 2px solid #083878;
+    background: linear-gradient(180deg, #0A4197 0%, #308FE2 100%);
+    color: #ffffff !important;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.admin-pilot-table thead th,
+.admin-pilot-table thead th a,
+.admin-pilot-table thead th span {
+    color: #ffffff !important;
+}
+
+.admin-pilot-table tbody td {
+    padding: 13px 12px;
+    border-color: #edf2f7;
+    vertical-align: middle;
+}
+
+.admin-pilot-table tbody tr:hover {
+    background: #f8fbff;
+}
+
+.admin-pilot-table .btn-sm {
+    border-radius: 6px;
+}
+
+.admin-pilot-chart {
+    margin-top: 24px;
+    padding: 16px;
+    border: 1px solid var(--admin-border);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.admin-pilot-table tbody tr:nth-child(even) {
+    background: #fbfdff;
+}
+
+.admin-pilot-table tbody tr:nth-child(even):hover,
+.admin-pilot-table tbody tr:hover {
+    background: var(--admin-blue-soft);
+}
+
+@media (max-width: 640px) {
+    .admin-pilot-content {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .admin-pilot-title {
+        margin-top: 20px;
+        font-size: 1.45rem;
+    }
+
+    .admin-pilot-actions {
+        justify-content: stretch;
+    }
+
+    .admin-pilot-actions .btn {
+        flex: 1 1 100%;
+    }
+}
+
+html[data-tema="oscuro"] body,
+html[data-tema="oscuro"] .main-container,
+html[data-tema="oscuro"] .site-header,
+html[data-tema="oscuro"] .admin-pilot-content,
+html[data-tema="oscuro"] .admin-pilot-table-wrap,
+html[data-tema="oscuro"] .admin-pilot-chart,
+html[data-tema="oscuro"] .admin-pilot-table,
+html[data-tema="oscuro"] .admin-pilot-table tbody tr,
+html[data-tema="oscuro"] footer {
+    background: #2D2D2D !important;
+    color: #ffffff !important;
+    border-color: #222222 !important;
+}
+
+html[data-tema="oscuro"] .admin-pilot-title,
+html[data-tema="oscuro"] .admin-pilot-table tbody td {
+    color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] .admin-pilot-table thead th {
+    background: #2D2D2D !important;
+    border-bottom-color: #222222 !important;
+    color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] .admin-pilot-table tbody tr:hover,
+html[data-tema="oscuro"] .admin-pilot-table tbody tr:nth-child(even):hover {
+    background: #111111 !important;
+}
+
+html[data-tema="oscuro"] .with-side-menu-compact .side-menu.side-menu-compact {
+    background: #2D2D2D !important;
+    border-right-color: #222222 !important;
+}
+
+html[data-tema="oscuro"] .admin-pilot-actions .btn,
+html[data-tema="oscuro"] .admin-pilot-actions .btn:hover {
+    background: #2D2D2D !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+/* Estilo compartido para las vistas administrativas */
+body > .main-container > h1,
+body > .main-container > h2,
+body > .main-container > h3 {
+    color: var(--admin-blue-dark);
+    font-weight: 700;
+}
+
+body > .main-container > .container-fluid:not(.admin-pilot-content) {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+body > .main-container table:not(.admin-pilot-table) {
+    overflow: hidden;
+    border: 1px solid var(--admin-border) !important;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 5px 18px rgba(23, 66, 105, 0.07);
+}
+
+body > .main-container table:not(.admin-pilot-table) th,
+body > .main-container table:not(.admin-pilot-table) td {
+    border: 1px solid var(--admin-border) !important;
+}
+
+body > .main-container table:not(.admin-pilot-table) thead th {
+    border-color: #083878 !important;
+    background: linear-gradient(180deg, #0A4197 0%, #308FE2 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700;
+}
+
+body > .main-container table:not(.admin-pilot-table) tbody td {
+    border-color: #edf2f7;
+    vertical-align: middle;
+}
+
+body > .main-container table:not(.admin-pilot-table) tbody tr:hover {
+    background: var(--admin-blue-soft);
+}
+
+body > .main-container .dataTables_wrapper {
+    padding: 14px;
+    border: 1px solid var(--admin-border) !important;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 5px 18px rgba(23, 66, 105, 0.07);
+}
+
+body > .main-container .dataTables_wrapper table {
+    border: 1px solid var(--admin-border) !important;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+body > .main-container .dataTables_wrapper .dt-paging-button,
+body > .main-container .dataTables_wrapper .paginate_button {
+    background: #0275d8 !important;
+    background-image: none !important;
+    border: 1px solid #0275d8 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+body > .main-container .dataTables_wrapper .dt-paging-button:hover,
+body > .main-container .dataTables_wrapper .paginate_button:hover {
+    background: #025aa5 !important;
+    background-image: none !important;
+    border-color: #025aa5 !important;
+    color: #ffffff !important;
+}
+
+body > .main-container .dataTables_wrapper .dt-paging-button.disabled,
+body > .main-container .dataTables_wrapper .paginate_button.disabled {
+    background: #6c757d !important;
+    background-image: none !important;
+    border-color: #6c757d !important;
+    color: #ffffff !important;
+}
+
+body > .main-container .form-container,
+body > .main-container form:not(.navbar-form) {
+    border-color: var(--admin-border);
+}
+
+body > .main-container .form-container {
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 5px 18px rgba(23, 66, 105, 0.07);
+}
+
+body > .main-container input:not([type="hidden"]),
+body > .main-container select,
+body > .main-container textarea {
+    border-color: var(--admin-border);
+    border-radius: 6px;
+}
+
+body > .main-container .btn-primary,
+body > .main-container .btn-guardar,
+body > .main-container .btn-form,
+body > .main-container .btn-accion {
+    border-color: var(--admin-blue) !important;
+    border-radius: 7px !important;
+}
+
+body > .main-container button:not(.menu-toggle-btn),
+body > .main-container input[type="submit"],
+body > .main-container input[type="button"],
+body > .main-container input[type="reset"],
+body > .main-container a.btn {
+    border: 1px solid var(--admin-blue) !important;
+    border-radius: 7px !important;
+    background: linear-gradient(180deg, #0A4197 0%, #308FE2 100%) !important;
+    color: #ffffff !important;
+}
+
+body > .main-container button:not(.menu-toggle-btn):hover,
+body > .main-container input[type="submit"]:hover,
+body > .main-container input[type="button"]:hover,
+body > .main-container input[type="reset"]:hover,
+body > .main-container a.btn:hover {
+    background: linear-gradient(180deg, #083878 0%, #2679c9 100%) !important;
+    color: #ffffff !important;
+}
+
+body > .main-container table thead th,
+body > .main-container table thead th *,
+body > .main-container table thead th a:hover,
+body > .main-container table thead th button:hover {
+    color: #ffffff !important;
+}
+
+/* Evita que los indicadores de ordenamiento hereden degradados del encabezado. */
+body > .main-container table thead th .dt-column-order,
+body > .main-container table thead th .dt-column-order::before,
+body > .main-container table thead th .dt-column-order::after,
+body > .main-container table thead th.sorting::before,
+body > .main-container table thead th.sorting::after,
+body > .main-container table thead th.sorting_asc::before,
+body > .main-container table thead th.sorting_asc::after,
+body > .main-container table thead th.sorting_desc::before,
+body > .main-container table thead th.sorting_desc::after {
+    background-image: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+body > .main-container table thead th .dt-column-order::before,
+body > .main-container table thead th .dt-column-order::after,
+body > .main-container table thead th.sorting::before,
+body > .main-container table thead th.sorting::after,
+body > .main-container table thead th.sorting_asc::before,
+body > .main-container table thead th.sorting_asc::after,
+body > .main-container table thead th.sorting_desc::before,
+body > .main-container table thead th.sorting_desc::after {
+    background-image: none !important;
+    background-color: transparent !important;
+    border-image: none !important;
+    filter: none !important;
+}
+
+html[data-tema="oscuro"] body > .main-container > h1,
+html[data-tema="oscuro"] body > .main-container > h2,
+html[data-tema="oscuro"] body > .main-container > h3,
+html[data-tema="oscuro"] body > .main-container label,
+html[data-tema="oscuro"] body > .main-container .form-container,
+html[data-tema="oscuro"] body > .main-container form:not(.navbar-form) {
+    color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container table:not(.admin-pilot-table),
+html[data-tema="oscuro"] body > .main-container table:not(.admin-pilot-table) tbody tr,
+html[data-tema="oscuro"] body > .main-container .form-container {
+    background: #2D2D2D !important;
+    border-color: #222222 !important;
+}
+
+html[data-tema="oscuro"] body > .main-container table:not(.admin-pilot-table) tbody td {
+    border-color: #444444 !important;
+    color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container table:not(.admin-pilot-table) tbody tr:hover {
+    background: #3a3a3a !important;
+}
+
+html[data-tema="oscuro"] body > .main-container table thead,
+html[data-tema="oscuro"] body > .main-container table thead tr,
+html[data-tema="oscuro"] body > .main-container table thead th {
+    background: #2D2D2D !important;
+    border-color: #222222 !important;
+    color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container table thead th *,
+html[data-tema="oscuro"] body > .main-container table thead th a {
+    color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container table,
+html[data-tema="oscuro"] body > .main-container .table-responsive,
+html[data-tema="oscuro"] body > .main-container .admin-pilot-table-wrap {
+    border: 1px solid #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container table th,
+html[data-tema="oscuro"] body > .main-container table td {
+    border-color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container table:not(.admin-pilot-table) {
+    border-color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container .dataTables_wrapper {
+    border-color: #ffffff !important;
+    background: #2D2D2D !important;
+}
+
+html[data-tema="oscuro"] body > .main-container .dataTables_wrapper table {
+    border-color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container .dataTables_wrapper .dt-paging-button,
+html[data-tema="oscuro"] body > .main-container .dataTables_wrapper .paginate_button,
+html[data-tema="oscuro"] body > .main-container .dataTables_wrapper .dt-paging-button:hover,
+html[data-tema="oscuro"] body > .main-container .dataTables_wrapper .paginate_button:hover {
+    background: #2D2D2D !important;
+    background-image: none !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] table,
+html[data-tema="oscuro"] .table-responsive,
+html[data-tema="oscuro"] .table-responsive-lg,
+html[data-tema="oscuro"] .table-responsive-md,
+html[data-tema="oscuro"] .table-responsive-sm,
+html[data-tema="oscuro"] .dataTables_wrapper {
+    border: 1px solid #ffffff !important;
+}
+
+html[data-tema="oscuro"] table th,
+html[data-tema="oscuro"] table td {
+    border-color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container input:not([type="hidden"]),
+html[data-tema="oscuro"] body > .main-container select,
+html[data-tema="oscuro"] body > .main-container textarea {
+    background: #3a3a3a !important;
+    border-color: #555555 !important;
+    color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container .btn-primary,
+html[data-tema="oscuro"] body > .main-container .btn-guardar,
+html[data-tema="oscuro"] body > .main-container .btn-form,
+html[data-tema="oscuro"] body > .main-container .btn-accion {
+    background: #2D2D2D !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container button:not(.menu-toggle-btn),
+html[data-tema="oscuro"] body > .main-container input[type="submit"],
+html[data-tema="oscuro"] body > .main-container input[type="button"],
+html[data-tema="oscuro"] body > .main-container input[type="reset"],
+html[data-tema="oscuro"] body > .main-container a.btn,
+html[data-tema="oscuro"] body > .main-container button:not(.menu-toggle-btn):hover,
+html[data-tema="oscuro"] body > .main-container input[type="submit"]:hover,
+html[data-tema="oscuro"] body > .main-container input[type="button"]:hover,
+html[data-tema="oscuro"] body > .main-container input[type="reset"]:hover,
+html[data-tema="oscuro"] body > .main-container a.btn:hover {
+    background: #2D2D2D !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+/* Los botones de acción conservan sus colores funcionales. */
+body > .main-container table .btn-primary,
+body > .main-container table .btn-outline-primary {
+    background: #0275d8 !important;
+    border-color: #0275d8 !important;
+    color: #ffffff !important;
+}
+
+body > .main-container table .btn-warning {
+    background: #f0ad4e !important;
+    border-color: #f0ad4e !important;
+    color: #212529 !important;
+}
+
+body > .main-container table .btn-danger {
+    background: #d9534f !important;
+    border-color: #d9534f !important;
+    color: #ffffff !important;
+}
+
+body > .main-container table .btn-success {
+    background: #5cb85c !important;
+    border-color: #5cb85c !important;
+    color: #ffffff !important;
+}
+
+body > .main-container table .btn-secondary {
+    background: #6c757d !important;
+    border-color: #6c757d !important;
+    color: #ffffff !important;
+}
+
+html[data-tema="oscuro"] body > .main-container table .btn-primary,
+html[data-tema="oscuro"] body > .main-container table .btn-outline-primary,
+html[data-tema="oscuro"] body > .main-container table .btn-warning,
+html[data-tema="oscuro"] body > .main-container table .btn-danger,
+html[data-tema="oscuro"] body > .main-container table .btn-success,
+html[data-tema="oscuro"] body > .main-container table .btn-secondary {
+    border-width: 1px !important;
+}
