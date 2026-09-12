@@ -167,7 +167,7 @@
                     <section class="box-typical task-card task">
                         <div class="task-card-photo">
                             <a href="../ADMIN/USUARIO.php">
-                                <img src="img/instructores.jpg" alt="Usuarios">
+                                <img src="img/img_usuarios.jpeg" alt="Usuarios">
                             </a>
                         </div>
                         <div class="task-card-in">
