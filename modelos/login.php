@@ -2,6 +2,7 @@
 	session_start();
 	include 'db.php';
 	include 'password_helper.php';
+	asegurarColumnaPasswordTemporal($conn);
 
 	if(isset($_POST['login'])){
 		$nom_usuario = trim($_POST['nom_usuario'] ?? '');
@@ -30,6 +31,7 @@
 				// ataques de "fijación de sesión" (session fixation).
 				session_regenerate_id(true);
 				$_SESSION['admin_intecap'] = $row['id'];
+				$_SESSION['password_temporal'] = (int) ($row['password_temporal'] ?? 0) === 1;
 				unset($_SESSION['error']);
 			}
 			else{

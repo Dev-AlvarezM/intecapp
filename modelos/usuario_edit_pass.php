@@ -2,6 +2,7 @@
 
 include('db.php');
 include('password_helper.php');
+asegurarColumnaPasswordTemporal($conn);
 
 $instructor  = $_POST["instructor"]  ?? '0';
 $id          = $_POST["id"]          ?? '';
@@ -19,7 +20,7 @@ if ($password !== '' && $password === $password1) {
 
     // Consulta preparada: antes se concatenaba $pass y $id directo en el
     // SQL (inyección SQL). Ahora va con parámetros ligados.
-    $stmt = $conn->prepare("UPDATE usuario SET password = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE usuario SET password = ?, password_temporal = 0 WHERE id = ?");
     $stmt->bind_param("si", $pass, $id);
     $stmt->execute();
     $stmt->close();

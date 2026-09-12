@@ -22,6 +22,43 @@
 define('LEGACY_SALT', 'a1Bz20ydqelm8m1wql');
 
 /**
+ * Asegura la columna que identifica contraseñas temporales en instalaciones
+ * existentes. La migración también queda incluida en los respaldos SQL.
+ */
+function asegurarColumnaPasswordTemporal(mysqli $conn): void
+{
+    static $verificada = false;
+
+    if ($verificada) {
+        return;
+    }
+
+    $resultado = $conn->query(
+        "SELECT COUNT(*) AS total
+         FROM information_schema.COLUMNS
+         WHERE TABLE_SCHEMA = DATABASE()
+           AND TABLE_NAME = 'usuario'
+           AND COLUMN_NAME = 'password_temporal'"
+    );
+
+    if (!$resultado) {
+        throw new RuntimeException('No se pudo verificar la columna de contraseña temporal.');
+    }
+
+    $columnaExiste = (int) $resultado->fetch_assoc()['total'] > 0;
+    $resultado->free();
+
+    if (!$columnaExiste && !$conn->query(
+        "ALTER TABLE usuario
+         ADD COLUMN password_temporal TINYINT(1) NOT NULL DEFAULT 0"
+    )) {
+        throw new RuntimeException('No se pudo crear la columna de contraseña temporal.');
+    }
+
+    $verificada = true;
+}
+
+/**
  * Genera un hash seguro (bcrypt) listo para guardar en la columna `password`.
  */
 function hashPasswordSeguro(string $passwordPlano): string

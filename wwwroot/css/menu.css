@@ -42,6 +42,28 @@
         overflow: hidden;
     }
 
+    .side-menu.side-menu-compact .side-menu-list {
+        height: 100%;
+        max-height: 100%;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .side-menu.side-menu-compact .side-menu-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .side-menu.side-menu-compact .menu-logout {
+        flex-shrink: 0;
+    }
+
+    .side-menu.side-menu-compact .side-menu-list > li {
+        flex-shrink: 0;
+    }
+
     .with-side-menu-compact .page-content {
         padding-left: 190px;
     }
@@ -108,10 +130,11 @@
 
 .side-menu.side-menu-compact .side-menu-list {
     margin-bottom: 0;
-    min-height: 100%;
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
+    max-height: 100%;
     padding-bottom: 0;
     box-sizing: border-box;
 }

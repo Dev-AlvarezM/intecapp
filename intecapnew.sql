@@ -237,6 +237,7 @@ CREATE TABLE `usuario` (
   `cargo` varchar(150) DEFAULT NULL,
   `nom_usuario` varchar(100) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `password_temporal` tinyint(1) NOT NULL DEFAULT 0,
   `id_rol` int(11) DEFAULT NULL,
   `estado` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

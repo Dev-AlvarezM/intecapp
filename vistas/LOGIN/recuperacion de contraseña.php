@@ -196,7 +196,7 @@
 
         <div class="panel-right">
             <div class="form-heading">Recuperar Contraseña</div>
-            <div class="form-heading-sub">Ingresa tu usuario y el correo con el que te registraste. Te enviaremos un enlace para cambiar tu contraseña.</div>
+            <div class="form-heading-sub">Ingresa tu usuario y el correo con el que te registraste. Generaremos una contraseña temporal para que puedas ingresar.</div>
 
             <form action="../../modelos/solicitar_recuperacion.php" method="post" autocomplete="off">
                 <div class="input-group">
@@ -210,7 +210,7 @@
 
                 <div class="btn-row" style="margin-top:20px;">
                     <button type="submit" class="btn-login" name="add" id="addBtn">
-                        <i class="fa-solid fa-paper-plane" style="margin-right:7px;"></i>Enviar enlace
+                        <i class="fa-solid fa-key" style="margin-right:7px;"></i>Generar contraseña
                     </button>
                     <button type="button" class="btn-clear" onclick="window.location.href='../../index.php'">
                         <i class="fa-solid fa-xmark" style="margin-right:5px;"></i>Cancelar

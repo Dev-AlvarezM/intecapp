@@ -14,6 +14,8 @@
 	if (session_status() === PHP_SESSION_NONE) session_start();
 	include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/db.php');
 	include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/config.php');
+	include_once($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/password_helper.php');
+	asegurarColumnaPasswordTemporal($conn);
 	date_default_timezone_set('America/Guatemala');
 
 	// Evita que el navegador guarde en caché (bfcache/"volver con las
@@ -52,6 +54,11 @@
 	}
 
 	$id_sesion = $user['id'];
+
+	if ((int) ($user['password_temporal'] ?? 0) === 1) {
+		header('location: ' . BASE_URL . '/vistas/LOGIN/cambiar_contrasena_temporal.php');
+		exit;
+	}
 
 	// ── Bloquear "reingreso" con los botones atrás/adelante ─────────────
 	// El servidor no puede saber por sí solo si una petición vino de un
