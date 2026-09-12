@@ -86,13 +86,18 @@
         });
         document.getElementById('btn-' + cargo).classList.add('active-filtro');
 
-        var filas = document.querySelectorAll('#table-edit tbody tr');
-        filas.forEach(function(fila) {
-            var celdaCargo = fila.cells[3]; // índice 3 porque ahora Foto es cells[0]
-            if (!celdaCargo) return;
-            var textoCargo = celdaCargo.textContent.trim();
-            fila.style.display = (cargo === 'todos' || textoCargo === cargo) ? '' : 'none';
-        });
+        if (!$.fn.DataTable.isDataTable('#table-edit')) {
+            return;
+        }
+
+        var tabla = $('#table-edit').DataTable();
+        var busqueda = cargo === 'todos'
+            ? ''
+            : '^' + cargo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$';
+
+        // El cargo es la quinta columna (índice 4): Foto, Nombre,
+        // Teléfono, Correo, Cargo.
+        tabla.column(4).search(busqueda, true, false).draw();
     }
 </script>
 

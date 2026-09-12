@@ -23,6 +23,7 @@
                     <th>Foto</th>
                     <th>Nombre del Instructor</th>
                     <th>Teléfono</th>
+                    <th>Correo</th>
                     <th>Cargo</th>
                     <th>Área de Especialización</th>
                     <th>Estado</th>

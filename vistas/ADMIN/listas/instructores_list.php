@@ -23,6 +23,7 @@ while ($row = $query->fetch_assoc()) {
 
         <td><?php echo htmlspecialchars($row['nombre']); ?></td>
         <td><?php echo htmlspecialchars($row['telefono'] ?? '—'); ?></td>
+        <td><?php echo htmlspecialchars($row['correo'] ?? '—'); ?></td>
         <td><?php echo htmlspecialchars($row['cargo']); ?></td>
         <td><?php echo htmlspecialchars($row['area_especializacion'] ?? '—'); ?></td>
         <td><?php echo htmlspecialchars($row['estado'] ?? '—'); ?></td>

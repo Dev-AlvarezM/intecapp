@@ -29,7 +29,17 @@
 
                 <p>
                     <label for="nom_usuario">Usuario</label><br>
-                    <input type="text" id="nom_usuario" name="nom_usuario" value="<?php echo $row['nom_usuario'];?>" required class="usuario-input">
+                    <input type="text" id="nom_usuario" name="nom_usuario" value="<?php echo htmlspecialchars($row['nom_usuario'] ?? '', ENT_QUOTES, 'UTF-8');?>" required class="usuario-input">
+                </p>
+
+                <p>
+                    <label for="correo">Correo electrónico</label><br>
+                    <input type="email" id="correo" name="correo" value="<?php echo htmlspecialchars($row['correo'] ?? '', ENT_QUOTES, 'UTF-8');?>" required class="usuario-input">
+                </p>
+
+                <p>
+                    <label for="area_especializacion">Área de especialización</label><br>
+                    <input type="text" id="area_especializacion" name="area_especializacion" value="<?php echo htmlspecialchars($row['area_especializacion'] ?? '', ENT_QUOTES, 'UTF-8');?>" required class="usuario-input">
                 </p>
 
                 <p>
