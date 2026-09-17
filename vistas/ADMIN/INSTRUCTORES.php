@@ -1,7 +1,7 @@
 <?php include 'header.php'; ?>
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
-<link rel="stylesheet" href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>/intecapp/wwwroot/AGREGAR%20USUARIO.css">
+<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_USUARIO.CSS">
 
 <h1>Instructores</h1>
 

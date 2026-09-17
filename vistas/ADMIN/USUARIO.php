@@ -30,7 +30,7 @@
         </div>
 
         <!-- Botón agregar -->
-        <a href="../ADMIN/AGREGAR USUARIO.php"
+        <a href="../ADMIN/AGREGAR_USUARIO.php"
            class="btn btn-primary"
            style="width:120px; padding:10px 0; background-color:#007bff; color:white;
                   font-size:13px; font-family:'Arial',serif; text-decoration:none;

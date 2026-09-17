@@ -27,7 +27,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/cambiar_estado_evento.php
         <?php
         if (in_array($user['cargo'], ["Admin", "Instructor"])) {
         ?>
-            <a href="../ADMIN/AGREGAR EVENTO.php" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
+            <a href="../ADMIN/AGREGAR_EVENTO.php" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
                         font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center;">
                         <i class="fa fa-calendar-plus"></i> Agregar Evento
             </a>

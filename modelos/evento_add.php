@@ -41,7 +41,7 @@ $stmtTaller->store_result();
 
 if ($stmtTaller->num_rows === 0) {
     $stmtTaller->close();
-    echo "<script>alert('El taller seleccionado no está disponible.'); window.location.href='../vistas/ADMIN/AGREGAR EVENTO.php';</script>";
+    echo "<script>alert('El taller seleccionado no está disponible.'); window.location.href='../vistas/ADMIN/AGREGAR_EVENTO.php';</script>";
     exit;
 }
 

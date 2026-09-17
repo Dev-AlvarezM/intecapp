@@ -66,7 +66,7 @@
         <?php endif; ?>
 
         <li class="blue-dirty">
-            <a class="menu-link" href="../ADMIN/MI USUARIO.php">
+            <a class="menu-link" href="../ADMIN/MI_USUARIO.php">
                 <i class="fas fa-user"></i> 
                 <span class="lbl">Mi Usuario</span>
             </a>
@@ -147,7 +147,7 @@
         <?php endif; ?>
 
         <li class="blue-dirty">
-            <a class="menu-link" href="../ADMIN/MI USUARIO.php">
+            <a class="menu-link" href="../ADMIN/MI_USUARIO.php">
                 <i class="fas fa-user"></i> 
                 <span class="lbl">Mi Usuario</span>
             </a>

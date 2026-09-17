@@ -79,7 +79,7 @@
     <?php } ?>
 
     <div class="icon-text">
-        <a href="../ADMIN/MI USUARIO.php">
+        <a href="../ADMIN/MI_USUARIO.php">
             <i class="fas fa-user"></i>
         </a> 
         <h3>Mi Usuario</h3>

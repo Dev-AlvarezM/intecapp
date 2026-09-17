@@ -1,8 +1,9 @@
 <?php include 'header.php'; ?>
+
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR TALLER.css">
+<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_TALLER.css">
 <link rel="stylesheet" href="css/tema.css">
 
 <!--Formulario agregar taller-->

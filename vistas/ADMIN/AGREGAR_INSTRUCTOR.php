@@ -1,8 +1,9 @@
 <?php include 'header.php'; ?>
+
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <link rel="stylesheet" href="css/tema.css">
-<link rel="stylesheet" href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>/intecapp/wwwroot/AGREGAR INSTRUCTOR.css">
+<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_INSTRUCTOR.css">
 
 <!--Formulario de agregar instructor-->
 <body>

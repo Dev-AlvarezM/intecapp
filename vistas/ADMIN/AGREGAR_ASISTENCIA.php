@@ -1,4 +1,5 @@
 <?php include 'header.php'; ?>
+
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <link rel="stylesheet" href="css/tema.css">
