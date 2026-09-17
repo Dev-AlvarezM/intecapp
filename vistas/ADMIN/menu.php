@@ -1,7 +1,3 @@
-<button class="menu-toggle-btn" id="menuToggleBtn" type="button" aria-label="Abrir menú" aria-controls="navDrawer" aria-expanded="false">
-    <i class="fas fa-bars"></i>
-</button>
-
 <div class="mobile-menu-overlay" id="menuOverlay"></div>
 <div class="mobile-menu-left-overlay"></div>
 
@@ -132,12 +128,14 @@
         </li>
         <?php endif; ?>
 
+        <?php if ($user['cargo'] == "Admin"): ?>
         <li class="blue-dirty">
             <a class="menu-link" href="../ADMIN/USUARIO.php">
                 <i class="fas fa-users"></i> 
                 <span class="lbl">Usuarios</span>
             </a>
         </li>
+        <?php endif; ?>
 
         <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor"): ?>
         <li class="blue-dirty">

@@ -35,10 +35,9 @@
             </tbody>
         </table>
     </div>
-
-
         <?php include 'footer.php'; ?>
     </div>
+    <br><br>
 
 </div>
 

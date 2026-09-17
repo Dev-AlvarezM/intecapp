@@ -22,7 +22,7 @@
                 </p>
 
                 <p class="form-group">
-                    <label for="nom_instructor">Instructor</label><br>
+                    <label for="nom_instructor">Instructor a Cargo</label><br>
                     <select name="nom_instructor" id="nom_instructor" required>
                         <option value="">Seleccione</option>
                         <?php include 'listas/instructores_combobox.php'; ?>
@@ -30,7 +30,7 @@
                 </p>    
 
                 <p class="form-group">
-                    <label for="participantes">Participantes</label><br>
+                    <label for="participantes">Capacidad</label><br>
                     <input type="text" id="participantes" name="participantes" required>
                 </p>
 

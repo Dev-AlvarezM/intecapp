@@ -46,6 +46,7 @@
                 <img class="hidden-md-down" src="img/intecap.png" alt="Logo">
             </a>
         </div>
+        <button id="btn-cambiar-tema" class="btn-tema" type="button" aria-label="Cambiar tema">🌙 Oscuro</button>
         <div class="user-status">
             <span class="user-role"><?php echo htmlspecialchars($user['cargo']); ?></span>
             <span class="user-name"><?php echo htmlspecialchars($user['nombre']); ?></span>
@@ -180,7 +181,6 @@
             </div>
             <?php } ?>
         </div>
-        <button id="btn-cambiar-tema" class="btn-tema" type="button">🌙 Oscuro</button>
     </div>
     <footer>
         <p>&copy; INTECAP, QUICHÉ</p>

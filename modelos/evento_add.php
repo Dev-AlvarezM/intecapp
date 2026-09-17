@@ -21,22 +21,31 @@ $Url = isset($_POST['Url']) ? trim($_POST['Url']) : '';
 if (trim($user['cargo']) === 'Instructor') {
     $id_talleres = (int) $id_talleres;
     $id_instructor = (int) $user['id'];
-
-    $stmtTaller = $conn->prepare(
-        "SELECT id FROM talleres WHERE id = ? AND id_instructor = ?"
-    );
-    $stmtTaller->bind_param("ii", $id_talleres, $id_instructor);
-    $stmtTaller->execute();
-    $stmtTaller->store_result();
-
-    if ($stmtTaller->num_rows === 0) {
-        $stmtTaller->close();
-        echo "<script>alert('No está a cargo de este taller.'); window.location.href='../vistas/ADMIN/AGREGAR EVENTO.php';</script>";
-        exit;
-    }
-
-    $stmtTaller->close();
 }
+
+$id_talleres = (int) $id_talleres;
+$stmtTaller = $conn->prepare(
+    "SELECT t.id
+     FROM talleres AS t
+     WHERE t.id = ?
+       AND NOT EXISTS (
+           SELECT 1
+           FROM eventos AS e
+           WHERE e.id_talleres = t.id
+             AND e.estado = 'Activo'
+       )"
+);
+$stmtTaller->bind_param("i", $id_talleres);
+$stmtTaller->execute();
+$stmtTaller->store_result();
+
+if ($stmtTaller->num_rows === 0) {
+    $stmtTaller->close();
+    echo "<script>alert('El taller seleccionado no está disponible.'); window.location.href='../vistas/ADMIN/AGREGAR EVENTO.php';</script>";
+    exit;
+}
+
+$stmtTaller->close();
 
 if ($modalidad === 'Presencial') {
     $Modulo = $detalle_modalidad;

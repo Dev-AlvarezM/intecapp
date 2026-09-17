@@ -20,7 +20,24 @@
             padding: 10px 0;
         }
 
+        .site-header > #btn-cambiar-tema {
+            position: absolute !important;
+            top: 50% !important;
+            right: 145px !important;
+            z-index: 1001;
+            transform: translateY(-50%);
+        }
+
+        .site-header > #btn-cambiar-tema:hover {
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .site-header > #btn-cambiar-tema:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
         .site-header .container-fluid {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -53,6 +70,56 @@
                     text-align: left;
                     transform: translateY(-50%);
                 }
+
+        @media (max-width: 768px) {
+            .site-header > #btn-cambiar-tema {
+                right: 145px !important;
+                padding: 4px 6px !important;
+                border-radius: 4px !important;
+                font-size: 9px !important;
+            }
+
+            .site-header .user-status {
+                right: 90px !important;
+                width: max-content;
+                max-width: none;
+                gap: 10px;
+                padding: 7px 14px 7px 8px;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                text-align: center;
+            }
+
+            .site-header .user-status .user-role {
+                padding: 5px 9px;
+                font-size: 0.72rem;
+                letter-spacing: 0.06em;
+                text-align: center;
+            }
+
+            .site-header .user-status .user-name {
+                max-width: none;
+                overflow: visible;
+                font-size: 0.95rem;
+                text-align: center;
+                text-overflow: clip;
+                white-space: nowrap;
+            }
+
+            .site-header .user-menu {
+                right: 4px;
+            }
+
+            .site-header .user-menu .dropdown-toggle {
+                padding: 1px;
+            }
+
+            .site-header .user-menu .user-avatar {
+                width: 26px;
+                height: 26px;
+            }
+        }
 
                 .user-status .user-role {
                     padding: 5px 9px;

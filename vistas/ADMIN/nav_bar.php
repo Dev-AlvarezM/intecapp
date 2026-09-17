@@ -156,6 +156,10 @@
             }
             </script>
 
+                <button class="menu-toggle-btn" id="menuToggleBtn" type="button" aria-label="Abrir menú" aria-controls="navDrawer" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+
                 <div class="user-status">
                     <span class="user-role"><?php echo htmlspecialchars($user['cargo']); ?></span>
                     <span class="user-name"><?php echo htmlspecialchars($user['nombre']); ?></span>

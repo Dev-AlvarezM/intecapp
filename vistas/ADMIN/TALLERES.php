@@ -20,7 +20,7 @@
         ?>
 
         <?php
-            if (in_array($user['cargo'], ["Admin" , "Instructor"])) {
+            if (in_array($user['cargo'], ["Admin"])) {
         ?>
             <a href="../ADMIN/AGREGAR TALLER.php" class="btn btn-primary" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
                 font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center;">
@@ -29,36 +29,35 @@
         <?php
         }
         ?>
-       </div>
-   <div class="container-fluid table-responsive-lg admin-pilot-table-wrap">
+        </div>
+    <div class="container-fluid table-responsive-lg admin-pilot-table-wrap">
         <table id="table-edit" class="table table-bordered table-hover rounded overflow-hidden admin-pilot-table">
-           <thead>
-               <tr>
-                   <th>Año</th>
-                   <th>Nombre del Taller</th>
-                   <th>Instructor a Cargo</th>
-                   <th>Participantes</th>
-                   <th>Condición</th>
-                   <th>Estado</th>
-                   <th>Acciones</th>
-               </tr>
-           </thead>
-           <tbody>
-
-           <?php include('listas/talleres_list.php'); ?>
-
-           </tbody>
+            <thead>
+                <tr>
+                    <th>Año</th>
+                    <th>Nombre del Taller</th>
+                    <th>Instructor a Cargo</th>
+                    <th>Capacidad</th>
+                    <th>Condición</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <?php include('listas/talleres_list.php'); ?>
+            </tbody>
         </table>
 
-   </div>
+    </div>
 <!-- Sección donde se coloca el gráfico -->
 <div class="chart-container admin-pilot-chart">
     <canvas id="barChart"></canvas>
 </div>
-  
+
 <div class="container-fluid">
-   <!-- Pie de página -->
-   <?php include 'footer.php'; ?>
+    <!-- Pie de página -->
+    <?php include 'footer.php'; ?>
 </div>
 
 </div><!-- .main-container -->

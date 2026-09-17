@@ -18,16 +18,6 @@ $sql = "SELECT t.*, COALESCE(
         LEFT JOIN usuario AS u ON u.id = t.id_instructor";
 
 $cargo = trim($user['cargo'] ?? '');
-if ($cargo === 'Instructor') {
-    $areaInstructor = trim($user['area_especializacion'] ?? '');
-    if ($areaInstructor !== '') {
-        $areaInstructor = $conn->real_escape_string($areaInstructor);
-        $sql .= " WHERE u.area_especializacion = '$areaInstructor'";
-    } else {
-        $idInstructor = (int) ($user['id'] ?? 0);
-        $sql .= " WHERE t.id_instructor = $idInstructor";
-    }
-}
 
 $idUsuarioActual = (int) ($user['id'] ?? 0);
 $prioridadEdicion = $cargo === 'Admin'

@@ -129,6 +129,10 @@ footer, .nav-link, .nav-item {
 
 /* Botón de cambio de tema */
 #btn-cambiar-tema {
+    position: absolute !important;
+    top: 50% !important;
+    right: 145px !important;
+    transform: translateY(-50%);
     background-color: var(--color-primario) !important;
     color: white !important;
     border: none !important;
@@ -137,17 +141,25 @@ footer, .nav-link, .nav-item {
     cursor: pointer;
     font-size: 14px !important;
     font-weight: bold !important;
-    margin-right: 15px !important;
+    margin-right: 0 !important;
     transition: transform 0.2s;
 }
 
 #btn-cambiar-tema:hover {
     opacity: 0.9;
-    transform: scale(1.05);
+    transform: translateY(-50%) scale(1.05);
 }
 
 #btn-cambiar-tema:active {
-    transform: scale(0.95);
+    transform: translateY(-50%) scale(0.95);
+}
+
+@media (max-width: 768px) {
+    #btn-cambiar-tema {
+        right: 15px !important;
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+    }
 }
 
 /* Links */
