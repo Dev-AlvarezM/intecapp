@@ -49,12 +49,14 @@
         </li>
         <?php endif; ?>
 
+        <?php if ($user['cargo'] == "Admin"): ?>
         <li class="blue-dirty">
             <a class="menu-link" href="../ADMIN/USUARIO.php">
                 <i class="fas fa-users"></i> 
                 <span class="lbl">Usuarios</span>
             </a>
         </li>
+        <?php endif; ?>
 
         <?php if ($user['cargo'] == "Admin" || $user['cargo'] == "Instructor"): ?>
         <li class="blue-dirty">
