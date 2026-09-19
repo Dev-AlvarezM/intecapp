@@ -36,10 +36,10 @@
                 <tr>
                     <th>Año</th>
                     <th>Nombre del Taller</th>
-                    <th>Instructor a Cargo</th>
-                    <th>Capacidad</th>
-                    <th>Condición</th>
                     <th>Estado</th>
+                    <th>Capacidad</th>
+                    <th>Instructor a Cargo</th>
+                    <th>Condición</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

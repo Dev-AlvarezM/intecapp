@@ -38,7 +38,7 @@ function formatearHora($valor) {
     }
 
     $timestamp = strtotime($valor);
-    return $timestamp ? date('H:i', $timestamp) : '-';
+    return $timestamp ? date('g:i A', $timestamp) : '-';
 }
 
 while($row = $query->fetch_assoc()){
@@ -57,7 +57,7 @@ while($row = $query->fetch_assoc()){
     }
 ?>
     <tr>
-        <td><?php echo $row['fecha'];?></td>
+        <td><?php echo date("d/m/y", strtotime($row['fecha']));?></td>
         <td><?php echo $row['nombre_taller'];?></td>
         
         <td><?php echo $row['nombre_evento'];?></td>

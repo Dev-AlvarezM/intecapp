@@ -133,7 +133,7 @@ $url = "../MANTENIMIENTO.php?estado=".$estado;
             $ano = date("Y"); ?>
             <h2>Mantenimientos <?php echo $monthNameSpanish.' '.$ano; ?></h2>
         <?php } elseif ($estado == "Rango") { ?>
-            <h2>Mantenimientos del <?php echo date("d/m/Y", strtotime($fecha_inicio)).' al '.date("d/m/Y", strtotime($fecha_final)); ?></h2>
+            <h2>Mantenimientos del <?php echo date("d/m/y", strtotime($fecha_inicio)).' al '.date("d/m/y", strtotime($fecha_final)); ?></h2>
         <?php } ?>
       </div>
 
@@ -173,8 +173,8 @@ $url = "../MANTENIMIENTO.php?estado=".$estado;
               <td><?php echo $row['anio'];?></td>
               <td><?php echo $row['nombre'];?></td>
               <td><?php echo $row['nombre_taller'];?></td>
-              <td><?php echo date("d/m/Y", strtotime($row['f_reporte']));?></td>
-              <td><?php echo date("d/m/Y", strtotime($row['f_realizado']));?></td>
+              <td><?php echo date("d/m/y", strtotime($row['f_reporte']));?></td>
+              <td><?php echo date("d/m/y", strtotime($row['f_realizado']));?></td>
               <td><?php echo $row['descripcion'];?></td>
               <td><?php echo $row['estado_m'];?></td>
           </tr>

@@ -79,9 +79,9 @@ $filas  = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $id          = $row['id_mantenimiento'];
     $anio        = date("Y", strtotime($row['f_reporte']));
-    $f_reporte   = date("d/m/Y", strtotime($row['f_reporte']));
+    $f_reporte   = date("d/m/y", strtotime($row['f_reporte']));
     $f_realizado = ($row['estado_m'] == 'Realizada' && !empty($row['f_realizado']))
-                   ? date("d/m/Y", strtotime($row['f_realizado'])) : '--';
+                   ? date("d/m/y", strtotime($row['f_realizado'])) : '--';
 
     $estadoRow = isset($row['estado_m']) ? trim((string)$row['estado_m']) : '';
     if ($estadoRow === '' || $estadoRow === '0') {

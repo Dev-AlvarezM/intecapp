@@ -11,7 +11,7 @@ while($row = $query->fetch_assoc()){
 ?>
     <tr>
         <td> <?php echo $num;?> </td>
-        <td> <?php echo $row['fecha'];?> </td>
+        <td> <?php echo date("d/m/y", strtotime($row['fecha']));?> </td>
         <td><?php echo $row['Comentario'];?></td>
         <td>
             <button class="btn btn-danger btn-sm" title = "Eliminar Comentario" onclick="eliminar(<?php echo $id;?>)">

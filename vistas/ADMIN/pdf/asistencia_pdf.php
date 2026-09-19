@@ -37,7 +37,7 @@ function formatoHoraHM($valor) {
   if ($ts === false) {
     return $valor; // si no podemos parsear, devolvemos el original
   }
-  return date('H:i', $ts);
+  return date('g:i A', $ts);
 }
 
 // Formatea el campo 'estatilla' (puede venir como HH:MM:SS o HH:MM) para mostrar solo HH:MM
@@ -56,7 +56,7 @@ function formatoEstatillaHM($valor) {
   if ($ts === false) {
     return $valor;
   }
-  return date('H:i', $ts);
+  return date('g:i A', $ts);
 }
 ?>
 
@@ -168,7 +168,7 @@ function formatoEstatillaHM($valor) {
           $num = ++$num;
         ?>
           <tr>
-              <td><?php echo date("d/m/Y", strtotime($row['fecha']));?></td>
+              <td><?php echo date("d/m/y", strtotime($row['fecha']));?></td>
               <td><?php echo $row['nombre_taller'];?></td>
               <td><?php echo $row['nombre_evento'];?></td>
               <td><?php echo $row['nombre'];?></td>

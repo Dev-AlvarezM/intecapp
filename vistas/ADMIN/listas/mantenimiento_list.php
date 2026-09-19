@@ -53,9 +53,9 @@ while($row = $query->fetch_assoc()){
         <!-- Nombre del taller -->
         <td><?php echo htmlspecialchars($row['nombre_taller']);?></td>        
         <!-- Fecha de reporte -->
-        <td><?php echo date("d/m/Y", strtotime($row['f_reporte']));?></td>
+        <td><?php echo date("d/m/y", strtotime($row['f_reporte']));?></td>
         <!-- Fecha de realización (solo se muestra si el mantenimiento está realizado) -->
-        <td><?php echo ($estado_m == 'Realizada' && $row['f_realizado'] != NULL) ? date("d/m/Y", strtotime($row['f_realizado'])) : '--'; ?></td>
+        <td><?php echo ($estado_m == 'Realizada' && $row['f_realizado'] != NULL) ? date("d/m/y", strtotime($row['f_realizado'])) : '--'; ?></td>
         <!-- Descripción del mantenimiento -->
         <td><?php echo htmlspecialchars($row['descripcion']);?></td>
         <!-- Columna de estado con opción de cambio -->

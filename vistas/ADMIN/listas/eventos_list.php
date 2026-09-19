@@ -49,10 +49,10 @@ while ($row = $query->fetch_assoc()) {
         <td><?php echo e($row['nombre_taller']);?></td>
         <td><?php echo e($row['programa']);?></td>
         <td><?php echo e($row['nombre_evento']);?></td>
-        <td><?php echo e(date("d/m/Y", strtotime($row['f_inicio'])));?></td>
-        <td><?php echo e(date("d/m/Y", strtotime($row['f_fin'])));?></td>
-        <td><?php echo !empty($row['hora_entrada']) ? e(date('H:i', strtotime($row['hora_entrada']))) : '-';?></td>
-        <td><?php echo !empty($row['hora_salida']) ? e(date('H:i', strtotime($row['hora_salida']))) : '-';?></td>
+        <td><?php echo e(date("d/m/y", strtotime($row['f_inicio'])));?></td>
+        <td><?php echo e(date("d/m/y", strtotime($row['f_fin'])));?></td>
+        <td><?php echo !empty($row['hora_entrada']) ? e(date('g:i A', strtotime($row['hora_entrada']))) : '-';?></td>
+        <td><?php echo !empty($row['hora_salida']) ? e(date('g:i A', strtotime($row['hora_salida']))) : '-';?></td>
         <td><?php
                 $estatilla = isset($row['Estatilla']) ? $row['Estatilla'] : '';
                 if (empty($estatilla) && !empty($row['hora_entrada']) && !empty($row['hora_salida'])) {
@@ -66,7 +66,7 @@ while ($row = $query->fetch_assoc()) {
                 } else if (!empty($estatilla)) {
                     $estatilla = date('H:i', strtotime($estatilla));
                 }
-                echo e(!empty($estatilla) ? $estatilla : '-');
+                echo e(!empty($estatilla) ? $estatilla . ' Hrs' : '-');
             ?></td>
         <td><?php echo e(isset($row['instructor_nombre']) ? $row['instructor_nombre'] : '-');?></td>
         <td><?php echo e(isset($row['modalidad']) ? $row['modalidad'] : '-');?></td>

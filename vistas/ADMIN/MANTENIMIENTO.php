@@ -71,7 +71,7 @@ $url = "pdf/mantenimiento_pdf.php?estado=".$estado;
             // Actualizar URL del reporte incluyendo las fechas seleccionadas
             $url = "pdf/mantenimiento_pdf.php?estado=".$estado."&fecha_inicio=".$fecha_inicio."&fecha_final=".$fecha_final;
  
-            echo "<h4>Fecha  inicio:  ".date("d/m/Y", strtotime($fecha_inicio))."</h4>      <h4>Fecha final:  ".date("d/m/Y", strtotime($fecha_final))."</h4>";
+            echo "<h4>Fecha  inicio:  ".date("d/m/y", strtotime($fecha_inicio))."</h4>      <h4>Fecha final:  ".date("d/m/y", strtotime($fecha_final))."</h4>";
         }
         ?>
     </div> 

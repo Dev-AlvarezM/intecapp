@@ -41,10 +41,10 @@ while($row = $query->fetch_assoc()){
     <tr>
         <td><?php echo $row['anio'] ?? '-';?></td>
         <td><?php echo $row['nombre_taller'] ?? '-';?></td>
-        <td><?php echo !empty($row['instructor_nombre']) ? htmlspecialchars($row['instructor_nombre'], ENT_QUOTES, 'UTF-8') : '-';?></td>
-        <td><?php echo $row['participantes'] ?? '-';?></td>
-        <td><?php echo $row['condicion'] ?? '-';?></td>
         <td><?php echo $estadoAutomatico;?></td>
+        <td><?php echo $row['participantes'] ?? '-';?></td>
+        <td><?php echo !empty($row['instructor_nombre']) ? htmlspecialchars($row['instructor_nombre'], ENT_QUOTES, 'UTF-8') : '-';?></td>
+        <td><?php echo $row['condicion'] ?? '-';?></td>
         <td>
             <?php if ($user['cargo'] === "Admin" || ($user['cargo'] === "Instructor" && (int) $row['id_instructor'] === (int) $user['id'])) { ?>
                 <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_taller;?>)">
