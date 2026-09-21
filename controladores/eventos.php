@@ -1,7 +1,7 @@
 <?php
 	include '../../modelos/db.php';
     
-    function redireccionarrrr() {
+    function redireccionarrrr($user) {
         if ($user['cargo']=="Admin") {
 
         }else{

@@ -143,6 +143,7 @@
                                 '<td>' + f.nombre         + '</td>' +
                                 '<td>' + f.nombre_reporta + '</td>' +
                                 '<td>' + f.taller         + '</td>' +
+                                '<td>' + f.modulo         + '</td>' +
                                 '<td>' + f.f_reporte      + '</td>' +
                                 '<td>' + f.f_realizado    + '</td>' +
                                 '<td>' + f.descripcion    + '</td>' +

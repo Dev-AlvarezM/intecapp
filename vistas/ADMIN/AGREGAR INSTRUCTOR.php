@@ -1,0 +1,85 @@
+<?php include 'header.php'; ?>
+<?php include 'nav_bar.php'; ?>
+<?php include 'menu.php'; ?>
+<link rel="stylesheet" href="css/tema.css">
+<link rel="stylesheet" href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>/intecapp/wwwroot/AGREGAR INSTRUCTOR.css">
+
+<!--Formulario de agregar instructor-->
+<body>
+    <div class="form-container">
+        <h3>Agregar Nuevo Instructor</h3>
+        <form action="../../modelos/usuario_add.php" method="post" style="text-align: left;">
+            <input type="hidden" id="instructor" name="instructor" value="1" required>
+
+            <center>
+                <p class="form-group">
+                    <label for="nombre">Nombre</label><br>
+                    <input type="text" id="nombre" name="nombre" required>
+                </p>
+
+                <p class="form-group">
+                    <label for="direccion">Dirección</label><br>
+                    <input type="text" id="direccion" name="direccion" required>
+                </p>
+
+                <p class="form-group">
+                    <label for="correo">Correo electrónico</label><br>
+                    <input type="email" id="correo" name="correo" required
+                           placeholder="instructor@correo.com">
+                    <small>Se usará para recuperar la contraseña si la olvida.</small>
+                </p>
+
+                <p class="form-group">
+                    <label for="cargo">Cargo</label><br>
+                    <select id="cargo" name="cargo" required>
+                        <option value="Instructor">Instructor</option>
+                    </select>
+                </p>
+
+                <p class="form-group">
+                    <label for="nom_usuario">Usuario</label><br>
+                    <input type="text" id="nom_usuario" name="nom_usuario" required>
+                </p>
+
+                <p class="form-group">
+                    <label for="password">Contraseña</label><br>
+                    <input type="password" id="password" name="password" required>
+                </p>
+
+                <p class="form-group">
+                    <label for="estado">Estado</label><br>
+                    <select id="estado" name="estado" required>
+                        <option value="">Seleccione</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </p>
+
+                <!--Botones de opciones-->
+                <p>
+                    <button type="submit" class="btn btn-guardar" name="add" id="add">
+                        <i class="fa fa-save"></i> Guardar
+                    </button>
+                    <button type="reset" class="btn btn-limpiar" name="reset" id="reset">
+                        <i class="fa fa-eraser"></i> Limpiar formulario
+                    </button>
+                    <button type="button" class="btn btn-salir" name="exit" id="exit"
+                        onclick="window.location.href='../ADMIN/INSTRUCTORES.php'">
+                        <i class="fa fa-sign-out"></i> Volver
+                    </button>
+                </p>
+                <br><br>
+            </center>
+        </form>
+
+        <!-- Pie de página -->
+        <?php include 'footer.php'; ?>
+    </div><!-- .form-container -->
+
+    <!-- jQuery y Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!--Samayoa-->
+</body>
+</html>
