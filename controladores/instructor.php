@@ -13,7 +13,7 @@
     } 
 
     function editar(id){
-        window.location.href="/intecapp/vistas/ADMIN/Editar_INSTRUCTOR.php?id="+encodeURIComponent(id);
+        window.location.href="/INTECAP_CQH/vistas/ADMIN/Editar_INSTRUCTOR.php?id="+encodeURIComponent(id);
     }  
 </script>
 

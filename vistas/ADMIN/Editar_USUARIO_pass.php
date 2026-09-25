@@ -2,7 +2,7 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <?php include('../../modelos/usuario.php'); ?>
-<link rel="stylesheet" href="/intecapp/wwwroot/css/Editar_USUARIO_pass.css">
+<link rel="stylesheet" href="/INTECAP_CQH/wwwroot/css/Editar_USUARIO_pass.css">
 <link rel="stylesheet" href="css/tema.css">
 
 <body>

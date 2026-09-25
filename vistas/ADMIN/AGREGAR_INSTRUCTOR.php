@@ -3,7 +3,7 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <link rel="stylesheet" href="css/tema.css">
-<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_INSTRUCTOR.css">
+<link rel="stylesheet" href="/INTECAP_CQH/wwwroot/css/AGREGAR_INSTRUCTOR.css">
 
 <!--Formulario de agregar instructor-->
 <body>

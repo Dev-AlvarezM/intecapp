@@ -1,7 +1,7 @@
 <?php include 'header.php'; ?>
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
-<link rel="stylesheet" href="/intecapp/wwwroot/css/AGREGAR_USUARIO.CSS">
+<link rel="stylesheet" href="/INTECAP_CQH/wwwroot/css/AGREGAR_USUARIO.CSS">
 
 <h1>Instructores</h1>
 

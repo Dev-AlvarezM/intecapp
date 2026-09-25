@@ -78,7 +78,7 @@ while ($row = $query->fetch_assoc()) {
             if ($row['estado_e'] == "Activo" || $row['estado_e'] == "En Proceso") {
             ?>
                 <a class="btn btn-block btn-outline-primary btn-sm" 
-                href="<?php echo e("/intecapp/modelos/cambiar_estado_evento.php?id_eventos=$id_eventos"); ?>"
+                href="<?php echo e("/INTECAP_CQH/modelos/cambiar_estado_evento.php?id_eventos=$id_eventos"); ?>"
                 onClick="return confirm('¿Está seguro de finalizar este evento? Se registrará la asistencia y se removerá de la lista.');">
                     Activo (Terminar)
                 </a>

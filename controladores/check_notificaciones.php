@@ -1,6 +1,6 @@
 <?php
 // controladores/check_notificaciones.php
-// Estructura: intecapp/controladores/ y intecapp/modelos/db.php
+// Estructura: INTECAP_CQH/controladores/ y INTECAP_CQH/modelos/db.php
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 

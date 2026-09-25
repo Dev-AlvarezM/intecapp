@@ -1,6 +1,6 @@
 <?php
 // controladores/get_mantenimientos.php
-// Estructura: intecapp/controladores/ y intecapp/modelos/db.php
+// Estructura: INTECAP_CQH/controladores/ y INTECAP_CQH/modelos/db.php
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
@@ -87,7 +87,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     if ($estadoRow === '' || $estadoRow === '0') {
         $estadoRow = 'no realizado';
     }
-    $url_cambio = "/intecapp/modelos/cambiar_estado.php?id_mantenimiento=$id&estado=" . urlencode($estado);
+    $url_cambio = "/INTECAP_CQH/modelos/cambiar_estado.php?id_mantenimiento=$id&estado=" . urlencode($estado);
     $celda_estado = ($estadoRow === 'no realizado')
         ? "<a href='$url_cambio' onclick=\"return confirm('¿Cambiar estado a Realizada?');\">No realizado</a>"
         : htmlspecialchars($estadoRow);

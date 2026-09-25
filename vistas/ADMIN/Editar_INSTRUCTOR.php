@@ -3,7 +3,7 @@
 <?php include 'menu.php'; ?>
 <?php include('../../modelos/usuario.php'); ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/intecapp/wwwroot/css/Editar_INSTRUCTOR.css">
+<link rel="stylesheet" href="/INTECAP_CQH/wwwroot/css/Editar_INSTRUCTOR.css">
 <link rel="stylesheet" href="css/tema.css">
 
 <body class="editar-usuario-body">

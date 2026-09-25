@@ -62,9 +62,9 @@ if ($foto_param !== null) {
 
 if ($stmt->execute()) {
     if ($instructor == '1') {
-        echo "<script>document.location='/intecapp/vistas/ADMIN/INSTRUCTORES.php'</script>";
+        echo "<script>document.location='/INTECAP_CQH/vistas/ADMIN/INSTRUCTORES.php'</script>";
     } else {
-        echo "<script>document.location='/intecapp/vistas/ADMIN/USUARIO.php'</script>";
+        echo "<script>document.location='/INTECAP_CQH/vistas/ADMIN/USUARIO.php'</script>";
     }
 } else {
     echo "<script>alert('Error al guardar: " . addslashes($stmt->error) . "'); history.back();</script>";

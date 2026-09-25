@@ -2,11 +2,11 @@
 /**
  * Configuración general del sitio.
  * Ajusta BASE_URL según dónde esté publicado el proyecto
- * (en tu XAMPP local normalmente es http://localhost/intecapp).
+ * (en tu XAMPP local normalmente es http://localhost/INTECAP_CQH).
  */
 
 if (!defined('BASE_URL')) {
-    define('BASE_URL', 'http://localhost/intecapp');
+    define('BASE_URL', 'http://localhost/INTECAP_CQH');
 }
 
 // Minutos de validez del enlace de recuperación de contraseña.

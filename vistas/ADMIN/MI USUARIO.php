@@ -2,7 +2,7 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/intecapp/wwwroot/css/MI_USUARIO.css">
+<link rel="stylesheet" href="/INTECAP_CQH/wwwroot/css/MI_USUARIO.css">
 <link rel="stylesheet" href="css/tema.css">
 
 <body>

@@ -61,11 +61,11 @@ if ($foto_param !== null) {
 if ($stmt->execute()) {
     echo "<script>alert('Registro actualizado correctamente.');</script>";
     if ($modulo_origen === 'usuarios') {
-        echo "<script>document.location='/intecapp/vistas/ADMIN/USUARIO.php'</script>";
+        echo "<script>document.location='/INTECAP_CQH/vistas/ADMIN/USUARIO.php'</script>";
     } elseif ($instructor == '1') {
-        echo "<script>document.location='/intecapp/vistas/ADMIN/INSTRUCTORES.php'</script>";
+        echo "<script>document.location='/INTECAP_CQH/vistas/ADMIN/INSTRUCTORES.php'</script>";
     } else {
-        echo "<script>document.location='/intecapp/vistas/ADMIN/USUARIO.php'</script>";
+        echo "<script>document.location='/INTECAP_CQH/vistas/ADMIN/USUARIO.php'</script>";
     }
 } else {
     echo "<script>alert('Error al actualizar: " . addslashes($stmt->error) . "'); history.back();</script>";
