@@ -24,7 +24,7 @@
                     <label for="id_taller">Taller</label><br>
                     <select id="id_taller" name="id_taller" required>
                         <option value="">Seleccione</option>
-                        <?php include 'listas/talleres_combobox.php'; ?>
+                        <?php include 'listas/talleres_combobox_todos.php'; ?>
                     </select>
                 </p>
 

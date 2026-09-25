@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/db.php');
+include(__DIR__ . '/../../../modelos/db.php');
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -14,8 +14,8 @@ if (isset($user['nombre'])) {
 
 // Aseguramos que $user esté disponible cuando el archivo se carga directamente
 if (!isset($user)) {
-    if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php')) {
-        include_once($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
+    if (file_exists(__DIR__ . '/../../../controladores/session.php')) {
+        include_once(__DIR__ . '/../../../controladores/session.php');
     }
 }
 

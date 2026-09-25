@@ -1,7 +1,7 @@
 <?php
 include('db.php');
 if (session_status() === PHP_SESSION_NONE) session_start();
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
+include(__DIR__ . '/../controladores/session.php');
 
 $checkCol = $conn->query("SHOW COLUMNS FROM talleres LIKE 'id_instructor'");
 if ($checkCol && $checkCol->num_rows === 0) {

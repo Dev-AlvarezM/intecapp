@@ -2,7 +2,7 @@
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?>
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/cambiar_estado_evento.php');
+include(__DIR__ . '/../../modelos/cambiar_estado_evento.php');
 ?>
 
 <h1 class="admin-pilot-title">Eventos</h1>

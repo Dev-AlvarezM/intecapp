@@ -1,6 +1,6 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/db.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
+include(__DIR__ . '/../modelos/db.php');
+include(__DIR__ . '/../controladores/session.php');
 
 // Determina si un evento ya debe cerrarse automáticamente según su fecha y hora de finalización.
 function debeFinalizarEvento($evento) {

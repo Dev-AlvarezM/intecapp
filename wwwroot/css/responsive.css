@@ -193,20 +193,33 @@ input[type="reset"] i:last-child {
 }
 
 @media (max-width: 768px) {
+    /* Botón "Activar notificaciones" en celular: se muestra como un ícono 🔔
+       redondo dentro del header, entre el botón de menú (izquierda) y la
+       pastilla del usuario (derecha). Antes quedaba con top:72px, fuera del
+       header, y tapaba el título de la página. */
     #notif-activar-wrap {
-        left: 54px;
-        right: 54px !important;
-        top: 72px !important;
-        text-align: center;
-        transform: none !important;
+        left: 70px !important;
+        right: auto !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        text-align: left;
         z-index: 900;
     }
 
     #notif-activar-wrap button {
-        max-width: 100%;
+        width: 44px !important;
+        min-width: 44px;
+        max-width: 44px;
+        height: 44px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        font-size: 20px !important;
         overflow: hidden;
-        text-overflow: ellipsis;
         white-space: nowrap;
+    }
+
+    #notif-activar-wrap .notif-texto {
+        display: none;
     }
 
     .form-container {

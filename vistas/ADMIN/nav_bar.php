@@ -13,11 +13,14 @@
             <div id="notif-activar-wrap"
                  style="position:absolute; right:70px; top:50%; transform:translateY(-50%); display:none;">
                 <button id="btn-activar"
+                        type="button"
                         onclick="pedirPermiso()"
+                        title="Activar notificaciones"
+                        aria-label="Activar notificaciones"
                         style="background:#e53935; border:none; cursor:pointer; border-radius:6px;
                                padding:6px 12px; color:#fff; font-family:Arial,sans-serif;
                                font-size:12px; font-weight:bold; animation:parpadeo 1s infinite;">
-                    🔔 Activar notificaciones
+                    <span class="notif-icono">🔔</span><span class="notif-texto"> Activar notificaciones</span>
                 </button>
             </div>
             <style>
@@ -68,8 +71,29 @@
                     arrancar();
                 } else if (Notification.permission !== 'denied') {
                     document.getElementById('notif-activar-wrap').style.display = 'block';
+                    ubicarBotonNotif();
                 }
             }
+
+            // En pantallas grandes el botón se coloca justo a la izquierda de la
+            // pastilla del usuario (su ancho cambia según el nombre), así nunca
+            // se montan uno sobre otro. En celular (<= 768px) el CSS de
+            // responsive.css lo muestra como un ícono 🔔 dentro del header.
+            function ubicarBotonNotif() {
+                var wrap  = document.getElementById('notif-activar-wrap');
+                var pill  = document.querySelector('.site-header .user-status');
+                var header = wrap ? wrap.parentElement : null;
+                if (!wrap || !pill || !header) return;
+
+                if (window.innerWidth <= 768) {
+                    wrap.style.right = '';
+                    return;
+                }
+                var pillBox   = pill.getBoundingClientRect();
+                var headerBox = header.getBoundingClientRect();
+                wrap.style.right = Math.round(headerBox.right - pillBox.left + 12) + 'px';
+            }
+            window.addEventListener('resize', ubicarBotonNotif);
 
             function pedirPermiso() {
                 Notification.requestPermission().then(function(p) {

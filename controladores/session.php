@@ -12,9 +12,9 @@
 	define('INTECAP_SESSION_LOADED', true);
 
 	if (session_status() === PHP_SESSION_NONE) session_start();
-	include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/db.php');
-	include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/config.php');
-	include_once($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/password_helper.php');
+	include(__DIR__ . '/../modelos/db.php');
+	include(__DIR__ . '/../modelos/config.php');
+	include_once(__DIR__ . '/../modelos/password_helper.php');
 	asegurarColumnaPasswordTemporal($conn);
 	date_default_timezone_set('America/Guatemala');
 

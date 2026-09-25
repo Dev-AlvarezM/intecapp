@@ -4,7 +4,7 @@ include('db.php');
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 // Usar el guardado de sesión central para obtener $user y $id_sesion
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
+include(__DIR__ . '/../controladores/session.php');
 
 if(isset($_REQUEST['id'])){
     $id = (int) $_REQUEST['id'];

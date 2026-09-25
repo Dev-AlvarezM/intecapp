@@ -1,7 +1,7 @@
 <?php
 include('db.php');
 if (session_status() === PHP_SESSION_NONE) session_start();
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
+include(__DIR__ . '/../controladores/session.php');
 
 if (!in_array($user['cargo'], ['Admin', 'Instructor'], true)) {
     http_response_code(403);

@@ -1,7 +1,7 @@
 <?php
 // Incluir conexión a base de datos
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/modelos/db.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
+include(__DIR__ . '/../../../modelos/db.php');
+include(__DIR__ . '/../../../controladores/session.php');
 
 // Normalizar el cargo del usuario (eliminar espacios extra)
 $cargo = isset($user['cargo']) ? trim($user['cargo']) : '';

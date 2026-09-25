@@ -3,7 +3,7 @@
 include('db.php');
 
 if (session_status() === PHP_SESSION_NONE) session_start();
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
+include(__DIR__ . '/../controladores/session.php');
 
 if(isset($_REQUEST['id'])){
     $id = (int) $_REQUEST['id'];

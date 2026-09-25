@@ -2,7 +2,7 @@
 //session_start();
 include('db.php');
 if (session_status() === PHP_SESSION_NONE) session_start();
-include($_SERVER['DOCUMENT_ROOT'] . '/intecapp/controladores/session.php');
+include(__DIR__ . '/../controladores/session.php');
 
 $id_eventos = isset($_POST["id_eventos"]) ? $_POST["id_eventos"] : '';
 $anio_evento = isset($_POST["anio_evento"]) ? $_POST["anio_evento"] : '';
