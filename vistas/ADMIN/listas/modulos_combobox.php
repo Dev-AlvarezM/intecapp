@@ -26,4 +26,6 @@ foreach ($modulos as $modulo) {
     <option value="<?php echo htmlspecialchars($modulo, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($modulo, ENT_QUOTES, 'UTF-8'); ?></option>
 <?php
 }
+
 ?>
+
