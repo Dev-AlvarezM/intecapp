@@ -143,6 +143,7 @@ $url = "../MANTENIMIENTO.php?estado=".$estado;
               <th>Año</th>
               <th>Nombre del Encargado</th>
               <th>Taller</th>
+              <th>Módulo</th>
               <th>Fecha de Reporte</th>
               <th>Fecha de Realizado</th>
               <th>Descripción</th>
@@ -173,6 +174,7 @@ $url = "../MANTENIMIENTO.php?estado=".$estado;
               <td><?php echo $row['anio'];?></td>
               <td><?php echo $row['nombre'];?></td>
               <td><?php echo $row['nombre_taller'];?></td>
+              <td><?php echo isset($row['modulo']) && trim($row['modulo']) !== '' ? htmlspecialchars($row['modulo']) : '--';?></td>
               <td><?php echo date("d/m/y", strtotime($row['f_reporte']));?></td>
               <td><?php echo date("d/m/y", strtotime($row['f_realizado']));?></td>
               <td><?php echo $row['descripcion'];?></td>

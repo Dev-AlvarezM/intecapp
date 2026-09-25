@@ -52,6 +52,8 @@ while($row = $query->fetch_assoc()){
         <td><?php echo htmlspecialchars($row['nombre_reporta']); ?></td>         
         <!-- Nombre del taller -->
         <td><?php echo htmlspecialchars($row['nombre_taller']);?></td>        
+        <!-- Módulo donde se solicitó -->
+        <td><?php echo htmlspecialchars(isset($row['modulo']) && trim($row['modulo']) !== '' ? $row['modulo'] : '--'); ?></td>
         <!-- Fecha de reporte -->
         <td><?php echo date("d/m/y", strtotime($row['f_reporte']));?></td>
         <!-- Fecha de realización (solo se muestra si el mantenimiento está realizado) -->

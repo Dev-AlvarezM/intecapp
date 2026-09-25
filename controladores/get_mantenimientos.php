@@ -106,6 +106,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         'nombre'         => htmlspecialchars($row['nombre']),
         'nombre_reporta' => htmlspecialchars($row['nombre_reporta']),
         'taller'         => htmlspecialchars($row['nombre_taller']),
+        'modulo'         => htmlspecialchars(isset($row['modulo']) && trim($row['modulo']) !== '' ? $row['modulo'] : '--'),
         'f_reporte'      => $f_reporte,
         'f_realizado'    => $f_realizado,
         'descripcion'    => htmlspecialchars($row['descripcion']),
