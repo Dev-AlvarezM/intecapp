@@ -1,4 +1,11 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php';
+include_once '../../modelos/mantenimiento_access.php';
+$id_mantenimiento = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+if ($id_mantenimiento <= 0 || !usuarioPuedeAccederConversacionMantenimiento($conn, $id_mantenimiento, (int) $id_sesion)) {
+    http_response_code(403);
+    exit('No tienes permiso para ver esta conversación.');
+}
+?>
 <?php include 'nav_bar.php'; ?>
 <?php include 'menu.php'; ?><h1>COMENTARIOS</h1>
   
@@ -32,6 +39,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Fecha</th>
+                    <th>Usuario</th>
                     <th>Comentario</th>
                     <th>Acciones</th>
             </thead>
@@ -48,11 +56,19 @@
 
 <h1>Agregar comentario</h1>
     <div class="container-fluid">
+        <?php if (isset($_SESSION['comentario_error'])): ?>
+            <div class="alert alert-warning" role="alert">
+                <?php
+                echo htmlspecialchars($_SESSION['comentario_error'], ENT_QUOTES, 'UTF-8');
+                unset($_SESSION['comentario_error']);
+                ?>
+            </div>
+        <?php endif; ?>
         <!-- Botón de hipervínculo alineado a la derecha -->
         <div class="mb-3 text-left">
         <form action="../../modelos/comentario_add.php" method="post" style="text-align: left;">
             <input type="hidden" id="id_mantenimiento" name="id_mantenimiento" value="<?php echo $id_mantenimiento;?>" required style="border: 1px solid #207ffc; padding: 4px; width: 30%;">
-            <textarea class="table-responsive-lg" id="Comentario" name="Comentario" rows="4" cols="50"></textarea>
+            <textarea class="table-responsive-lg" id="Comentario" name="Comentario" rows="4" cols="50" required></textarea>
 
             <button type="submit" class="btn-accion btn-guardar" style="display: inline-block; width: 120px; padding: 10px 0; background-color: #007bff; color: white; 
                     font-size: 13px; font-family: 'Arial', serif; text-decoration: none; border-radius: 4px; text-align: center; border: none;" name="add" id="add">

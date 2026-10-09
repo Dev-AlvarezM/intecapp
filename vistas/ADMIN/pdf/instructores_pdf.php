@@ -1,4 +1,5 @@
 <?php 
+// Se incluye la conexión a la base de datos para consultar los instructores.
 include('../../../modelos/db.php');
 ?>
 
@@ -8,6 +9,7 @@ include('../../../modelos/db.php');
 <head>
   <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 
+  <!-- Recursos del documento PDF / impresión -->
   <link href="../img/intecap.png" rel="icon" type="image/png">
   <link rel='stylesheet' type='text/css' href='css1/style.css' />
   <link rel='stylesheet' type='text/css' href='css1/print.css' media="print" />
@@ -15,7 +17,7 @@ include('../../../modelos/db.php');
   <script type='text/javascript' src='js/example.js'></script>
 
   <style>
-    /* Centrado del logo */
+    /* Centra el logo del instituto dentro de la vista PDF */
     .logo-container {
         text-align: center;
         margin: 15px 0;
@@ -25,13 +27,14 @@ include('../../../modelos/db.php');
         display: inline-block;
     }
 
+    /* Oculta los botones de impresión al momento de imprimir la página */
     @media print {
         .btn-print {
             display: none !important;
         }
     }
 
-    /* Fuente Arial aplicada a la tabla y celdas */
+    /* Estilo base de la tabla para mantener una presentación uniforme */
     table, th, td {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 15px;
@@ -44,6 +47,7 @@ include('../../../modelos/db.php');
 
   <br>
 
+  <!-- Botones de navegación e impresión para la vista PDF -->
   <center> 
     <a class="btn btn-success btn-print" style="text-decoration: none;
     font-family: Arial, sans-serif;
@@ -68,16 +72,18 @@ include('../../../modelos/db.php');
 
   <div id="page-wrap">
 
+    <!-- Encabezado visual del documento -->
     <textarea id="header">Lista de Instructores</textarea>
 
     <div id="identity">
       <div style="clear:both"></div>
 
-      <!-- Contenedor del logo centrado -->
+      <!-- Se muestra el logo institucional de la institución -->
       <div class="logo-container">
         <img id="image" src="../img/intecap.png" alt="logo" /><br /><br />
       </div>
 
+      <!-- Tabla que presenta el listado de instructores -->
       <table style="width:100%">
         <thead>
             <tr>
@@ -91,12 +97,17 @@ include('../../../modelos/db.php');
         <tbody>
 
         <?php 
+        // Inicializa el número correlativo para la lista.
         $num = 0;
+
+        // Consulta todos los usuarios cuyo cargo sea Instructor.
         $sql = "SELECT * FROM usuario WHERE cargo = 'Instructor' ";
         $query = $conn->query($sql);
+
+        // Recorre cada instructor y lo imprime en la fila correspondiente.
         while($row = $query->fetch_assoc()){
             $num = ++$num;
-            $id = $row['id'];
+            $id = $row['id']; // Se mantiene para posible uso futuro.
         ?>
           <tr>
               <td><?php echo $num;?></td>

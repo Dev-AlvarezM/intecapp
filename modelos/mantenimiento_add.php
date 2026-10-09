@@ -10,8 +10,22 @@ if (!isset($_SESSION['admin_intecap']) || trim($_SESSION['admin_intecap']) == ''
     header('location: ' . BASE_URL . '/index.php');
     exit;
 }
+$id_usuario = (int) $_SESSION['admin_intecap'];
+$stmtUsuario = $conn->prepare("SELECT cargo FROM usuario WHERE id = ?");
+$stmtUsuario->bind_param('i', $id_usuario);
+$stmtUsuario->execute();
+$usuario = $stmtUsuario->get_result()->fetch_assoc();
+$stmtUsuario->close();
+$cargo = $usuario ? trim($usuario['cargo']) : '';
+if ($cargo !== 'Admin' && $cargo !== 'Instructor') {
+    http_response_code(403);
+    exit('No tienes permiso para crear mantenimientos.');
+}
+
 $id_solicitante = 0;
-if (isset($_POST['id_instructor']) && trim($_POST['id_instructor']) !== '') {
+if ($cargo === 'Instructor') {
+    $id_solicitante = $id_usuario;
+} elseif (isset($_POST['id_instructor']) && trim($_POST['id_instructor']) !== '') {
     if (is_numeric($_POST['id_instructor']) && (int) $_POST['id_instructor'] > 0) {
         $id_solicitante = (int) $_POST['id_instructor'];
     } else {
@@ -29,7 +43,11 @@ if ($id_solicitante <= 0) {
     exit;
 }
 
-$id_taller    = $_POST["id_taller"];
+$id_taller = isset($_POST['id_taller']) ? trim($_POST['id_taller']) : '';
+if ($id_taller === '' || !ctype_digit($id_taller)) {
+    echo "<script>alert('Selecciona un taller válido.');window.history.back();</script>";
+    exit;
+}
 
 // Módulo donde se solicita el mantenimiento: viene del selector (módulos que ya
 // existen en Eventos) o, si eligieron "Otros", del campo de texto libre.
@@ -47,11 +65,42 @@ if ($modulo === '') {
     exit;
 }
 
+if ($cargo === 'Instructor') {
+    $fechaHoy = date('Y-m-d');
+    $stmtEvento = $conn->prepare(
+        "SELECT 1 FROM eventos
+         WHERE id_instructor = ? AND id_talleres = ? AND TRIM(Modulo) = ?
+           AND estado = 'Activo' AND modalidad <> 'Virtual'
+           AND f_inicio <= ? AND f_fin >= ?
+         LIMIT 1"
+    );
+    $stmtEvento->bind_param('iisss', $id_usuario, $id_taller, $modulo, $fechaHoy, $fechaHoy);
+    $stmtEvento->execute();
+    $tieneEventoHoy = $stmtEvento->get_result()->num_rows > 0;
+    $stmtEvento->close();
+    if (!$tieneEventoHoy) {
+        http_response_code(403);
+        exit('Solo puedes reportar mantenimiento del taller y módulo asignados para hoy.');
+    }
+    $f_reporte = $fechaHoy;
+} else {
+    $f_reporte = isset($_POST['f_reporte']) ? $_POST['f_reporte'] : date('Y-m-d');
+}
+
 $id_encargado = (int) $_POST["id_encargado"];
-$f_reporte    = $_POST['f_reporte'];
 $f_realizado  = (isset($_POST["f_realizado"]) && $_POST["f_realizado"] != '') ? $_POST["f_realizado"] : null;
 $descripcion  = $_POST['descripcion'];
 $estado       = 'no realizado';
+
+$stmtEncargado = $conn->prepare("SELECT id FROM usuario WHERE id = ? AND cargo = 'Mantenimiento'");
+$stmtEncargado->bind_param('i', $id_encargado);
+$stmtEncargado->execute();
+$encargadoValido = $stmtEncargado->get_result()->num_rows > 0;
+$stmtEncargado->close();
+if (!$encargadoValido) {
+    echo "<script>alert('Selecciona un encargado de mantenimiento válido.');window.history.back();</script>";
+    exit;
+}
 
 // 1. Insertar mantenimiento (consulta preparada + guardamos quién lo solicita)
 $stmt = $conn->prepare(

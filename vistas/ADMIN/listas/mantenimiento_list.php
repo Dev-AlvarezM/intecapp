@@ -4,32 +4,35 @@ include('../../modelos/db.php');
 
 // Normalizar el cargo del usuario (eliminar espacios extra)
 $cargo = trim($user['cargo']);
+$whereParticipante = $cargo === 'Admin'
+    ? ''
+    : ' AND (m.id_solicitante = ' . (int) $id_sesion . ' OR m.id_encargado = ' . (int) $id_sesion . ')';
 
 // Construir consulta SQL según el filtro seleccionado
 if ($estado=='Pendiente') {
     // Mostrar solo mantenimientos no realizados
-    $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE m.estado = 'no realizado' ORDER BY m.f_reporte DESC, m.id DESC";
+    $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE m.estado = 'no realizado' $whereParticipante ORDER BY m.f_reporte DESC, m.id DESC";
 }elseif ($estado=='Realizados') {
     // Mostrar solo mantenimientos realizados
-    $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE m.estado = 'Realizada' ORDER BY m.f_reporte DESC, m.id DESC";
+    $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE m.estado = 'Realizada' $whereParticipante ORDER BY m.f_reporte DESC, m.id DESC";
 }elseif ($estado=='Mes') {
     // Mostrar mantenimientos del mes actual
     $mes = date("m");
     $ano = date("Y");
-    $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE MONTH(f_reporte) = $mes AND YEAR(f_reporte) = $ano ORDER BY m.f_reporte DESC, m.id DESC";
+    $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE MONTH(f_reporte) = $mes AND YEAR(f_reporte) = $ano $whereParticipante ORDER BY m.f_reporte DESC, m.id DESC";
 }elseif ($estado=='Rango') {
     // Mostrar mantenimientos dentro de un rango de fechas específico
     if(isset($_POST['buscar_fechas']))
     {
-        $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE f_reporte BETWEEN '$fecha_inicio' and '$fecha_final' ORDER BY m.f_reporte DESC, m.id DESC";
+        $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE f_reporte BETWEEN '$fecha_inicio' and '$fecha_final' $whereParticipante ORDER BY m.f_reporte DESC, m.id DESC";
     }else{
         $fecha_inicio = 0;
         $fecha_final = 0;
-        $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE f_reporte BETWEEN '$fecha_inicio' and '$fecha_final' ORDER BY m.f_reporte DESC, m.id DESC";
+        $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE f_reporte BETWEEN '$fecha_inicio' and '$fecha_final' $whereParticipante ORDER BY m.f_reporte DESC, m.id DESC";
     }
 }elseif ($estado=='General') {
     // Mostrar todos los mantenimientos
-    $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante ORDER BY m.f_reporte DESC, m.id DESC";
+    $sql = "SELECT m.*, t.nombre_taller AS nombre_taller, m.id as id_mantenimiento, m.estado as estado_m, u.nombre AS nombre_mantenimiento, u2.nombre AS nombre_reporta FROM `mantenimiento` as m INNER JOIN talleres as t ON m.id_taller = t.id INNER JOIN usuario as u ON u.id = m.id_encargado LEFT JOIN usuario as u2 ON u2.id = m.id_solicitante WHERE 1=1 $whereParticipante ORDER BY m.f_reporte DESC, m.id DESC";
 }
 // Ejecutar consulta y recorrer resultados
 $query = $conn->query($sql) or die("Error en la consulta: " . $conn->error);
