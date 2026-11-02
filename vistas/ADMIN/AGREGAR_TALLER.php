@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="css/tema.css">
 
 <!--Formulario agregar taller-->
+
 <body>
     <div class="form-container">
         <h3>Agregar Nuevo Taller</h3>
@@ -28,7 +29,7 @@
                         <option value="">Seleccione</option>
                         <?php include 'listas/instructores_combobox.php'; ?>
                     </select>
-                </p>    
+                </p>
 
                 <p class="form-group">
                     <label for="participantes">Capacidad</label><br>
@@ -38,6 +39,11 @@
                 <p class="form-group">
                     <label for="condicion">Condición</label><br>
                     <input type="text" id="condicion" name="condicion">
+                </p>
+
+                <p class="form-group">
+                    <label for="mobiliario">Mobiliario</label><br>
+                    <input type="text" id="mobiliario" name="mobiliario">
                 </p><br>
 
                 <!--Botones de opciones-->
@@ -67,4 +73,5 @@
 
     <!--Samayoa-->
 </body>
+
 </html>

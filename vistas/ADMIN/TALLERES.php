@@ -40,6 +40,7 @@
                     <th>Capacidad</th>
                     <th>Instructor a Cargo</th>
                     <th>Condición</th>
+                    <th>Mobiliario</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

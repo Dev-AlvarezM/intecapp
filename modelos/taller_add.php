@@ -10,19 +10,32 @@ if ($checkCol && $checkCol->num_rows === 0) {
 
 $anio = $_POST["anio"];
 $nombre_taller = $_POST['nombre_taller'];
-$participantes = $_POST['participantes'];
+$participantes = (int) $_POST['participantes'];
 $condicion = $_POST['condicion'];
+$mobiliario = $_POST['mobiliario'] ?? '';
 $id_instructor = isset($_POST['nom_instructor']) ? (int) $_POST['nom_instructor'] : 0;
 if ($user['cargo'] === 'Instructor') {
     $id_instructor = (int) $user['id'];
 }
+$id_instructor = $id_instructor > 0 ? $id_instructor : null;
 $estado = 'Disponible';
 
-$instructorValue = $id_instructor > 0 ? "$id_instructor" : "NULL";
+$stmt = $conn->prepare("INSERT INTO talleres
+    (anio, nombre_taller, id_instructor, participantes, condicion, mobiliario, estado)
+    VALUES (?, ?, ?, ?, ?, ?, ?)");
+if (!$stmt) {
+    http_response_code(500);
+    exit('Error al preparar el registro del taller: ' . htmlspecialchars($conn->error, ENT_QUOTES, 'UTF-8'));
+}
 
-mysqli_query($conn, "INSERT INTO talleres (anio, nombre_taller, id_instructor, participantes, condicion, estado) 
-    VALUES('$anio', '$nombre_taller', $instructorValue, '$participantes', '$condicion', '$estado')") or die(mysqli_error($conn));
+$stmt->bind_param("ssiisss", $anio, $nombre_taller, $id_instructor, $participantes, $condicion, $mobiliario, $estado);
+if (!$stmt->execute()) {
+    $error = htmlspecialchars($stmt->error, ENT_QUOTES, 'UTF-8');
+    $stmt->close();
+    http_response_code(500);
+    exit('Error al guardar el taller: ' . $error);
+}
 
- echo "<script>document.location='../vistas/ADMIN/TALLERES.php'</script>";
+$stmt->close();
 
-?>
+echo "<script>document.location='../vistas/ADMIN/TALLERES.php'</script>";

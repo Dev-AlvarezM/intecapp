@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../../../modelos/db.php');
 ?>
 
@@ -17,25 +17,27 @@ include('../../../modelos/db.php');
   <style>
     /* Estilos de centrado para el logo */
     .logo-container {
-        text-align: center;
-        margin: 15px 0;
+      text-align: center;
+      margin: 15px 0;
     }
 
     #image {
-        display: inline-block;
+      display: inline-block;
     }
 
     @media print {
-        .btn-print {
-            display: none !important;
-        }
+      .btn-print {
+        display: none !important;
+      }
     }
 
     /* Fuente Arial y estilos aplicados a la tabla */
-    table, th, td {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 15px;
-        text-align: center;
+    table,
+    th,
+    td {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      text-align: center;
     }
   </style>
 </head>
@@ -44,8 +46,8 @@ include('../../../modelos/db.php');
 
   <br>
 
-  <center> 
-      <a class="btn btn-success btn-print" style="text-decoration: none;
+  <center>
+    <a class="btn btn-success btn-print" style="text-decoration: none;
       font-family: Arial, sans-serif;
       padding: 10px;
       font-weight: 600;
@@ -55,7 +57,7 @@ include('../../../modelos/db.php');
       border-radius: 6px;
       border: 2px solid #0016b0;" href="../TALLERES.php"><i class="glyphicon glyphicon-print"></i> Regresar</a>
 
-      <a class="btn btn-success btn-print" style="text-decoration: none;
+    <a class="btn btn-success btn-print" style="text-decoration: none;
       font-family: Arial, sans-serif;
       padding: 10px;
       font-weight: 600;
@@ -65,7 +67,7 @@ include('../../../modelos/db.php');
       border-radius: 6px;
       border: 2px solid #0016b0;" href="" onclick="window.print()"><i class="glyphicon glyphicon-print"></i> Impresión </a>
   </center>
-  
+
   <div id="page-wrap">
 
     <textarea id="header">Lista de Talleres</textarea>
@@ -80,19 +82,20 @@ include('../../../modelos/db.php');
 
       <table style="width:100%">
         <thead>
-            <tr>
-              <th> Año </th>
-              <th> Nombre del Taller </th>
-              <th> Estado </th>
-              <th> Participantes </th>
-              <th> Instructor a Cargo </th>
-              <th> Condición</th>
-            </tr>
+          <tr>
+            <th> Año </th>
+            <th> Nombre del Taller </th>
+            <th> Estado </th>
+            <th> Participantes </th>
+            <th> Instructor a Cargo </th>
+            <th> Condición</th>
+            <th> Mobiliario</th>
+          </tr>
         </thead>
         <tbody>
 
-        <?php 
-        $sql = "SELECT t.*, u.nombre AS nombre_instructor
+          <?php
+          $sql = "SELECT t.*, u.nombre AS nombre_instructor
                 , CASE
                     WHEN EXISTS (
                         SELECT 1
@@ -105,27 +108,29 @@ include('../../../modelos/db.php');
                 FROM talleres AS t
                 LEFT JOIN usuario AS u ON u.id = t.id_instructor
                 ORDER BY t.anio DESC, t.nombre_taller ASC";
-        $query = $conn->query($sql);
-        while($row = $query->fetch_assoc()){
+          $query = $conn->query($sql);
+          while ($row = $query->fetch_assoc()) {
             $id_taller = $row['id'];
-        ?>
-          <tr>
-              <td><?php echo $row['anio'];?></td>
-              <td><?php echo $row['nombre_taller'];?></td>
-              <td><?php echo $row['estado_automatico'];?></td>
-              <td><?php echo $row['participantes'];?></td>
-              <td><?php echo htmlspecialchars($row['nombre_instructor'] ?? 'Sin asignar', ENT_QUOTES, 'UTF-8');?></td>
-              <td><?php echo $row['condicion'];?></td>
-          </tr>
-        <?php 
+          ?>
+            <tr>
+              <td><?php echo $row['anio']; ?></td>
+              <td><?php echo $row['nombre_taller']; ?></td>
+              <td><?php echo $row['estado_automatico']; ?></td>
+              <td><?php echo $row['participantes']; ?></td>
+              <td><?php echo htmlspecialchars($row['nombre_instructor'] ?? 'Sin asignar', ENT_QUOTES, 'UTF-8'); ?></td>
+              <td><?php echo $row['condicion']; ?></td>
+              <td><?php echo htmlspecialchars($row['mobiliario'] ?? '-', ENT_QUOTES, 'UTF-8'); ?></td>
+            </tr>
+          <?php
           }
-        ?>
-                 
+          ?>
+
         </tbody>
       </table>
-              
+
     </div>
   </div>
 
 </body>
+
 </html>

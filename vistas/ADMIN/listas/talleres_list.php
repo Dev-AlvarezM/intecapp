@@ -30,29 +30,30 @@ $sql .= " ORDER BY CASE
 
 $query = $conn->query($sql);
 
-while($row = $query->fetch_assoc()){
+while ($row = $query->fetch_assoc()) {
     $id_taller = $row['id'];
-    
+
     $sqlEventosActivos = "SELECT COUNT(*) as count FROM eventos WHERE id_talleres = '$id_taller' AND estado = 'Activo'";
     $queryActivos = $conn->query($sqlEventosActivos);
     $resultActivos = $queryActivos->fetch_assoc();
     $estadoAutomatico = $resultActivos['count'] > 0 ? 'Ocupado' : 'Disponible';
 ?>
     <tr>
-        <td><?php echo $row['anio'] ?? '-';?></td>
-        <td><?php echo $row['nombre_taller'] ?? '-';?></td>
-        <td><?php echo $estadoAutomatico;?></td>
-        <td><?php echo $row['participantes'] ?? '-';?></td>
-        <td><?php echo !empty($row['instructor_nombre']) ? htmlspecialchars($row['instructor_nombre'], ENT_QUOTES, 'UTF-8') : '-';?></td>
-        <td><?php echo $row['condicion'] ?? '-';?></td>
+        <td><?php echo $row['anio'] ?? '-'; ?></td>
+        <td><?php echo $row['nombre_taller'] ?? '-'; ?></td>
+        <td><?php echo $estadoAutomatico; ?></td>
+        <td><?php echo $row['participantes'] ?? '-'; ?></td>
+        <td><?php echo !empty($row['instructor_nombre']) ? htmlspecialchars($row['instructor_nombre'], ENT_QUOTES, 'UTF-8') : '-'; ?></td>
+        <td><?php echo $row['condicion'] ?? '-'; ?></td>
+        <td><?php echo htmlspecialchars($row['mobiliario'] ?? '-', ENT_QUOTES, 'UTF-8'); ?></td>
         <td>
             <?php if ($user['cargo'] === "Admin" || ($user['cargo'] === "Instructor" && (int) $row['id_instructor'] === (int) $user['id'])) { ?>
-                <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_taller;?>)">
+                <button class="btn btn-warning btn-sm" onclick="editar(<?php echo $id_taller; ?>)">
                     <i class="fas fa-edit"></i>
                 </button>
             <?php } ?>
-            <?php if ($user['cargo']=="Admin") { ?>
-                <button class="btn btn-danger btn-sm" onclick="eliminar(<?php echo $id_taller;?>)">
+            <?php if ($user['cargo'] == "Admin") { ?>
+                <button class="btn btn-danger btn-sm" onclick="eliminar(<?php echo $id_taller; ?>)">
                     <i class="fas fa-trash"></i>
                 </button>
             <?php } else { ?>
@@ -60,5 +61,5 @@ while($row = $query->fetch_assoc()){
             <?php } ?>
         </td>
     </tr>
-<?php 
+<?php
 }

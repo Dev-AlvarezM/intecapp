@@ -51,6 +51,11 @@
             <input type="text" id="condicion" name="condicion" value="<?php echo htmlspecialchars($row['condicion']); ?>">
         </div>
 
+        <div class="form-group">
+            <label for="mobiliario">Mobiliario</label>
+            <input type="text" id="mobiliario" name="mobiliario" value="<?php echo htmlspecialchars($row['mobiliario'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+        </div>
+
         <div class="form-group" style="margin-top: 20px;">
             <button type="submit" class="btn-guardar" name="add" id="add">
                 <i class="fa fa-save"></i> Guardar
@@ -61,9 +66,8 @@
                 <i class="fa fa-sign-out"></i> Volver
             </button>
         </div>
-
     </form>
-
+    <br><br>
     <!-- Pie de página -->
     <?php include 'footer.php'; ?>
 </div>

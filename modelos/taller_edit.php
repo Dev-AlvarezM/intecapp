@@ -10,7 +10,7 @@ if (!in_array($user['cargo'], ['Admin', 'Instructor'], true)) {
 
 $checkCol = $conn->query("SHOW COLUMNS FROM talleres LIKE 'id_instructor'");
 if ($checkCol && $checkCol->num_rows === 0) {
-   $conn->query("ALTER TABLE talleres ADD COLUMN id_instructor INT NULL AFTER anio");
+    $conn->query("ALTER TABLE talleres ADD COLUMN id_instructor INT NULL AFTER anio");
 }
 
 $id = $_POST["id"];
@@ -18,6 +18,7 @@ $anio = $_POST["anio"];
 $nombre_taller = $_POST['nombre_taller'];
 $participantes = $_POST['participantes'];
 $condicion = $_POST['condicion'];
+$mobiliario = $_POST['mobiliario'] ?? '';
 $id_instructor = isset($_POST['id_instructor']) ? (int) $_POST['id_instructor'] : 0;
 
 if ($user['cargo'] === 'Instructor') {
@@ -29,9 +30,14 @@ $whereOwnership = $user['cargo'] === 'Instructor'
     ? ' AND id_instructor = ' . (int) $user['id']
     : '';
 $stmt = $conn->prepare("UPDATE talleres
-    SET anio = ?, nombre_taller = ?, id_instructor = ?, participantes = ?, condicion = ?
+    SET anio = ?, nombre_taller = ?, id_instructor = ?, participantes = ?, condicion = ?, mobiliario = ?
     WHERE id = ?$whereOwnership");
-$stmt->bind_param("ssissi", $anio, $nombre_taller, $id_instructor, $participantes, $condicion, $id);
+if (!$stmt) {
+    http_response_code(500);
+    exit('Error al preparar la actualización del taller: ' . htmlspecialchars($conn->error, ENT_QUOTES, 'UTF-8'));
+}
+
+$stmt->bind_param("ssiissi", $anio, $nombre_taller, $id_instructor, $participantes, $condicion, $mobiliario, $id);
 
 if (!$stmt->execute()) {
     $error = htmlspecialchars($stmt->error, ENT_QUOTES, 'UTF-8');
@@ -42,4 +48,3 @@ if (!$stmt->execute()) {
 $stmt->close();
 echo "<script type='text/javascript'>alert('Registro actualizado correctamente.');</script>";
 echo "<script>document.location='../vistas/ADMIN/TALLERES.php'</script>";
-?>
